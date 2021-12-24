@@ -1,0 +1,61 @@
+#container {
+    width: 40%;
+    min-width: 400px;
+    height: 80vh;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 15px;
+    display: grid;
+    background-color: #575657;
+    grid-template-areas:
+        "display display display"
+        "buttons buttons operators"
+        "buttons buttons operators";
+    grid-template-rows: 140px;
+    box-shadow: 0px 0px 5px 3px;
+}
+
+#display {
+    grid-area: display;
+    display: flex;
+    box-shadow: 0 5px 5px -5px black;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    font-style: oblique;
+    background-color: #575657;
+    color: white;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    /* word-wrap: break-word; */
+    /* word-break: break-all; */
+}
+
+#buttons {
+    grid-area: buttons;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#operators {
+    grid-area: operators;
+    display: grid;
+}
+
+.button {
+    border: transparent;
+    text-shadow: 2px 2px 4px 2px rgb(44, 44, 44);
+    box-shadow: inset 4px 4px 3px -5px black;
+    color: white;
+    font-weight: bolder;
+    font-size: 28px;
+}
+
+#number {
+    background-color: #838585;
+}
+
+#operators .button {
+    background-color: #f89f0c;
+}
