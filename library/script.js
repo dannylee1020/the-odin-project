@@ -36,7 +36,7 @@ function addForm() {
 
     const form = document.createElement("form");
     form.setAttribute("id", "modal-content");
-    form.setAttribute("onsubmit", "check(event)");
+    form.setAttribute("onsubmit", "submitForm(event)");
 
     const field1 = document.createElement("div");
     field1.setAttribute("id", "field");
@@ -95,6 +95,21 @@ function addForm() {
     return modal;
 }
 
+const submitForm = (e) => {
+    e.preventDefault(); // when submit form, prevent browser from reloading and losing data
+
+    const form = new FormData(e.target);
+    const title = form.get("title");
+    const author = form.get("author");
+    const pages = form.get("pages");
+    const status = form.get("status");
+
+    book = new Book(title, author, pages, status);
+    addBooktoLibrary(book);
+
+    modal.style.display = "none"; // remove pop up after adding
+};
+
 let myLibrary = [];
 
 theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "256", true);
@@ -124,17 +139,5 @@ bttn.addEventListener("click", function () {
     modal.style.display = "block"; // pop up like effect
 });
 
-const check = (e) => {
-    e.preventDefault(); // when submit form, prevent browser from reloading and losing data
-
-    const form = new FormData(e.target);
-    const title = form.get("title");
-    const author = form.get("author");
-    const pages = form.get("pages");
-    const status = form.get("status");
-
-    book = new Book(title, author, pages, status);
-    addBooktoLibrary(book);
-
-    modal.style.display = "none"; // remove pop up after adding
-};
+// remove the book
+function removeBook(tbl) {}
