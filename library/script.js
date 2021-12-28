@@ -40,9 +40,16 @@ function createLibrary(row, books) {
         bttn.setAttribute("class", "removeBttn");
         bttn.textContent = "Remove Book";
 
+        // add button to edit read status
+        let readBttn = document.createElement("button");
+        readBttn.setAttribute("id", `data-${i + 1}`);
+        readBttn.setAttribute("class", "readBttn");
+        readBttn.textContent = "Edit Read Status";
+
         // set book name
         td.textContent = books[i].title;
         tr.appendChild(bttn);
+        tr.appendChild(readBttn);
     }
 
     let newBttn = addNewBook();
@@ -74,6 +81,17 @@ function removeBook(lib) {
 
             // update library
             td.parentNode.remove();
+        })
+    );
+}
+
+function editReadStatus(lib) {
+    let readBttn = document.querySelectorAll(".readBttn");
+    readBttn.forEach((bttn) =>
+        bttn.addEventListener("click", (e) => {
+            let td = document.querySelector(`.tblData#${e.target.id}`);
+            let idx = lib.findIndex((el) => el.title === td.textContent);
+            lib[idx].hasRead = !lib[idx].hasRead;
         })
     );
 }
@@ -118,11 +136,11 @@ function addForm() {
     pages.setAttribute("name", "pages");
     pages.setAttribute("placeholder", "Pages");
 
-    const status = document.createElement("input");
-    status.setAttribute("type", "text");
-    status.setAttribute("id", "status");
-    status.setAttribute("name", "status");
-    status.setAttribute("placeholder", "Status");
+    const hasRead = document.createElement("input");
+    hasRead.setAttribute("type", "text");
+    hasRead.setAttribute("id", "hasRead");
+    hasRead.setAttribute("name", "hasRead");
+    hasRead.setAttribute("placeholder", "Has Read?");
 
     const submit = document.createElement("button");
     submit.setAttribute("type", "submit");
@@ -132,7 +150,7 @@ function addForm() {
     field1.appendChild(title);
     field2.appendChild(author);
     field3.appendChild(pages);
-    field4.appendChild(status);
+    field4.appendChild(hasRead);
 
     form.appendChild(field1);
     form.appendChild(field2);
@@ -151,12 +169,13 @@ const submitForm = (e) => {
     const title = form.get("title");
     const author = form.get("author");
     const pages = form.get("pages");
-    const status = form.get("status");
+    const status = JSON.parse(form.get("hasRead"));
 
     book = new Book(title, author, pages, status);
 
     addBooktoLibrary(book, myLibrary);
     removeBook(myLibrary);
+    editReadStatus(myLibrary);
     addNewBook();
 
     modal.style.display = "none"; // remove pop up after adding
@@ -164,6 +183,13 @@ const submitForm = (e) => {
 };
 
 var myLibrary = [];
+LOTR = new Book("Lord of the Rings", "J.R.R Tolkien", "450", true);
+HarryPotter = new Book("Harry Potter", "J.K.Rowling", "530", true);
+
+myLibrary.push(LOTR);
+myLibrary.push(HarryPotter);
 
 createLibrary(myLibrary.length, myLibrary);
 addForm(); // add form in the beginning. After each form submission submitForm function is fired.
+removeBook(myLibrary);
+editReadStatus(myLibrary);
