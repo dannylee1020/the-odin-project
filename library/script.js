@@ -9,6 +9,18 @@ function Book(title, author, pages, hasRead) {
         });
 }
 
+function addNewBook() {
+    let bttn = document.createElement("button");
+    bttn.setAttribute("id", "new-bttn");
+    bttn.textContent = "New Book";
+
+    bttn.addEventListener("click", function () {
+        modal.style.display = "block"; // pop up like effect
+    });
+
+    return bttn;
+}
+
 function createLibrary(row, books) {
     const body = document.body;
     const tbl = document.createElement("table");
@@ -21,6 +33,7 @@ function createLibrary(row, books) {
         let td = tr.insertCell();
         td.setAttribute("id", `data-${i + 1}`);
         td.setAttribute("class", "tblData");
+
         // add button to remove books from the list
         let bttn = document.createElement("button");
         bttn.setAttribute("id", `data-${i + 1}`);
@@ -31,13 +44,12 @@ function createLibrary(row, books) {
         td.textContent = books[i].title;
         tr.appendChild(bttn);
     }
-    // add new book button
-    const bttn = document.createElement("button");
-    bttn.setAttribute("id", "new-bttn");
-    bttn.textContent = "New Book";
+
+    // return tbl;
+    let newBttn = addNewBook();
 
     body.appendChild(tbl);
-    body.appendChild(bttn);
+    body.append(newBttn);
 }
 
 function addBooktoLibrary(book, lib) {
@@ -49,26 +61,6 @@ function addBooktoLibrary(book, lib) {
     bttn.remove();
 
     createLibrary(lib.length, lib);
-
-    // let rowLen = document.querySelectorAll("tr").length + 1;
-
-    // let tbl = document.querySelector("#tbl");
-    // let tr = tbl.insertRow();
-    // let td = tr.insertCell();
-    // let bttn = document.createElement("button");
-
-    // tr.setAttribute("id", `row${i + rowLen}`);
-    // td.setAttribute("id", `data-${i + rowLen}`);
-    // td.setAttribute("class", "tblData");
-    // bttn.setAttribute("id", `data-${i + rowLen}`);
-    // bttn.setAttribute("class", "removeBttn");
-    // bttn.textContent = "Remove Book";
-
-    // td.textContent = book.title;
-    // tr.appendChild(bttn);
-
-    // console.log(tr.getAttribute("id"));
-    // console.log(td.getAttribute("id"));
 }
 
 function removeBook(lib) {
@@ -151,6 +143,8 @@ function addForm() {
 
     modal.appendChild(form);
     body.appendChild(modal);
+
+    // return modal;
 }
 
 const submitForm = (e) => {
@@ -166,29 +160,13 @@ const submitForm = (e) => {
 
     addBooktoLibrary(book, myLibrary);
     removeBook(myLibrary);
+    addNewBook();
 
     modal.style.display = "none"; // remove pop up after adding
+    e.target.reset();
 };
 
 var myLibrary = [];
-const body = document.body;
 
-theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "256", true);
-harryPotter = new Book("Harry Potter", "J.K. Rowling", "354", true);
-LOTR = new Book("Lord of the Rings", "J.R.R Tolkien", "480", true);
-
-// myLibrary.push(theHobbit);
-// myLibrary.push(harryPotter);
-// myLibrary.push(LOTR);
-
-// create Library
-createLibrary(myLibrary.length, myLibrary, body);
-// form
-addForm();
-
-let bttn = document.querySelector("#new-bttn");
-bttn.addEventListener("click", function () {
-    modal.style.display = "block"; // pop up like effect
-});
-
-removeBook(myLibrary);
+createLibrary(myLibrary.length, myLibrary);
+addForm(); // add form in the beginning. After each form submission submitForm function is fired.
