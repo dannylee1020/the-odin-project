@@ -15,17 +15,26 @@ function addBooktoLibrary(book) {
 
 function createLibrary(row, books) {
     const tbl = document.createElement("table");
+    tbl.setAttribute("id", "tbl");
 
     for (i = 0; i < row; i++) {
         let tr = tbl.insertRow();
         tr.setAttribute("id", `row${i + 1}`);
 
         let td = tr.insertCell();
-        td.setAttribute("id", `data${i + 1}`);
+        td.setAttribute("id", `data-${i + 1}`);
+        td.setAttribute("class", "tblData");
+        // add button to remove books from the list
+        let bttn = document.createElement("button");
+        bttn.setAttribute("id", `data-${i + 1}`);
+        bttn.setAttribute("class", "removeBttn");
+        bttn.textContent = "Remove Book";
 
         // set book name
         td.textContent = books[i].title;
+        tr.appendChild(bttn);
     }
+
     return tbl;
 }
 
@@ -110,7 +119,7 @@ const submitForm = (e) => {
     modal.style.display = "none"; // remove pop up after adding
 };
 
-let myLibrary = [];
+var myLibrary = [];
 
 theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "256", true);
 harryPotter = new Book("Harry Potter", "J.K. Rowling", "354", true);
@@ -140,4 +149,17 @@ bttn.addEventListener("click", function () {
 });
 
 // remove the book
-function removeBook(tbl) {}
+function removeBook(lib) {
+    let removeBttn = document.querySelectorAll(".removeBttn");
+    removeBttn.forEach((bttn) =>
+        bttn.addEventListener("click", (e) => {
+            let td = document.querySelector(`.tblData#${e.target.id}`);
+            lib.splice(
+                lib.findIndex((el) => el.title === td.textContent),
+                1
+            );
+        })
+    );
+}
+
+removeBook(myLibrary);
