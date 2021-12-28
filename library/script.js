@@ -45,7 +45,6 @@ function createLibrary(row, books) {
         tr.appendChild(bttn);
     }
 
-    // return tbl;
     let newBttn = addNewBook();
 
     body.appendChild(tbl);
@@ -143,8 +142,6 @@ function addForm() {
 
     modal.appendChild(form);
     body.appendChild(modal);
-
-    // return modal;
 }
 
 const submitForm = (e) => {
