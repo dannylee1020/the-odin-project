@@ -9,11 +9,8 @@ function Book(title, author, pages, hasRead) {
         });
 }
 
-function addBooktoLibrary(book) {
-    myLibrary.push(book);
-}
-
 function createLibrary(row, books) {
+    const body = document.body;
     const tbl = document.createElement("table");
     tbl.setAttribute("id", "tbl");
 
@@ -34,11 +31,64 @@ function createLibrary(row, books) {
         td.textContent = books[i].title;
         tr.appendChild(bttn);
     }
+    // add new book button
+    const bttn = document.createElement("button");
+    bttn.setAttribute("id", "new-bttn");
+    bttn.textContent = "New Book";
 
-    return tbl;
+    body.appendChild(tbl);
+    body.appendChild(bttn);
+}
+
+function addBooktoLibrary(book, lib) {
+    lib.push(book);
+
+    let tbl = document.querySelector("#tbl");
+    let bttn = document.querySelector("#new-bttn");
+    tbl.remove();
+    bttn.remove();
+
+    createLibrary(lib.length, lib);
+
+    // let rowLen = document.querySelectorAll("tr").length + 1;
+
+    // let tbl = document.querySelector("#tbl");
+    // let tr = tbl.insertRow();
+    // let td = tr.insertCell();
+    // let bttn = document.createElement("button");
+
+    // tr.setAttribute("id", `row${i + rowLen}`);
+    // td.setAttribute("id", `data-${i + rowLen}`);
+    // td.setAttribute("class", "tblData");
+    // bttn.setAttribute("id", `data-${i + rowLen}`);
+    // bttn.setAttribute("class", "removeBttn");
+    // bttn.textContent = "Remove Book";
+
+    // td.textContent = book.title;
+    // tr.appendChild(bttn);
+
+    // console.log(tr.getAttribute("id"));
+    // console.log(td.getAttribute("id"));
+}
+
+function removeBook(lib) {
+    let removeBttn = document.querySelectorAll(".removeBttn");
+    removeBttn.forEach((bttn) =>
+        bttn.addEventListener("click", (e) => {
+            let td = document.querySelector(`.tblData#${e.target.id}`);
+            lib.splice(
+                lib.findIndex((el) => el.title === td.textContent),
+                1
+            );
+
+            // update library
+            td.parentNode.remove();
+        })
+    );
 }
 
 function addForm() {
+    const body = document.body;
     const modal = document.createElement("div");
 
     modal.setAttribute("id", "modal");
@@ -100,8 +150,7 @@ function addForm() {
     form.appendChild(submit);
 
     modal.appendChild(form);
-
-    return modal;
+    body.appendChild(modal);
 }
 
 const submitForm = (e) => {
@@ -114,52 +163,32 @@ const submitForm = (e) => {
     const status = form.get("status");
 
     book = new Book(title, author, pages, status);
-    addBooktoLibrary(book);
+
+    addBooktoLibrary(book, myLibrary);
+    removeBook(myLibrary);
 
     modal.style.display = "none"; // remove pop up after adding
 };
 
 var myLibrary = [];
+const body = document.body;
 
 theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "256", true);
 harryPotter = new Book("Harry Potter", "J.K. Rowling", "354", true);
 LOTR = new Book("Lord of the Rings", "J.R.R Tolkien", "480", true);
 
-addBooktoLibrary(theHobbit);
-addBooktoLibrary(harryPotter);
-addBooktoLibrary(LOTR);
+// myLibrary.push(theHobbit);
+// myLibrary.push(harryPotter);
+// myLibrary.push(LOTR);
 
-const body = document.body;
-tbl = createLibrary(myLibrary.length, myLibrary);
-
-// create a button
-const bttn = document.createElement("button");
-bttn.setAttribute("id", "bttn");
-bttn.textContent = "New Book";
-
+// create Library
+createLibrary(myLibrary.length, myLibrary, body);
 // form
-modal = addForm();
+addForm();
 
-body.appendChild(tbl);
-body.appendChild(bttn);
-body.appendChild(modal);
-
+let bttn = document.querySelector("#new-bttn");
 bttn.addEventListener("click", function () {
     modal.style.display = "block"; // pop up like effect
 });
-
-// remove the book
-function removeBook(lib) {
-    let removeBttn = document.querySelectorAll(".removeBttn");
-    removeBttn.forEach((bttn) =>
-        bttn.addEventListener("click", (e) => {
-            let td = document.querySelector(`.tblData#${e.target.id}`);
-            lib.splice(
-                lib.findIndex((el) => el.title === td.textContent),
-                1
-            );
-        })
-    );
-}
 
 removeBook(myLibrary);
