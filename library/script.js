@@ -140,7 +140,7 @@ function addForm() {
     hasRead.setAttribute("type", "text");
     hasRead.setAttribute("id", "hasRead");
     hasRead.setAttribute("name", "hasRead");
-    hasRead.setAttribute("placeholder", "Has Read?");
+    hasRead.setAttribute("placeholder", "Has Read? (Y/N)");
 
     const submit = document.createElement("button");
     submit.setAttribute("type", "submit");
@@ -169,7 +169,7 @@ const submitForm = (e) => {
     const title = form.get("title");
     const author = form.get("author");
     const pages = form.get("pages");
-    const status = JSON.parse(form.get("hasRead"));
+    const status = form.get("hasRead") == "Y" ? true : false;
 
     book = new Book(title, author, pages, status);
 
@@ -182,13 +182,17 @@ const submitForm = (e) => {
     e.target.reset();
 };
 
+// adding books for test purposes
 var myLibrary = [];
 LOTR = new Book("Lord of the Rings", "J.R.R Tolkien", "450", true);
 HarryPotter = new Book("Harry Potter", "J.K.Rowling", "530", true);
+TheHobbit = new Book("The Hobbit", "J.R.R Tolkien", "540", false);
 
 myLibrary.push(LOTR);
 myLibrary.push(HarryPotter);
+myLibrary.push(TheHobbit);
 
+// execute
 createLibrary(myLibrary.length, myLibrary);
 addForm(); // add form in the beginning. After each form submission submitForm function is fired.
 removeBook(myLibrary);
