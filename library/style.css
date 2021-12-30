@@ -33,8 +33,10 @@ table {
 
 thead tr {
     background-color: #009879;
+    text-align: center;
     color: #ffffff;
-    text-align: left;
+    font-weight: bolder;
+    font-size: large;
 }
 
 th,
