@@ -28,10 +28,12 @@ function createLibrary(row, books) {
 
     // create table header
     let head = tbl.createTHead();
+    let firstRow = document.createElement("tr");
     let th1 = document.createElement("th");
 
     th1.textContent = "Book Title";
-    head.appendChild(th1);
+    firstRow.appendChild(th1);
+    head.appendChild(firstRow);
 
     // create table body
     let tBody = tbl.createTBody();
@@ -202,13 +204,16 @@ const submitForm = (e) => {
 
 // adding books for test purposes
 var myLibrary = [];
+
 LOTR = new Book("Lord of the Rings", "J.R.R Tolkien", "450", true);
 HarryPotter = new Book("Harry Potter", "J.K.Rowling", "530", true);
 TheHobbit = new Book("The Hobbit", "J.R.R Tolkien", "540", false);
+MB = new Book("To Kill A Mocking Bird", "Harper Lee", "840", true);
 
 myLibrary.push(LOTR);
 myLibrary.push(HarryPotter);
 myLibrary.push(TheHobbit);
+myLibrary.push(MB);
 
 // execute
 createLibrary(myLibrary.length, myLibrary);
