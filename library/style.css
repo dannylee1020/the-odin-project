@@ -1,3 +1,5 @@
+/* for generating pop-up like modal action */
+
 #modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -17,4 +19,55 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* styling for table */
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 12px 15px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.removeBttn {
+    width: auto;
+    margin: 10px;
+}
+
+#new-bttn {
+    margin: 10px;
+    width: 100px;
+}
+
+#field {
+    margin: 10px;
+}
+
+form #submit {
+    margin: 10px;
 }
