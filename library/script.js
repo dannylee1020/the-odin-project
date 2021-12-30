@@ -26,19 +26,32 @@ function createLibrary(row, books) {
     const tbl = document.createElement("table");
     tbl.setAttribute("id", "tbl");
 
+    // create table header
+    let head = tbl.createTHead();
+    let th1 = document.createElement("th");
+
+    th1.textContent = "Book Title";
+    head.appendChild(th1);
+
+    // create table body
+    let tBody = tbl.createTBody();
+
     for (i = 0; i < row; i++) {
         let tr = tbl.insertRow();
         tr.setAttribute("id", `row${i + 1}`);
 
-        let td = tr.insertCell();
-        td.setAttribute("id", `data-${i + 1}`);
-        td.setAttribute("class", "tblData");
+        let td1 = tr.insertCell();
+        td1.setAttribute("id", `data-${i + 1}`);
+        td1.setAttribute("class", "tblData");
+
+        let td2 = tr.insertCell();
+        td2.setAttribute("class", "bttn-data");
 
         // add button to remove books from the list
-        let bttn = document.createElement("button");
-        bttn.setAttribute("id", `data-${i + 1}`);
-        bttn.setAttribute("class", "removeBttn");
-        bttn.textContent = "Remove Book";
+        let removeBttn = document.createElement("button");
+        removeBttn.setAttribute("id", `data-${i + 1}`);
+        removeBttn.setAttribute("class", "removeBttn");
+        removeBttn.textContent = "Remove Book";
 
         // add button to edit read status
         let readBttn = document.createElement("button");
@@ -47,13 +60,18 @@ function createLibrary(row, books) {
         readBttn.textContent = "Edit Read Status";
 
         // set book name
-        td.textContent = books[i].title;
-        tr.appendChild(bttn);
-        tr.appendChild(readBttn);
+        td1.textContent = books[i].title;
+
+        td2.appendChild(removeBttn);
+        td2.appendChild(readBttn);
+        // tr.appendChild(removeBttn);
+        // tr.appendChild(readBttn);
+        tBody.appendChild(tr);
     }
 
     let newBttn = addNewBook();
 
+    tbl.appendChild(tBody);
     body.appendChild(tbl);
     body.append(newBttn);
 }
