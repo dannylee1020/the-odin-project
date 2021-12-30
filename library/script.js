@@ -31,7 +31,8 @@ function createLibrary(row, books) {
     let firstRow = document.createElement("tr");
     let th1 = document.createElement("th");
 
-    th1.textContent = "Book Title";
+    th1.setAttribute("colspan", "3"); // span across two columns
+    th1.textContent = "My Library";
     firstRow.appendChild(th1);
     head.appendChild(firstRow);
 
