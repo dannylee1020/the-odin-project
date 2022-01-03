@@ -203,6 +203,13 @@ const submitForm = (e) => {
     e.target.reset();
 };
 
+function execute(lib) {
+    createLibrary(lib.length, lib);
+    addForm();
+    removeBook(lib);
+    editReadStatus(lib);
+}
+
 // adding books for test purposes
 var myLibrary = [];
 
@@ -217,7 +224,4 @@ myLibrary.push(TheHobbit);
 myLibrary.push(MB);
 
 // execute
-createLibrary(myLibrary.length, myLibrary);
-addForm(); // add form in the beginning. After each form submission submitForm function is fired.
-removeBook(myLibrary);
-editReadStatus(myLibrary);
+execute(myLibrary);
