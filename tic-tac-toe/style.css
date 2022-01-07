@@ -1,7 +1,7 @@
 :root {
-    --text: #dbdfac;
-    --bg: #2a1e5c;
-    --btn-bg: #d7f171;
+    --text: #d0d4fc;
+    --bg: #1e293b;
+    --btn-bg: #0f172a;
 }
 
 body {
@@ -19,6 +19,7 @@ section {
     grid-template-columns: repeat(3, auto);
     width: 306px;
     margin: 50px auto;
+    margin-bottom: 40px;
 }
 
 .cell {
@@ -33,17 +34,19 @@ section {
 }
 
 .restart-button {
-    color: var(--bg);
+    color: var(--text);
     background-color: var(--btn-bg);
     border: None;
     border-radius: 20px;
-    width: 130px;
+    width: 170px;
     height: 70px;
     font-weight: bolder;
     font-size: 30px;
+    margin-bottom: 30px;
 }
 
 .game-title {
     font-size: 60px;
     text-transform: uppercase;
+    margin-bottom: 12px;
 }
