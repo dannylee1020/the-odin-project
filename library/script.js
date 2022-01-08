@@ -1,12 +1,31 @@
-function Book(title, author, pages, hasRead) {
-    (this.title = title),
-        (this.author = author),
-        (this.pages = pages),
-        (this.hasRead = hasRead),
-        (this.info = function () {
-            hasRead = true ? "has read" : "not read yet";
-            return `${title} by ${author}, ${pages} pages, ${hasRead}`;
-        });
+// function Book(title, author, pages, hasRead) {
+//     (this.title = title),
+//         (this.author = author),
+//         (this.pages = pages),
+//         (this.hasRead = hasRead),
+//         (this.info = function () {
+//             hasRead = true ? "has read" : "not read yet";
+//             return `${title} by ${author}, ${pages} pages, ${hasRead}`;
+//         });
+// }
+
+class Book {
+    constructor(title, author, pages, hasRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = hasRead;
+    }
+
+    addBook(lib) {
+        let book = new this.constructor(
+            this.title,
+            this.author,
+            this.pages,
+            this.hasRead
+        );
+        lib.push(book);
+    }
 }
 
 function addNewBook() {
@@ -218,10 +237,15 @@ HarryPotter = new Book("Harry Potter", "J.K.Rowling", "530", true);
 TheHobbit = new Book("The Hobbit", "J.R.R Tolkien", "540", false);
 MB = new Book("To Kill A Mocking Bird", "Harper Lee", "840", true);
 
-myLibrary.push(LOTR);
-myLibrary.push(HarryPotter);
-myLibrary.push(TheHobbit);
-myLibrary.push(MB);
+LOTR.addBook(myLibrary);
+HarryPotter.addBook(myLibrary);
+TheHobbit.addBook(myLibrary);
+MB.addBook(myLibrary);
+
+// myLibrary.push(LOTR);
+// myLibrary.push(HarryPotter);
+// myLibrary.push(TheHobbit);
+// myLibrary.push(MB);
 
 // execute
 execute(myLibrary);
