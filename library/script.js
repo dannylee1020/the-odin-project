@@ -242,10 +242,5 @@ HarryPotter.addBook(myLibrary);
 TheHobbit.addBook(myLibrary);
 MB.addBook(myLibrary);
 
-// myLibrary.push(LOTR);
-// myLibrary.push(HarryPotter);
-// myLibrary.push(TheHobbit);
-// myLibrary.push(MB);
-
 // execute
 execute(myLibrary);
