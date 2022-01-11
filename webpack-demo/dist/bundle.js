@@ -177,7 +177,7 @@ eval("\n\n//# sourceURL=webpack://webpack-demo/./src/icon.png?");
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _myName__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./myName */ \"./src/myName.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _icon_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icon.png */ \"./src/icon.png?bfc1\");\n/* harmony import */ var _icon_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_icon_png__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _data_xml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data.xml */ \"./src/data.xml\");\n/* harmony import */ var _data_xml__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_data_xml__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _data_csv__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./data.csv */ \"./src/data.csv\");\n/* harmony import */ var _data_csv__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_data_csv__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\n\nfunction component() {\n    const element = document.createElement(\"div\");\n\n    element.innerHTML = (0,_myName__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(\"Danny\");\n    element.classList.add(\"hello\");\n\n    //add the image to existing div\n    const myIcon = new Image(); // equivalent to document.createElement('img')\n    myIcon.src = (_icon_png__WEBPACK_IMPORTED_MODULE_3___default());\n\n    element.appendChild(myIcon);\n\n    console.log((_data_xml__WEBPACK_IMPORTED_MODULE_4___default()));\n    console.log((_data_csv__WEBPACK_IMPORTED_MODULE_5___default()));\n\n    return element;\n}\n\ndocument.body.appendChild(component());\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _myName__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./myName */ \"./src/myName.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _icon_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./icon.png */ \"./src/icon.png?bfc1\");\n/* harmony import */ var _icon_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_icon_png__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _data_xml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data.xml */ \"./src/data.xml\");\n/* harmony import */ var _data_xml__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_data_xml__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _data_csv__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./data.csv */ \"./src/data.csv\");\n/* harmony import */ var _data_csv__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_data_csv__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _data_toml__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data.toml */ \"./src/data.toml\");\n/* harmony import */ var _data_yaml__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./data.yaml */ \"./src/data.yaml\");\n/* harmony import */ var _data_json5__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./data.json5 */ \"./src/data.json5\");\n\n\n\n\n\n\n\n\n\n\nconsole.log(_data_toml__WEBPACK_IMPORTED_MODULE_6__.title);\nconsole.log(_data_toml__WEBPACK_IMPORTED_MODULE_6__.owner.name);\n\nconsole.log(_data_yaml__WEBPACK_IMPORTED_MODULE_7__.title);\nconsole.log(_data_yaml__WEBPACK_IMPORTED_MODULE_7__.owner.name);\n\nconsole.log(_data_json5__WEBPACK_IMPORTED_MODULE_8__.title);\nconsole.log(_data_json5__WEBPACK_IMPORTED_MODULE_8__.owner.name);\n\nfunction component() {\n    const element = document.createElement(\"div\");\n\n    element.innerHTML = (0,_myName__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(\"Danny\");\n    element.classList.add(\"hello\");\n\n    //add the image to existing div\n    const myIcon = new Image(); // equivalent to document.createElement('img')\n    myIcon.src = (_icon_png__WEBPACK_IMPORTED_MODULE_3___default());\n\n    element.appendChild(myIcon);\n\n    console.log((_data_xml__WEBPACK_IMPORTED_MODULE_4___default()));\n    console.log((_data_csv__WEBPACK_IMPORTED_MODULE_5___default()));\n\n    return element;\n}\n\ndocument.body.appendChild(component());\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
 
 /***/ }),
 
@@ -222,6 +222,39 @@ eval("module.exports = __webpack_require__.p + \"31d6cfe0d16ae931b73c.woff\";\n\
 
 "use strict";
 eval("module.exports = __webpack_require__.p + \"31d6cfe0d16ae931b73c.woff2\";\n\n//# sourceURL=webpack://webpack-demo/./src/my-font.woff2?");
+
+/***/ }),
+
+/***/ "./src/data.json5":
+/*!************************!*\
+  !*** ./src/data.json5 ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+eval("module.exports = JSON.parse('{\"title\":\"JSON5 Example\",\"owner\":{\"name\":\"Tom Preston-Werner\",\"organization\":\"GitHub\",\"bio\":\"GitHub Cofounder & CEO\\\\nLikes tater tots and beer.\",\"dob\":\"1979-05-27T07:32:00.000Z\"}}');\n\n//# sourceURL=webpack://webpack-demo/./src/data.json5?");
+
+/***/ }),
+
+/***/ "./src/data.toml":
+/*!***********************!*\
+  !*** ./src/data.toml ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+eval("module.exports = JSON.parse('{\"title\":\"TOML Example\",\"owner\":{\"name\":\"Tom Preston-Werner\",\"organization\":\"GitHub\",\"bio\":\"GitHub Cofounder & CEO\\\\nLikes tater tots and beer.\",\"dob\":\"1979-05-27T07:32:00.000Z\"}}');\n\n//# sourceURL=webpack://webpack-demo/./src/data.toml?");
+
+/***/ }),
+
+/***/ "./src/data.yaml":
+/*!***********************!*\
+  !*** ./src/data.yaml ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+eval("module.exports = JSON.parse('{\"title\":\"YAML Example\",\"owner\":{\"name\":\"Tom Preston-Werner\",\"organization\":\"GitHub\",\"bio\":\"GitHub Cofounder & CEO\\\\nLikes tater tots and beer.\",\"dob\":\"1979-05-27T07:32:00.000Z\"}}');\n\n//# sourceURL=webpack://webpack-demo/./src/data.yaml?");
 
 /***/ })
 
