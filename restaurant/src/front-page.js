@@ -1,3 +1,7 @@
+import "./style.css";
+// import background from "./img/pastas.jpeg";
+const background = require("./img/pastas.jpeg");
+
 const homePage = function () {
     const content = document.querySelector("#content");
 
@@ -10,8 +14,8 @@ const homePage = function () {
     const origin = document.createElement("div");
     origin.setAttribute("id", "origin");
 
-    // const backgroudImage = new Image();
-    // backgroundImage.src = "path/to/image";
+    const backgroundImage = new Image(100, 200);
+    backgroundImage.src = background;
 
     // set textContent
     name.textContent = "UOVO";
@@ -22,6 +26,7 @@ const homePage = function () {
     content.appendChild(name);
     content.appendChild(description);
     content.appendChild(origin);
+    content.appendChild(backgroundImage);
 };
 
 export { homePage };
