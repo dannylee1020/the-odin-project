@@ -1,1 +1,3 @@
-console.log("Hello World");
+import { homePage } from "./front-page.js";
+
+homePage();
