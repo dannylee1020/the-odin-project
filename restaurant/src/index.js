@@ -1,3 +1,3 @@
-import { homePage } from "./renderAbout.js";
+import { homePage } from "./pages/renderAbout.js";
 
 homePage();
