@@ -13,9 +13,6 @@ const homePage = function () {
     const origin = document.createElement("div");
     origin.setAttribute("id", "origin");
 
-    // const backgroundImage = new Image(100, 200);
-    // backgroundImage.src = background;
-
     // set textContent
     name.textContent = "UOVO";
     description.textContent =
@@ -25,7 +22,6 @@ const homePage = function () {
     content.appendChild(name);
     content.appendChild(description);
     content.appendChild(origin);
-    // content.appendChild(backgroundImage);
 };
 
 export { homePage };
