@@ -35,19 +35,46 @@ const homePage = function () {
 
     const title = document.createElement("h2");
     title.style.color = "#CB7152";
+    title.style.paddingTop = "20px";
+    title.style.fontSize = "50px";
     title.textContent = "Our pasta";
 
     const intro = document.createElement("p");
-    intro.style.wordBreak = "break-all";
+    intro.style.wordBreak = "break-word";
     intro.style.color = "black";
     intro.style.fontWeight = "10px";
+    intro.style.fontSize = "50px";
+    intro.style.padding = "30px 120px 30px 120px";
     intro.textContent = `is handmade in our kitchen in Bologna, Italy by "sfogline" who use traditional methods of sheeting
          and cutting -- none of our pasta is extruded. It's prepared fresh daily, using a type of egg
          that's available only in Italy and is specially produced for pasta. The reuslt is a superior noodle
          that is the foundation for our classic Italian dishes.`;
 
+    // add images at the bottom
+    const imgContainer = document.createElement("div");
+    const foodImage1 = new Image(100, 100);
+    const foodImage2 = new Image();
+    const foodImage3 = new Image();
+
+    // add image source
+    foodImage1.src = "../img/fresh_pasta_1.jpeg";
+    foodImage2.src = "../img/fresh_pasta_2.jpeg";
+    foodImage3.src = "../img/fresh_pasta_3.jpeg";
+
+    // add image style
+    foodImage1.style.borderRadius = "50%";
+    foodImage2.style.borderRadius = "50%";
+    foodImage3.style.borderRadius = "50%";
+
+    // adding child to parent
+    imgContainer.appendChild(foodImage1);
+    imgContainer.appendChild(foodImage2);
+    imgContainer.appendChild(foodImage3);
+
+    // // append all child to parent
     introDiv.appendChild(title);
     introDiv.appendChild(intro);
+    introDiv.appendChild(imgContainer);
 
     // add elements to parent
     content.appendChild(name);
