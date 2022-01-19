@@ -1,4 +1,4 @@
-import "../style/style.css";
+import "../style/styleAbout.css";
 import first_src from "../img/fresh_pasta_1.jpeg";
 import second_src from "../img/fresh_pasta_2.jpeg";
 import third_src from "../img/fresh_pasta_3.jpeg";
