@@ -3,8 +3,9 @@ import first_src from "../img/fresh_pasta_1.jpeg";
 import second_src from "../img/fresh_pasta_2.jpeg";
 import third_src from "../img/fresh_pasta_3.jpeg";
 
-const homePage = function () {
-    const content = document.querySelector("#content");
+const aboutPage = function () {
+    const content = document.createElement("div");
+    content.setAttribute("id", "content");
 
     const name = document.createElement("div");
     name.setAttribute("id", "name");
@@ -86,7 +87,9 @@ const homePage = function () {
     content.appendChild(description);
     content.appendChild(origin);
 
-    document.body.appendChild(introDiv);
+    // adding all page elements to container
+    container.appendChild(content);
+    container.appendChild(introDiv);
 };
 
-export { homePage };
+export { aboutPage };
