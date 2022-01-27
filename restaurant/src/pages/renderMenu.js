@@ -1,4 +1,4 @@
-import { createList, createBeverage } from "../menus/createMenuItems";
+import { createBeverageSection, createCourse } from "../menus/createMenuItems";
 
 const aboutMenu = function () {
     const tastingMenu = document.createElement("div");
@@ -33,7 +33,7 @@ const aboutMenu = function () {
     // create course list
     const courses = document.createElement("div");
 
-    const classic = createList(
+    const classic = createCourse(
         "The Classic",
         "32 | Person",
         "Yellowtail Crudo",
@@ -43,7 +43,7 @@ const aboutMenu = function () {
         "Tiramisu al cucchiaio"
     );
 
-    const cheese = createList(
+    const cheese = createCourse(
         "Cheese & Truffle",
         "37 | Person",
         "Yellowtail Crudo",
@@ -53,7 +53,7 @@ const aboutMenu = function () {
         "Tiramisu al cucchiaio"
     );
 
-    const regional = createList(
+    const regional = createCourse(
         "The Regional",
         "32 | Person",
         "Battuta di carne",
@@ -78,7 +78,7 @@ const aboutMenu = function () {
     container.appendChild(tastingMenu);
     container.appendChild(courses);
 
-    const bevContainer = createBeverage();
+    const bevContainer = createBeverageSection();
     document.body.appendChild(bevContainer);
 };
 
