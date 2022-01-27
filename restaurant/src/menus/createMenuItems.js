@@ -57,11 +57,17 @@ const createCourse = function (
 };
 
 const createBeverageList = function (title, obj) {
+    const container = document.createElement("div");
     const listContainer = document.createElement("div");
     const listTitle = document.createElement("div");
-    listTitle.textContent = title;
 
-    listContainer.appendChild(listTitle);
+    listTitle.textContent = title;
+    listTitle.style.fontSize = "30px";
+    listTitle.style.fontWeight = "bold";
+    listTitle.style.textAlign = "center";
+    listTitle.style.margin = "40px 0px 30px 0px";
+
+    container.appendChild(listTitle);
 
     for (let p in obj) {
         let itemContainer = document.createElement("div");
@@ -75,26 +81,70 @@ const createBeverageList = function (title, obj) {
         price.textContent = obj[p][1];
         profile.textContent = obj[p][2];
 
+        item.style.fontSize = "17px";
+        price.style.color = "#CB7152";
+        price.style.fontSize = "14px";
+        itemPrice.style.display = "flex";
+        itemPrice.style.justifyContent = "space-between";
+        hr.style.border = "dotted 2px";
+        hr.style.color = "#D3D3D3";
+        profile.style.fontSize = "12px";
+        profile.style.color = "#99A3A4";
+
+        listContainer.style.display = "flex";
+        listContainer.style.flexDirection = "column";
+        listContainer.style.gap = "25px";
+        listContainer.style.alignItems = "left";
+
         itemPrice.append(item, price);
         itemContainer.append(itemPrice, hr, profile);
         listContainer.appendChild(itemContainer);
     }
+    container.style.width = "25%";
+    container.appendChild(listContainer);
 
-    return listContainer;
+    return container;
 };
 
 const createBeverageSection = function () {
     const bevContainer = document.createElement("div");
     bevContainer.setAttribute("id", "bevContainer");
-    // bevContainer.style.backgroundColor = "#E2DAC7";
+    const listContainer = document.createElement("div");
+    bevContainer.style.backgroundColor = "#FFFBF6";
 
     const beerObj = {
-        first: ["Peroni", "$6", "Lager (325ml)"],
-        second: ["Angelo Poretti", "$7", "Premium Lager (325ml.)"],
+        first: ["Peroni", "$6", "Lager (325 ml.)"],
+        second: ["Angelo Poretti", "$7", "Premium Lager (325 ml.)"],
+        third: ["Angelo Poretti", "$7", "Red (325 ml.)"],
+    };
+
+    const whiteObj = {
+        first: ["Vermentino", "$ 10 | 40", "Olianas"],
+        second: ["Pinot Grigio", "$ 11 | 44", "Teriato"],
+        third: ["Sauvignon Blanc", "$ 13 | 52", "Torre Rosazza"],
+        fourth: ["Chardonnay", "$ 15 | 60", "Vie di Romans"],
+        fifth: ["Ca' BRIONE", "$69", "Nino Negri"],
+    };
+
+    const redObj = {
+        first: ["Chianti Superiore", "$ 11 | 44", "Castel Trebbio"],
+        second: ["Barbera D'Alba", "$ 12 | 48", "Pio Cesare"],
+        third: ["Montepulciano D'Abruzzo", "$ 14 | 56", "Yume, Caldora"],
+        fourth: ["Super Tuscan", "$ 16 | 64", "Bolgheri, Argentieria"],
+        fifth: ["Barbaresco", "$75", "Fontanabianca"],
     };
 
     const beerList = createBeverageList("Beer", beerObj);
-    bevContainer.appendChild(beerList);
+    const whiteList = createBeverageList("White", whiteObj);
+    const redList = createBeverageList("Red", redObj);
+
+    listContainer.append(beerList, whiteList, redList);
+    listContainer.style.display = "flex";
+    listContainer.style.justifyContent = "space-around";
+    listContainer.style.marginTop = "40px";
+
+    bevContainer.appendChild(listContainer);
+    bevContainer.style.paddingBottom = "50px";
 
     return bevContainer;
 };
