@@ -1,12 +1,24 @@
 import { aboutPage } from "./pages/renderAbout.js";
 import { aboutMenu } from "./pages/renderMenu.js";
 
-// const about = document.querySelector(".tabsDiv #about");
-// about.addEventListener("click", aboutPage);
+const aboutTab = document.querySelector("#about");
+const menuTab = document.querySelector("#menu");
+const contactTab = document.querySelector("#contact");
 
-// aboutPage();
+const renderPage = function (func) {
+    let container = document.querySelector("#container");
+    let page = func();
+    container.replaceChildren(page);
+};
 
-// const menu = document.querySelector(".tabsDiv #menu");
-// menu.addEventListener("click", aboutMenu);
+aboutTab.addEventListener("click", function () {
+    let container = document.querySelector("#container");
+    let about = aboutPage();
+    container.replaceChildren(about);
+});
 
-aboutMenu();
+menuTab.addEventListener("click", function () {
+    let container = document.querySelector("#container");
+    let menu = aboutMenu();
+    container.replaceChildren(menu);
+});
