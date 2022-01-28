@@ -1,6 +1,8 @@
 import { createBeverageSection, createCourse } from "../menus/createMenuItems";
 
 const aboutMenu = function () {
+    const menuPageContainer = document.createElement("div");
+    const menuContainer = document.createElement("div");
     const tastingMenu = document.createElement("div");
     tastingMenu.setAttribute("class", "menu");
 
@@ -67,19 +69,22 @@ const aboutMenu = function () {
     courses.style.display = "flex";
     courses.style.justifyContent = "space-around";
     courses.style.marginTop = "60px";
+
     // add child to parent
-    const container = document.querySelector("#container");
-    // container.style.backgroundColor = "#FFFFFF";
+
     tastingMenu.appendChild(title);
     tastingMenu.appendChild(subtitle);
     tastingMenu.appendChild(hr);
     tastingMenu.appendChild(menuTitle);
 
-    container.appendChild(tastingMenu);
-    container.appendChild(courses);
+    menuContainer.appendChild(tastingMenu);
+    menuContainer.appendChild(courses);
+    menuContainer.setAttribute("id", "menu");
 
     const bevContainer = createBeverageSection();
-    document.body.appendChild(bevContainer);
+    menuPageContainer.append(menuContainer, bevContainer);
+
+    return menuPageContainer;
 };
 
 export { aboutMenu };
