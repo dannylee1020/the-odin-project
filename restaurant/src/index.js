@@ -5,11 +5,15 @@ const aboutTab = document.querySelector("#about");
 const menuTab = document.querySelector("#menu");
 const contactTab = document.querySelector("#contact");
 
-const renderPage = function (func) {
-    let container = document.querySelector("#container");
-    let page = func();
-    container.replaceChildren(page);
-};
+// const renderPage = function (func) {
+//     let container = document.querySelector("#container");
+//     let page = func();
+//     container.replaceChildren(page);
+// };
+
+let homePage = aboutPage();
+let container = document.querySelector("#container");
+container.append(homePage);
 
 aboutTab.addEventListener("click", function () {
     let container = document.querySelector("#container");
