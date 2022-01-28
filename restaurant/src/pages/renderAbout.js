@@ -4,6 +4,7 @@ import second_src from "../img/fresh_pasta_2.jpeg";
 import third_src from "../img/fresh_pasta_3.jpeg";
 
 const aboutPage = function () {
+    const pageContainer = document.createElement("div");
     const content = document.createElement("div");
     content.setAttribute("id", "content");
 
@@ -87,9 +88,10 @@ const aboutPage = function () {
     content.appendChild(description);
     content.appendChild(origin);
 
-    // adding all page elements to container
-    container.appendChild(content);
-    container.appendChild(introDiv);
+    // adding all elements to pageContainer
+    pageContainer.append(content, introDiv);
+
+    return pageContainer;
 };
 
 export { aboutPage };
