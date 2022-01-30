@@ -2,9 +2,9 @@ import { aboutPage } from "./pages/renderAbout.js";
 import { aboutMenu } from "./pages/renderMenu.js";
 import { aboutContact } from "./pages/renderContact";
 
-// const aboutTab = document.querySelector("#about");
-// const menuTab = document.querySelector("#menu");
-// const contactTab = document.querySelector("#contact");
+const aboutTab = document.querySelector("#about");
+const menuTab = document.querySelector("#menu");
+const contactTab = document.querySelector("#contact");
 
 // // const renderPage = function (func) {
 // //     let container = document.querySelector("#container");
