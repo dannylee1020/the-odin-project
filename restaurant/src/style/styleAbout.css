@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0px;
   padding: 0px;
   width: 100%;
@@ -19,7 +19,7 @@ body {
 
 .tab:hover {
   color: #CB7152
-}
+} */
 
 #content {
   display: flex;
