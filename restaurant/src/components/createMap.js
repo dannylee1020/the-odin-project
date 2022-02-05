@@ -12,18 +12,13 @@ const createMap = function initMap() {
     });
 };
 
-// const addScript = function (src, callback) {
-//     var s = document.createElement("script");
-//     s.setAttribute("src", src);
-//     s.onload = callback;
-//     return s;
-// };
-
 const buildMap = function () {
+    // adding callback script to head
     var script = document.createElement("script");
     script.text = createMap;
     document.head.appendChild(script);
 
+    // sending request to google API endpoint
     let apiKey = "AIzaSyDHbrkqTmxNmG0a1o5ht5TId-u37Ph4tRA";
     let src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
     let s = document.createElement("script");
