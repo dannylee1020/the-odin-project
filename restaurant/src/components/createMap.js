@@ -19,7 +19,7 @@ const buildMap = function () {
     document.head.appendChild(script);
 
     // sending request to google API endpoint
-    let apiKey = "AIzaSyDHbrkqTmxNmG0a1o5ht5TId-u37Ph4tRA";
+    let apiKey = process.env.MAPS_API_KEY;
     let src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
     let s = document.createElement("script");
     s.setAttribute("src", src);
