@@ -108,33 +108,30 @@ const aboutContact = function () {
     email.textContent = "uovola@example.com";
     email.style.fontSize = "20px";
     email.style.marginBottom = "5px";
-    number.textContent = "213-999-9999";
+    number.textContent = "call us! : 213-999-9999";
     number.style.fontSize = "20px";
 
     mediaContainer.style.display = "flex";
     mediaContainer.style.flexDirection = "column";
     mediaContainer.style.alignItems = "center";
-    mediaContainer.style.marginTop = "40px";
+    mediaContainer.style.marginTop = "30px";
     mediaContainer.append(media, inquiries, email, number);
 
     contactBody.style.display = "flex";
     contactBody.style.justifyContent = "space-around";
     contactBody.append(hourContainer, ruleContainer, mediaContainer);
 
-    // adding map section
-    // let apiKey = "AIzaSyDHbrkqTmxNmG0a1o5ht5TId-u37Ph4tRA";
-    // let src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=${createMap}`;
-    // let s = document.createElement("script");
-    // s.setAttribute("src", src);
-    // s.setAttribute("async", "async");
-
+    // add google map
     let s = buildMap();
-    mapFrame.style.height = "400px";
+    mapFrame.style.height = "500px";
     mapFrame.style.width = "100%";
+    mapFrame.style.marginBottom = "40px";
+    mapContainer.style.display = "flex";
+    mapContainer.style.justifyContent = "center";
     mapContainer.append(mapFrame, s);
 
     contactContainer.append(contactHeader, contactBody, mapContainer);
-    document.querySelector("#container").appendChild(contactContainer);
+    return contactContainer;
 };
 
 export { aboutContact };
