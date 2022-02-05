@@ -1,5 +1,7 @@
 import "../style/styleTabs.css";
 import "../style/styleContact.css";
+// import { createMap, addScript } from "../components/createMap";
+import { buildMap } from "../components/createMap";
 
 const aboutContact = function () {
     const contactContainer = document.createElement("div");
@@ -8,6 +10,9 @@ const aboutContact = function () {
     contactHeader.setAttribute("id", "contactHeader");
     const contactBody = document.createElement("div");
     contactBody.setAttribute("id", "contactBody");
+    const mapContainer = document.createElement("div");
+    const mapFrame = document.createElement("div");
+    mapFrame.setAttribute("id", "map");
     const contactForm = document.createElement("div");
 
     // working on header
@@ -116,7 +121,19 @@ const aboutContact = function () {
     contactBody.style.justifyContent = "space-around";
     contactBody.append(hourContainer, ruleContainer, mediaContainer);
 
-    contactContainer.append(contactHeader, contactBody);
+    // adding map section
+    // let apiKey = "AIzaSyDHbrkqTmxNmG0a1o5ht5TId-u37Ph4tRA";
+    // let src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=${createMap}`;
+    // let s = document.createElement("script");
+    // s.setAttribute("src", src);
+    // s.setAttribute("async", "async");
+
+    let s = buildMap();
+    mapFrame.style.height = "400px";
+    mapFrame.style.width = "100%";
+    mapContainer.append(mapFrame, s);
+
+    contactContainer.append(contactHeader, contactBody, mapContainer);
     document.querySelector("#container").appendChild(contactContainer);
 };
 
