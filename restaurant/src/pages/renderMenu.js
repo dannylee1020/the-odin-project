@@ -1,4 +1,7 @@
-import { createBeverageSection, createCourse } from "../menus/createMenuItems";
+import {
+    createBeverageSection,
+    createCourse,
+} from "../components/createMenuItems";
 
 const aboutMenu = function () {
     const menuPageContainer = document.createElement("div");
