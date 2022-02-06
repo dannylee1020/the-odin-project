@@ -1,7 +1,7 @@
 import "../style/styleTabs.css";
 import "../style/styleContact.css";
-// import { createMap, addScript } from "../components/createMap";
 import { buildMap } from "../components/createMap";
+import { buildFooter } from "../components/createFooter";
 
 const aboutContact = function () {
     const contactContainer = document.createElement("div");
@@ -125,12 +125,14 @@ const aboutContact = function () {
     let s = buildMap();
     mapFrame.style.height = "500px";
     mapFrame.style.width = "100%";
-    mapFrame.style.marginBottom = "40px";
+    // mapFrame.style.marginBottom = "40px";
     mapContainer.style.display = "flex";
     mapContainer.style.justifyContent = "center";
     mapContainer.append(mapFrame, s);
 
-    contactContainer.append(contactHeader, contactBody, mapContainer);
+    // footer
+    let footer = buildFooter();
+    contactContainer.append(contactHeader, contactBody, mapContainer, footer);
     return contactContainer;
 };
 
