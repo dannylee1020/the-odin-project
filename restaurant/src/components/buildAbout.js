@@ -39,11 +39,12 @@ const buildContent = function () {
 const buildBody = function () {
     // generate intro
     const introDiv = document.createElement("div");
+    introDiv.setAttribute("id", "intro-div");
     introDiv.style.backgroundColor = "#F5F3F1";
     introDiv.style.textAlign = "center";
-    introDiv.style.height = "100%";
-    introDiv.style.border = "None";
-    introDiv.style.position = "absolute";
+    introDiv.style.display = "flex";
+    introDiv.style.flexDirection = "column";
+    introDiv.style.alignItems = "center";
 
     const title = document.createElement("h2");
     title.style.color = "#CB7152";
@@ -56,10 +57,10 @@ const buildBody = function () {
     intro.style.color = "black";
     intro.style.fontWeight = "10px";
     intro.style.fontSize = "45px";
-    intro.style.margin = "15px 150px 50px 150px";
+    intro.style.width = "45%";
     intro.textContent = `is handmade in our kitchen in Bologna, Italy by "sfogline" who use traditional methods of sheeting
          and cutting -- none of our pasta is extruded. It's prepared fresh daily, using a type of egg
-         that's available only in Italy and is specially produced for pasta. The reuslt is a superior noodle
+         that's available only in Italy and is specially produced for pasta. The result is a superior noodle
          that is the foundation for our classic Italian dishes.`;
 
     // add images at the bottom
@@ -77,8 +78,9 @@ const buildBody = function () {
     foodImage1.style.borderRadius = "50%";
     foodImage2.style.borderRadius = "50%";
     foodImage3.style.borderRadius = "50%";
-
     foodImage2.style.margin = "30px 50px 0px 50px";
+
+    imgContainer.style.marginBottom = "30px";
 
     // adding child to parent
     imgContainer.appendChild(foodImage1);
