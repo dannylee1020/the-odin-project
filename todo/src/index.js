@@ -1,4 +1,7 @@
 import { buildHeader } from "./components/buildHeader";
+import { buildSideBar } from "./components/buildSideBar";
 
 const header = buildHeader();
-document.body.appendChild(header);
+const sideBar = buildSideBar();
+
+document.body.append(header, sideBar);
