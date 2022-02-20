@@ -1,0 +1,72 @@
+body {
+  font-family: 'Ubuntu';
+}
+
+/* styling header */
+#head-container {
+  margin: -20px;
+  position: relative;
+}
+
+#head-container #header {
+  display:flex;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+  background-color: #DB4C3F;
+  height: 100px;
+}
+
+#header-icon{
+  font-size: 40px;
+  color: white;
+  margin-left: 50px;
+}
+
+#name {
+  margin-left: 20px;
+  color: white;
+  font-size: 30px;
+}
+
+
+/* styling side bar */
+#sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  width: 28%;
+  height: 100vh;
+  background-color:#FAFAFA;
+}
+
+#inbox-container {
+  display: flex;
+  margin-top: 60px;
+}
+
+#today-container {
+  display: flex;
+}
+
+
+#upcoming-container {
+  display: flex;
+}
+
+
+/* styling project section */
+#project-header {
+  margin: 20px 0px 20px 15px;
+  font-size: 25px;
+}
+
+#add-container {
+  display: flex;
+}
+
+
+/* group same margins */
+#inbox-icon, #today-icon, #upcoming-icon, #add-icon {
+  margin: 0px 15px 0px 20px;
+}
