@@ -1,3 +1,6 @@
+// TODO: add logic for hovering tabs
+// TODO: add logic for clicking on each tab to show the corresponding page
+
 const buildSideBar = function () {
     const container = document.createElement("div");
     container.style.display = "flex";
@@ -59,7 +62,25 @@ const buildSideBar = function () {
     // TODO: add logic for adding and removing projects
     const projectSection = document.createElement("div");
 
-    container.append(inboxContainer, todayContainer, upcomingContainer, header);
+    const addContainer = document.createElement("div");
+    addContainer.style.display = "flex";
+    const addIcon = document.createElement("i");
+    addIcon.setAttribute("class", "fas fa-plus");
+    addIcon.style.margin = "0px 15px 0px 20px";
+    const addProject = document.createElement("div");
+    addProject.textContent = "Add Project";
+    addProject.style.fontFamily = "Ubuntu";
+
+    addContainer.append(addIcon, addProject);
+    projectSection.append(addContainer);
+
+    container.append(
+        inboxContainer,
+        todayContainer,
+        upcomingContainer,
+        header,
+        projectSection
+    );
     return container;
 };
 
