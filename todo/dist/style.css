@@ -41,17 +41,7 @@ body {
 }
 
 #inbox-container {
-  display: flex;
   margin-top: 60px;
-}
-
-#today-container {
-  display: flex;
-}
-
-
-#upcoming-container {
-  display: flex;
 }
 
 
@@ -66,7 +56,19 @@ body {
 }
 
 
-/* group same margins */
+/* group divs */
+#inbox-container, #today-container, #upcoming-container {
+  display: flex;
+  padding: 10px 0px 10px 0px;
+  border-radius: 10px;
+
+}
+
+#inbox-container:hover, #today-container:hover, #upcoming-container:hover {
+  background-color: #CCCCCC;
+
+}
+
 #inbox-icon, #today-icon, #upcoming-icon, #add-icon {
   margin: 0px 15px 0px 20px;
 }
