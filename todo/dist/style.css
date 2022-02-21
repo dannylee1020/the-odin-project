@@ -34,8 +34,8 @@ body {
 #sidebar-container {
   display: flex;
   flex-direction: column;
-  gap: 35px;
-  width: 28%;
+  gap: 25px;
+  width: 25%;
   height: 100vh;
   background-color:#FAFAFA;
 }
@@ -51,20 +51,16 @@ body {
   font-size: 25px;
 }
 
-#add-container {
-  display: flex;
-}
-
 
 /* group divs */
-#inbox-container, #today-container, #upcoming-container {
+#inbox-container, #today-container, #upcoming-container, #add-container {
   display: flex;
-  padding: 10px 0px 10px 0px;
+  padding: 15px 0px 15px 0px;
   border-radius: 10px;
 
 }
 
-#inbox-container:hover, #today-container:hover, #upcoming-container:hover {
+#inbox-container:hover, #today-container:hover, #upcoming-container:hover, #add-container:hover {
   background-color: #CCCCCC;
 
 }
