@@ -12,11 +12,13 @@ const Pages = () => {
         if (pageName === "Inbox") {
             removeContent(taskPage);
             taskPage.innerHTML += `
-              <div id='inbox-page'> Inbox </div>
-              <div id='task-container'>
-                  <i class='fas fa-plus'></i>
-                  <div id='add-task'> Add Task</div>
-              </div>
+              <div id='inbox-container'>
+                  <div id='inbox-page'> Inbox </div>
+                  <div id='task-container'>
+                      <i class='fas fa-plus'></i>
+                      <div id='add-task'> Add Task</div>
+                  </div>
+              <div>
           `;
         } else if (pageName === "Today") {
             removeContent(taskPage);
