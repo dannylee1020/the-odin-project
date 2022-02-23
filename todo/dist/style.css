@@ -8,6 +8,8 @@ body {
   position: relative;
 }
 
+
+
 #head-container #header {
   display:flex;
   width: 100%;
@@ -68,3 +70,29 @@ body {
 #inbox-icon, #today-icon, #upcoming-icon, #add-icon {
   margin: 0px 15px 0px 20px;
 }
+
+
+/* styling the content page for each project tab */
+#body-container {
+  display: flex;
+}
+
+#task-page {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+#inbox-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+#inbox-page {
+  font-size: 30px;
+  margin-top: 30px;
+
+
+}
+
