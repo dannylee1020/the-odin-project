@@ -37,7 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 25px;
-  width: 25%;
+  width: 20%;
   height: 100vh;
   background-color:#FAFAFA;
 }
@@ -62,7 +62,7 @@ body {
 
 }
 
-#inbox-container:hover, #today-container:hover, #upcoming-container:hover, #add-container:hover {
+#inbox-container:hover, #today-container:hover, #upcoming-container:hover, #add-container:hover, #task-container:hover {
   background-color: #CCCCCC;
 
 }
@@ -73,26 +73,45 @@ body {
 
 
 /* styling the content page for each project tab */
+
 #body-container {
   display: flex;
 }
 
+/* inbox style */
 #task-page {
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 1000px;
+  height: 100vh;
 }
 
-#inbox-container {
+#inbox-content, #today-content, #upcoming-content {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  margin-left: 30%;
+  margin-top: 30px;
 }
 
+#task-container {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  border-radius: 10px;
+}
 
-#inbox-page {
+#add-task {
+  margin-left: 20px;
+}
+
+#inbox-title, #today-title, #upcoming-title {
   font-size: 30px;
   margin-top: 30px;
-
-
+  margin-bottom: 10px;
+  font-weight: bold;
 }
+
+
+
 
