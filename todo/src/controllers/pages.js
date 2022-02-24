@@ -1,5 +1,3 @@
-// TODO Style each page to viz on the UI
-
 const Pages = () => {
     const removeContent = function (parent) {
         while (parent.firstChild) {
@@ -12,8 +10,8 @@ const Pages = () => {
         if (pageName === "Inbox") {
             removeContent(taskPage);
             taskPage.innerHTML += `
-              <div id='inbox-container'>
-                  <div id='inbox-page'> Inbox </div>
+              <div id='inbox-content'>
+                  <div id='inbox-title'> Inbox </div>
                   <div id='task-container'>
                       <i class='fas fa-plus'></i>
                       <div id='add-task'> Add Task</div>
@@ -23,14 +21,18 @@ const Pages = () => {
         } else if (pageName === "Today") {
             removeContent(taskPage);
             taskPage.innerHTML += `
-              <div id='today-page'>Today</div>
-              <div id='today-task'></div>
+              <div id='today-content'>
+                <div id='today-title'>Today </div>
+                <div id='today-task'></div>
+              </div>
           `;
         } else {
             removeContent(taskPage);
             taskPage.innerHTML += `
-              <div id='week-page'>This Week</div>
-              <div id='week-task'></div>
+            <div id='upcoming-content'>
+              <div id='upcoming-title'>This Week</div>
+              <div id='upcoming-task'></div>
+            </div>
           `;
         }
     };
