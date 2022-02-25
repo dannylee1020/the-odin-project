@@ -37,6 +37,15 @@ const Pages = () => {
         }
     };
 
+    const initActiveTab = (tab) => {
+        // const allTabs = document.querySelectorAll("[data-id:tab]");
+        // allTabs.forEach((el) => {
+        //     el.removeAttribute("class");
+        // });
+
+        tab.classList.add("active");
+    };
+
     const initTabButton = () => {
         const inboxTab = document.querySelector("#inbox-container");
         const todayTab = document.querySelector("#today-container");
@@ -44,12 +53,15 @@ const Pages = () => {
 
         inboxTab.addEventListener("click", function () {
             loadContent("Inbox");
+            initActiveTab(inboxTab);
         });
         todayTab.addEventListener("click", function () {
             loadContent("Today");
+            initActiveTab(todayTab);
         });
         upcomingTab.addEventListener("click", function () {
             loadContent("Upcoming");
+            initActiveTab(upcomingTab);
         });
     };
 
