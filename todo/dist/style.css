@@ -62,6 +62,11 @@ body {
 
 }
 
+[data-id="tab"].active {
+  background-color: #CCCCCC;
+  padding: 15px;
+}
+
 #inbox-container:hover, #today-container:hover, #upcoming-container:hover, #add-container:hover, #task-container:hover {
   background-color: #CCCCCC;
 
