@@ -38,10 +38,13 @@ const Pages = () => {
     };
 
     const initActiveTab = (tab) => {
-        // const allTabs = document.querySelectorAll("[data-id:tab]");
-        // allTabs.forEach((el) => {
-        //     el.removeAttribute("class");
-        // });
+        const allTabs = document.querySelectorAll("[data-id]");
+
+        if (!tab.classList.contains("active")) {
+            allTabs.forEach((item) => {
+                item.classList.remove("active");
+            });
+        }
 
         tab.classList.add("active");
     };
@@ -51,17 +54,20 @@ const Pages = () => {
         const todayTab = document.querySelector("#today-container");
         const upcomingTab = document.querySelector("#upcoming-container");
 
+        // inboxTab.addEventListener("click", initActiveTab);
+
         inboxTab.addEventListener("click", function () {
             loadContent("Inbox");
-            initActiveTab(inboxTab);
+            initActiveTab(this);
         });
+
         todayTab.addEventListener("click", function () {
             loadContent("Today");
-            initActiveTab(todayTab);
+            initActiveTab(this);
         });
         upcomingTab.addEventListener("click", function () {
             loadContent("Upcoming");
-            initActiveTab(upcomingTab);
+            initActiveTab(this);
         });
     };
 
