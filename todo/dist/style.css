@@ -42,10 +42,13 @@ body {
   background-color:#FAFAFA;
 }
 
-#inbox-container {
+#inbox-container{
   margin-top: 60px;
 }
 
+#inbox-container .active{
+  background-color: #CCCCCC;
+}
 
 /* styling project section */
 #project-header {
