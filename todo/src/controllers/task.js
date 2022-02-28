@@ -12,18 +12,52 @@ const Task = () => {
 
         const inboxContent = document.querySelector("#inbox-content");
         const taskContainer = document.querySelector("#task-container");
+        const taskButtons = document.querySelector("#task-buttons");
 
         taskContainer.addEventListener("click", (e) => {
             e.currentTarget.style.display = "None";
-            inboxContent.innerHTML += form;
+            const formContainer = document.querySelector("#form-container");
+
+            if (!inboxContent.contains(formContainer)) {
+                taskContainer.insertAdjacentHTML("beforebegin", form);
+            } else {
+                formContainer.style.display = "flex";
+            }
+
+            submitTask();
         });
     };
 
-    //TODO: style form with DOM strings
-    //
+    //TODO: style form
 
-    const addTask = function () {
-        //* when add in the form is clicked, add the task to the list
+    const submitTask = function () {
+        const submit = document.querySelector("#submit-task");
+        submit.addEventListener("click", function () {
+            taskToList();
+        });
+    };
+
+    const taskToList = function () {
+        let inboxTitle = document.querySelector("#inbox-title");
+        let taskContainer = document.querySelector("#task-container");
+        let input = document.querySelector("#task-input");
+        let container = document.createElement("div");
+        let task = document.createElement("div");
+        task.textContent = input.value;
+        let taskIcon = document.createElement("i");
+        taskIcon.setAttribute("class", "far fa-circle");
+
+        // TODO: add logic for adding tasks into the list
+        // TODO: style circle
+
+        container.append(taskIcon, task);
+        container.style.display = "flex";
+        inboxTitle.after(container);
+
+        // display add task tab again
+        taskContainer.style.display = "flex";
+        // hide form
+        document.querySelector("#form-container").style.display = "None";
     };
 
     return { addForm };
