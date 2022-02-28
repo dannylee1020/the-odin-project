@@ -54,8 +54,6 @@ const Pages = () => {
         const todayTab = document.querySelector("#today-container");
         const upcomingTab = document.querySelector("#upcoming-container");
 
-        // inboxTab.addEventListener("click", initActiveTab);
-
         inboxTab.addEventListener("click", function () {
             loadContent("Inbox");
             initActiveTab(this);
