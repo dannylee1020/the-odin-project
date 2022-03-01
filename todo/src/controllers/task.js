@@ -1,19 +1,20 @@
+// ? add toogle function toggle between form and task list?
+// ? create separate task.css to handle styling instead of DOM?
+
 const Task = () => {
     const addForm = function () {
         const form = `
           <div id='form-container'>
             <input id='task-input'>
             <div id='task-buttons'>
-              <div id='submit-task'>Add</div>
-              <div id='cancel-task'>Cancel</div>
+              <button id='add-bttn'>Add Task</button>
+              <button id='cancel-bttn'>Cancel</div>
             </div>
           </div>
           `;
 
         const inboxContent = document.querySelector("#inbox-content");
         const taskContainer = document.querySelector("#task-container");
-        const taskButtons = document.querySelector("#task-buttons");
-        // taskButtons.style.display = "flex";
 
         taskContainer.addEventListener("click", (e) => {
             e.currentTarget.style.display = "None";
@@ -22,21 +23,54 @@ const Task = () => {
             if (!inboxContent.contains(formContainer)) {
                 taskContainer.insertAdjacentHTML("afterend", form);
             } else {
-                formContainer.style.display = "flex";
+                formContainer.style.display = "block";
             }
-
+            styleForm();
             submitTask();
+            cancelTask();
         });
     };
 
-    //TODO: style form
+    const styleForm = function () {
+        let input = document.querySelector("#task-input");
+        input.style.width = "100%";
+        input.style.height = "80px";
+
+        let taskButtons = document.querySelector("#task-buttons");
+        taskButtons.style.display = "flex";
+        taskButtons.style.gap = "10px";
+        taskButtons.style.marginTop = "20px";
+
+        // style each button
+        let addButton = document.querySelector("#add-bttn");
+        addButton.style.backgroundColor = "#E27065";
+        addButton.style.color = "white";
+        addButton.style.fontWeight = "bold";
+        addButton.style.border = "none";
+        addButton.style.borderRadius = "5px";
+        addButton.style.padding = "10px 20px";
+
+        let cancelBttn = document.querySelector("#cancel-bttn");
+        cancelBttn.style.backgroundColor = "white";
+        cancelBttn.style.color = "black";
+        cancelBttn.style.fontWeight = "bold";
+        cancelBttn.style.borderRadius = "5px";
+        cancelBttn.style.border = "2px solid black";
+        cancelBttn.style.padding = "10px 15px";
+    };
 
     const submitTask = function () {
-        const submit = document.querySelector("#submit-task");
+        const submit = document.querySelector("#add-bttn");
         submit.addEventListener("click", taskToList);
     };
 
-    const cancelTask = function () {};
+    const cancelTask = function () {
+        const cancel = document.querySelector("#cancel-bttn");
+        cancel.addEventListener("click", () => {
+            document.querySelector("#form-container").style.display = "None";
+            document.querySelector("#task-container").style.display = "flex";
+        });
+    };
 
     const taskToList = function () {
         let taskContainer = document.querySelector("#task-container");
@@ -49,12 +83,15 @@ const Task = () => {
         taskIcon.setAttribute("class", "far fa-circle");
 
         // TODO: style circle
+        taskIcon.style.fontSize = "20px";
+        taskIcon.style.border;
 
         // style container
         container.append(taskIcon, task);
         container.style.display = "flex";
         container.style.gap = "15px";
-        container.style.marginBottom = "15px";
+        container.style.marginTop = "15px";
+        container.style.marginBottom = "10px";
 
         // display task list
         taskContainer.before(container);
