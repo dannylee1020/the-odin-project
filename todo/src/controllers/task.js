@@ -18,11 +18,14 @@ const Task = () => {
         taskContainer.addEventListener("click", (e) => {
             e.currentTarget.style.display = "None";
             const formContainer = document.querySelector("#form-container");
+            // document.querySelector("#task-input").value = "";
 
             if (!inboxContent.contains(formContainer)) {
                 taskContainer.insertAdjacentHTML("afterend", form);
             } else {
                 formContainer.style.display = "block";
+                // reset text area
+                document.querySelector("#task-input").value = " ";
             }
             styleForm();
             submitTask();
