@@ -1,11 +1,10 @@
-// ? add toogle function toggle between form and task list?
 // ? create separate task.css to handle styling instead of DOM?
 
 const Task = () => {
     const addForm = function () {
         const form = `
           <div id='form-container'>
-            <input id='task-input'>
+            <textarea id='task-input'></textarea>
             <div id='task-buttons'>
               <button id='add-bttn'>Add Task</button>
               <button id='cancel-bttn'>Cancel</div>
@@ -35,6 +34,7 @@ const Task = () => {
         let input = document.querySelector("#task-input");
         input.style.width = "100%";
         input.style.height = "80px";
+        input.style.textAlign = "left";
 
         let taskButtons = document.querySelector("#task-buttons");
         taskButtons.style.display = "flex";
