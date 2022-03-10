@@ -58,7 +58,7 @@ body {
 
 
 /* group divs */
-#inbox-container, #today-container, #upcoming-container, #add-container {
+#inbox-container, #today-container, #upcoming-container, #add-project {
   display: flex;
   padding: 15px 0px 15px 0px;
   border-radius: 10px;
@@ -70,7 +70,7 @@ body {
   padding: 15px;
 }
 
-#inbox-container:hover, #today-container:hover, #upcoming-container:hover, #add-container:hover, #task-container:hover {
+#inbox-container:hover, #today-container:hover, #upcoming-container:hover, #add-project:hover, #task-container:hover {
   background-color: #CCCCCC;
 
 }
