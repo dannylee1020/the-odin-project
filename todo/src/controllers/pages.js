@@ -1,6 +1,3 @@
-// ? make module for each page
-// ! refactor code to have more modules
-
 const Pages = () => {
     const addInbox = () => {
         let taskPage = document.querySelector("#task-page");
@@ -44,6 +41,24 @@ const Pages = () => {
         }
     };
 
+    const addForm = () => {
+        let addProject = document.querySelector("#add-project");
+        let formHTML = `
+            <div id="form-container">
+                <textarea id="project-input"></textarea>
+                <div id="project-bttns">
+                    <button id="add-bttn">Add Project</button>
+                    <button id='cancel-bttn'>Cancel</button>
+                </div>
+            </div>
+        `;
+
+        addProject.insertAdjacentHTML("beforebegin", formHTML);
+
+        // toggle add project button
+        addProject.style.display = "none";
+    };
+
     const addProject = () => {};
 
     const togglePage = (page) => {
@@ -80,17 +95,23 @@ const Pages = () => {
         tab.classList.add("active");
     };
 
-    const initTab = () => {
+    const initLogic = () => {
         let tabs = document.querySelectorAll("[data-tab]");
+        let addProject = document.querySelector("#add-project");
+
+        // attach event listener to all tabs
         tabs.forEach((tab) => {
             tab.addEventListener("click", function () {
                 loadContent(this);
                 initActiveTab(this);
             });
         });
+
+        //attach event listener to add project
+        addProject.addEventListener("click", addForm);
     };
 
-    return { initTab };
+    return { initLogic };
 };
 
 export { Pages };
