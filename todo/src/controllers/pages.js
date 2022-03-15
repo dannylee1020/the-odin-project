@@ -41,28 +41,8 @@ const Pages = () => {
         }
     };
 
-    const addForm = () => {
-        let addProject = document.querySelector("#add-project");
-        let formHTML = `
-            <div id="form-container">
-                <textarea id="project-input"></textarea>
-                <div id="project-bttns">
-                    <button id="add-bttn">Add Project</button>
-                    <button id='cancel-bttn'>Cancel</button>
-                </div>
-            </div>
-        `;
-
-        addProject.insertAdjacentHTML("beforebegin", formHTML);
-
-        // toggle add project button
-        addProject.style.display = "none";
-    };
-
-    const addProject = () => {};
-
     const togglePage = (page) => {
-        const contentPage = document.querySelectorAll("[data-content");
+        const contentPage = document.querySelectorAll("[data-content]");
 
         contentPage.forEach((item) => {
             item.style.display = "none";
@@ -95,7 +75,7 @@ const Pages = () => {
         tab.classList.add("active");
     };
 
-    const initLogic = () => {
+    const initPageLogic = () => {
         let tabs = document.querySelectorAll("[data-tab]");
         let addProject = document.querySelector("#add-project");
 
@@ -106,12 +86,9 @@ const Pages = () => {
                 initActiveTab(this);
             });
         });
-
-        //attach event listener to add project
-        addProject.addEventListener("click", addForm);
     };
 
-    return { initLogic };
+    return { initPageLogic };
 };
 
 export { Pages };

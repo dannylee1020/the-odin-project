@@ -1,7 +1,8 @@
 // ? create separate task.css to handle styling instead of DOM?
+// ! refactor code to have another module responsible for running all logics
 
 const Task = () => {
-    const addForm = function () {
+    const addTaskForm = function () {
         const form = `
           <div id='form-container'>
             <textarea id='task-input'></textarea>
@@ -105,7 +106,7 @@ const Task = () => {
         document.querySelector("#form-container").style.display = "None";
     };
 
-    return { addForm };
+    return { addTaskForm };
 };
 
 export { Task };
