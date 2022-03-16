@@ -4,8 +4,8 @@
 
 const Project = () => {
     // callback when add project button is clicked
-    const addForm = () => {
-        let addProject = document.querySelector("#add-project");
+    const addForm = (e) => {
+        // let addProjectElement = document.querySelector("#add-project");
         let formHTML = `
             <div id="project-form">
                 <textarea id="project-input"></textarea>
@@ -16,13 +16,21 @@ const Project = () => {
             </div>
         `;
 
-        addProject.insertAdjacentHTML("beforebegin", formHTML);
+        if (document.querySelector("#project-form") === null) {
+            e.insertAdjacentHTML("beforebegin", formHTML);
+        } else {
+            toggleElement(
+                document.querySelector("#project-form"),
+                "on",
+                "block"
+            );
+        }
 
         // toggle add project button
-        toggleElement(addProject, "off");
+        toggleElement(e, "off");
     };
 
-    const toggleElement = (el, toggle, type) => {
+    const toggleElement = (el, toggle = "on", type) => {
         if (toggle != "on") {
             el.style.display = "none";
         }
@@ -44,9 +52,6 @@ const Project = () => {
         // add new project to the list
         project.append(projectIcon, projectName);
         addProjectElement.before(project);
-
-        // style elements
-        // toggleElement(project, "on", "flex");
     };
 
     const submitProject = () => {
@@ -73,9 +78,9 @@ const Project = () => {
     };
 
     const initProjectLogic = () => {
-        let addProject = document.querySelector("#add-project");
-        addProject.addEventListener("click", function () {
-            addForm();
+        let addProjectElement = document.querySelector("#add-project");
+        addProjectElement.addEventListener("click", function () {
+            addForm(this);
             submitProject();
             cancelProject();
         });
