@@ -1,11 +1,11 @@
+import "../style/project.css";
+
 // TODO adding project to the list not working
-// TODO callback functions executing only once
 // TODO style project textarea
 
 const Project = () => {
     // callback when add project button is clicked
     const addForm = (e) => {
-        // let addProjectElement = document.querySelector("#add-project");
         let formHTML = `
             <div id="project-form">
                 <textarea id="project-input"></textarea>
@@ -24,6 +24,7 @@ const Project = () => {
                 "on",
                 "block"
             );
+            document.querySelector("#project-input").value = " ";
         }
 
         // toggle add project button
@@ -39,19 +40,26 @@ const Project = () => {
 
     // callback when add project in the form is clicked
     const addProject = () => {
-        let addProjectElement = document.querySelector("#add-project");
+        let projectForm = document.querySelector("#project-form");
         let projectInput = document.querySelector("#project-input");
 
         // create new project element
         let project = document.createElement("div");
+        project.style.display = "flex";
+        project.style.gap = "15px";
+        project.style.marginLeft = "15px";
+        project.style.marginBottom = "20px";
+
         let projectIcon = document.createElement("i");
-        projectIcon.setAttribute("class", "fas fa-list-check");
+        projectIcon.setAttribute("class", "fas fa-list");
+        projectIcon.style.fontSize = "20px";
+
         let projectName = document.createElement("div");
-        projectName.textContent = projectInput.select();
+        projectName.textContent = projectInput.value;
 
         // add new project to the list
         project.append(projectIcon, projectName);
-        addProjectElement.before(project);
+        projectForm.before(project);
     };
 
     const submitProject = () => {
@@ -79,6 +87,7 @@ const Project = () => {
 
     const initProjectLogic = () => {
         let addProjectElement = document.querySelector("#add-project");
+
         addProjectElement.addEventListener("click", function () {
             addForm(this);
             submitProject();
