@@ -9,7 +9,6 @@ body {
 }
 
 
-
 #head-container #header {
   display:flex;
   width: 100%;
@@ -62,7 +61,6 @@ body {
   display: flex;
   padding: 15px 0px 15px 0px;
   border-radius: 10px;
-
 }
 
 [data-id="tab"].active {
@@ -90,7 +88,7 @@ body {
 #task-page {
   display: flex;
   justify-content: center;
-  width: 1000px;
+  width: 70%;
   height: auto;
 }
 
