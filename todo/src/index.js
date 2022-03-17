@@ -8,4 +8,4 @@ const project = Project();
 
 pages.initPageLogic();
 project.initProjectLogic();
-tasks.addTaskForm();
+tasks.initTaskLogic();
