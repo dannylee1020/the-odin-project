@@ -1,8 +1,10 @@
+import "../style/tasks.css";
+
 // ? create separate task.css to handle styling instead of DOM?
 // ! refactor code to have another module responsible for running all logics
 
 const Task = () => {
-    const addTaskForm = function () {
+    const initTaskLogic = function () {
         const form = `
           <div id='form-container'>
             <textarea id='task-input'></textarea>
@@ -19,7 +21,6 @@ const Task = () => {
         taskContainer.addEventListener("click", (e) => {
             e.currentTarget.style.display = "None";
             const formContainer = document.querySelector("#form-container");
-            // document.querySelector("#task-input").value = "";
 
             if (!inboxContent.contains(formContainer)) {
                 taskContainer.insertAdjacentHTML("afterend", form);
@@ -28,39 +29,10 @@ const Task = () => {
                 // reset text area
                 document.querySelector("#task-input").value = " ";
             }
-            styleForm();
+            // styleForm();
             submitTask();
             cancelTask();
         });
-    };
-
-    const styleForm = function () {
-        let input = document.querySelector("#task-input");
-        input.style.width = "100%";
-        input.style.height = "80px";
-        input.style.textAlign = "left";
-
-        let taskButtons = document.querySelector("#task-buttons");
-        taskButtons.style.display = "flex";
-        taskButtons.style.gap = "10px";
-        taskButtons.style.marginTop = "20px";
-
-        // style each button
-        let addButton = document.querySelector("#add-bttn");
-        addButton.style.backgroundColor = "#E27065";
-        addButton.style.color = "white";
-        addButton.style.fontWeight = "bold";
-        addButton.style.border = "none";
-        addButton.style.borderRadius = "5px";
-        addButton.style.padding = "10px 20px";
-
-        let cancelBttn = document.querySelector("#cancel-bttn");
-        cancelBttn.style.backgroundColor = "white";
-        cancelBttn.style.color = "black";
-        cancelBttn.style.fontWeight = "bold";
-        cancelBttn.style.borderRadius = "5px";
-        cancelBttn.style.border = "2px solid black";
-        cancelBttn.style.padding = "10px 15px";
     };
 
     const submitTask = function () {
@@ -106,7 +78,7 @@ const Task = () => {
         document.querySelector("#form-container").style.display = "None";
     };
 
-    return { addTaskForm };
+    return { initTaskLogic };
 };
 
 export { Task };
