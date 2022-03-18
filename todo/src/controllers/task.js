@@ -60,42 +60,36 @@ const Task = () => {
         let input = document.querySelector("#task-input");
 
         let container = document.createElement("div");
+        container.setAttribute("id", "each-task-container");
+
         let task = document.createElement("div");
+        task.setAttribute("id", "each-task");
         task.textContent = input.value;
+
         let taskIcon = document.createElement("i");
         taskIcon.setAttribute("class", "far fa-circle");
+        taskIcon.setAttribute("id", "task-icon");
+
         let date = document.createElement("div");
+        date.setAttribute("id", "task-date");
         date.textContent = "No Date";
-        date.style.fontSize = "15px";
-        date.style.marginLeft = "70%";
+
         let cancel = document.createElement("i");
         cancel.setAttribute("class", "fas fa-xmark");
-        // cancel.style.fontSize = "15px";
+
+        // display task list
+        taskContainer.before(container);
+        // display add task tab again once task is added
+        taskContainer.style.display = "flex";
+        // toggle form to hide
+        document.querySelector("#form-container").style.display = "None";
 
         // add event listener to allow date setting
         date.addEventListener("click", (e) => {
             setDate(e);
         });
 
-        // TODO: style circle
-        taskIcon.style.fontSize = "20px";
-        taskIcon.style.border;
-
-        // style container
         container.append(taskIcon, task, date, cancel);
-        container.style.display = "flex";
-        container.style.gap = "15px";
-        container.style.marginTop = "15px";
-        container.style.marginBottom = "15px";
-
-        // display task list
-        taskContainer.before(container);
-
-        // display add task tab again once task is added
-        taskContainer.style.display = "flex";
-
-        // toggle form to hide
-        document.querySelector("#form-container").style.display = "None";
     };
 
     return { initTaskLogic };
