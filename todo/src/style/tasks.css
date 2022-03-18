@@ -28,3 +28,27 @@
     padding: 10px 15px
 }
 
+#task-container {
+    width: 100%;
+}
+
+#form-container {
+    margin-top: 10px;
+}
+
+#each-task-container {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0px 15px 0px;
+
+}
+
+#task-icon {
+    font-size: 20px;
+}
+
+#task-date {
+    font-size: 15px;
+    margin-left: 70%;
+}
+
