@@ -1,7 +1,6 @@
 import "../style/project.css";
 
-// TODO adding project to the list not working
-// TODO style project textarea
+//TODO fix project adding more than one
 
 const Project = () => {
     // callback when add project button is clicked
@@ -67,8 +66,8 @@ const Project = () => {
         let addProjectElement = document.querySelector("#add-project");
         let projectForm = document.querySelector("#project-form");
 
+        submit.addEventListener("click", addProject);
         submit.addEventListener("click", function () {
-            addProject();
             toggleElement(addProjectElement, "on", "flex");
             toggleElement(projectForm, "off");
         });
