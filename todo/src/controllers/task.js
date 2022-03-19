@@ -1,7 +1,7 @@
 import "../style/tasks.css";
 
 // TODO add setting date to task functionaliy
-// TODO add x to each task for deletion
+// TODO add done and delete functionality to the task
 
 const Task = () => {
     const initTaskLogic = function () {
@@ -47,12 +47,25 @@ const Task = () => {
         });
     };
 
-    const setDate = (e) => {
+    const setDate = (form) => {
+        let date = document.createElement("div");
+
+        form.addEventListener("change", () => {
+            var input = form.value;
+            date.textContent = input;
+            form.replaceWith(date);
+        });
+    };
+
+    const getDate = (e) => {
         let form = document.createElement("input");
+        form.setAttribute("id", "date-input");
         form.setAttribute("type", "date");
         form.setAttribute("min", "2018-01-01");
-        form.style.marginLeft = "60%";
+        form.style.marginLeft = "55%";
         e.target.replaceWith(form);
+
+        setDate(form);
     };
 
     const taskToList = function () {
@@ -75,7 +88,8 @@ const Task = () => {
         date.textContent = "No Date";
 
         let cancel = document.createElement("i");
-        cancel.setAttribute("class", "fas fa-xmark");
+        cancel.setAttribute("class", "fa-solid fa-x");
+        cancel.style.fontSize = "15px";
 
         // display task list
         taskContainer.before(container);
@@ -86,7 +100,7 @@ const Task = () => {
 
         // add event listener to allow date setting
         date.addEventListener("click", (e) => {
-            setDate(e);
+            getDate(e);
         });
 
         container.append(taskIcon, task, date, cancel);
