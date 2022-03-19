@@ -1,6 +1,5 @@
 import "../style/tasks.css";
 
-// TODO add setting date to task functionaliy
 // TODO add done and delete functionality to the task
 
 const Task = () => {
@@ -49,6 +48,7 @@ const Task = () => {
 
     const setDate = (form) => {
         let date = document.createElement("div");
+        date.setAttribute("id", "set-date");
 
         form.addEventListener("change", () => {
             var input = form.value;
@@ -66,6 +66,11 @@ const Task = () => {
         e.target.replaceWith(form);
 
         setDate(form);
+    };
+
+    const deleteTask = function (el) {
+        var parent = el.parentNode;
+        parent.remove();
     };
 
     const taskToList = function () {
@@ -91,10 +96,14 @@ const Task = () => {
         cancel.setAttribute("class", "fa-solid fa-x");
         cancel.style.fontSize = "15px";
 
+        container.append(taskIcon, task, date, cancel);
+
         // display task list
         taskContainer.before(container);
+
         // display add task tab again once task is added
         taskContainer.style.display = "flex";
+
         // toggle form to hide
         document.querySelector("#form-container").style.display = "None";
 
@@ -103,7 +112,10 @@ const Task = () => {
             getDate(e);
         });
 
-        container.append(taskIcon, task, date, cancel);
+        // delete task when x button is clicked
+        cancel.addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
     };
 
     return { initTaskLogic };
