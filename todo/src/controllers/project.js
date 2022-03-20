@@ -1,7 +1,5 @@
 import "../style/project.css";
 
-// TODO make x appear when hover
-
 const Project = () => {
     // callback when add project button is clicked
     const addForm = (e) => {
@@ -48,6 +46,8 @@ const Project = () => {
         let projectInput = document.querySelector("#project-input");
 
         // create new project element
+        let projectContainer = document.createElement("div");
+        projectContainer.setAttribute("id", "project-container");
         let project = document.createElement("div");
         project.setAttribute("id", "ind-project");
 
@@ -60,11 +60,13 @@ const Project = () => {
 
         let cancel = document.createElement("i");
         cancel.setAttribute("class", "fa-solid fa-xmark");
+        cancel.setAttribute("id", "project-x");
         cancel.style.marginLeft = "45%";
 
         // add new project to the list
         project.append(projectIcon, projectName, cancel);
-        projectForm.before(project);
+        projectContainer.append(project);
+        projectForm.before(projectContainer);
 
         // add delete functionality
         cancel.addEventListener("click", (e) => {
