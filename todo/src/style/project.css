@@ -40,3 +40,10 @@
     align-items: center;
 }
 
+#ind-project #project-x{
+    display: none;
+}
+
+#ind-project:hover #project-x {
+    display: block;
+}
