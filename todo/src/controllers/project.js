@@ -1,6 +1,6 @@
 import "../style/project.css";
 
-//TODO fix project adding more than one
+// TODO make x appear when hover
 
 const Project = () => {
     // callback when add project button is clicked
@@ -37,6 +37,11 @@ const Project = () => {
         el.style.display = type;
     };
 
+    const deleteProject = function (el) {
+        var parent = el.parentNode;
+        parent.remove();
+    };
+
     // callback when add project in the form is clicked
     const addProject = () => {
         let projectForm = document.querySelector("#project-form");
@@ -44,10 +49,7 @@ const Project = () => {
 
         // create new project element
         let project = document.createElement("div");
-        project.style.display = "flex";
-        project.style.gap = "15px";
-        project.style.marginLeft = "15px";
-        project.style.marginBottom = "20px";
+        project.setAttribute("id", "ind-project");
 
         let projectIcon = document.createElement("i");
         projectIcon.setAttribute("class", "fas fa-list");
@@ -56,9 +58,18 @@ const Project = () => {
         let projectName = document.createElement("div");
         projectName.textContent = projectInput.value;
 
+        let cancel = document.createElement("i");
+        cancel.setAttribute("class", "fa-solid fa-xmark");
+        cancel.style.marginLeft = "45%";
+
         // add new project to the list
-        project.append(projectIcon, projectName);
+        project.append(projectIcon, projectName, cancel);
         projectForm.before(project);
+
+        // add delete functionality
+        cancel.addEventListener("click", (e) => {
+            deleteProject(e.currentTarget);
+        });
     };
 
     const submitProject = () => {
