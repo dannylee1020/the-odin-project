@@ -94,6 +94,7 @@ const Task = () => {
 
         let cancel = document.createElement("i");
         cancel.setAttribute("class", "fa-solid fa-x");
+        cancel.setAttribute("id", "project-delete");
         cancel.style.fontSize = "15px";
 
         container.append(taskIcon, task, date, cancel);
