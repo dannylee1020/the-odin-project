@@ -1,6 +1,6 @@
 import "../style/tasks.css";
 
-// TODO add done and delete functionality to the task
+// TODO add done functionality to tasks
 
 const Task = () => {
     const initTaskLogic = function () {
@@ -115,6 +115,11 @@ const Task = () => {
 
         // delete task when x button is clicked
         cancel.addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
+
+        // when task is done, remove it from the list
+        taskIcon.addEventListener("click", (e) => {
             deleteTask(e.currentTarget);
         });
     };
