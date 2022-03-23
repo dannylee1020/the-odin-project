@@ -53,3 +53,10 @@
     margin-left: 60%;
 }
 
+#project-delete {
+    display: none;
+}
+
+#each-task-container:hover #project-delete {
+    display: block;
+}
