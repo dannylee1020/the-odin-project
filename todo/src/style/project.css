@@ -42,14 +42,14 @@
 
 
 #project-container {
-    padding: 10px 0px 10px 0px;
+    padding: 7px 0px 7px 0px;
 
 }
 
 #project-container:hover {
     background-color: #CCCCCC;
-    padding: 10px 0px 10px 0px;
-    border-radius: 5px;
+    padding: 7px 0px 7px 0px;
+    border-radius: 7px;
 }
 
 
