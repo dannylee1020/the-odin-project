@@ -1,6 +1,8 @@
 import "../style/tasks.css";
+import { format, compareAsc } from "date-fns";
 
-// TODO add done functionality to tasks
+// TODO copy over eventlisteners
+// TODO load all pages at the start
 
 const Task = () => {
     const initTaskLogic = function () {
@@ -35,7 +37,7 @@ const Task = () => {
 
     const submitTask = function () {
         const submit = document.querySelector("#add-bttn");
-        submit.addEventListener("click", taskToList);
+        submit.addEventListener("click", addTask);
     };
 
     const cancelTask = function () {
@@ -46,7 +48,7 @@ const Task = () => {
         });
     };
 
-    const setDate = (form) => {
+    const setDate = (form, callback) => {
         let date = document.createElement("div");
         date.setAttribute("id", "set-date");
 
@@ -54,6 +56,7 @@ const Task = () => {
             var input = form.value;
             date.textContent = input;
             form.replaceWith(date);
+            callback();
         });
     };
 
@@ -65,7 +68,22 @@ const Task = () => {
         form.style.marginLeft = "55%";
         e.target.replaceWith(form);
 
-        setDate(form);
+        // callback to make sure assignTask executes only after date is set
+        setDate(form, function () {
+            assignTask();
+        });
+    };
+
+    const assignTask = function () {
+        let todayPage = document.querySelector("#today-content");
+        let upcomingPage = document.querySelector("#upcoming-content");
+        let taskDate = document.querySelector("#set-date");
+
+        if (taskDate === (new Date(), "yyyy-MM-dd")) {
+            todayPage.append(taskDate.parentNode.cloneNode(true));
+        } else {
+            upcomingPage.append(taskDate.parentNode.cloneNode(true));
+        }
     };
 
     const deleteTask = function (el) {
@@ -73,8 +91,24 @@ const Task = () => {
         parent.remove();
     };
 
-    const taskToList = function () {
-        let taskContainer = document.querySelector("#task-container");
+    const attachEvent = function (date, cancel, icon) {
+        // add event listener to allow date setting
+        date.addEventListener("click", (e) => {
+            getDate(e, assignTask);
+        });
+
+        // delete task when x button is clicked
+        cancel.addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
+
+        // when task is done, remove it from the list
+        icon.addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
+    };
+
+    const makeTask = function () {
         let input = document.querySelector("#task-input");
 
         let container = document.createElement("div");
@@ -99,29 +133,37 @@ const Task = () => {
 
         container.append(taskIcon, task, date, cancel);
 
+        attachEvent(date, cancel, taskIcon);
+
+        // // add event listener to allow date setting
+        // date.addEventListener("click", (e) => {
+        //     getDate(e, assignTask);
+        // });
+
+        // // delete task when x button is clicked
+        // cancel.addEventListener("click", (e) => {
+        //     deleteTask(e.currentTarget);
+        // });
+
+        // // when task is done, remove it from the list
+        // taskIcon.addEventListener("click", (e) => {
+        //     deleteTask(e.currentTarget);
+        // });
+
+        return container;
+    };
+
+    const addTask = function () {
+        let taskContainer = document.querySelector("#task-container");
+        // create task
+        let container = makeTask();
         // display task list
         taskContainer.before(container);
-
         // display add task tab again once task is added
         taskContainer.style.display = "flex";
 
         // toggle form to hide
         document.querySelector("#form-container").style.display = "None";
-
-        // add event listener to allow date setting
-        date.addEventListener("click", (e) => {
-            getDate(e);
-        });
-
-        // delete task when x button is clicked
-        cancel.addEventListener("click", (e) => {
-            deleteTask(e.currentTarget);
-        });
-
-        // when task is done, remove it from the list
-        taskIcon.addEventListener("click", (e) => {
-            deleteTask(e.currentTarget);
-        });
     };
 
     return { initTaskLogic };
