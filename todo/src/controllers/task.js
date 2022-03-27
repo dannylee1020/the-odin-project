@@ -51,6 +51,9 @@ const Task = () => {
     const setDate = (form, callback) => {
         let date = document.createElement("div");
         date.setAttribute("id", "set-date");
+        date.addEventListener("click", (e) => {
+            getDate(e);
+        });
 
         form.addEventListener("change", () => {
             var input = form.value;
@@ -78,34 +81,32 @@ const Task = () => {
         let todayPage = document.querySelector("#today-content");
         let upcomingPage = document.querySelector("#upcoming-content");
         let taskDate = document.querySelector("#set-date");
+        let taskParent = taskDate.parentNode.cloneNode(true);
 
         if (taskDate === (new Date(), "yyyy-MM-dd")) {
-            todayPage.append(taskDate.parentNode.cloneNode(true));
+            todayPage.append(taskParent);
         } else {
-            upcomingPage.append(taskDate.parentNode.cloneNode(true));
+            upcomingPage.append(taskParent);
         }
+
+        // manually adding eventlistener to copied DOM
+        let taskChild = taskParent.childNodes;
+        taskChild[0].addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
+
+        taskChild[2].addEventListener("click", (e) => {
+            getDate(e);
+        });
+
+        taskChild[3].addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
     };
 
     const deleteTask = function (el) {
         var parent = el.parentNode;
         parent.remove();
-    };
-
-    const attachEvent = function (date, cancel, icon) {
-        // add event listener to allow date setting
-        date.addEventListener("click", (e) => {
-            getDate(e, assignTask);
-        });
-
-        // delete task when x button is clicked
-        cancel.addEventListener("click", (e) => {
-            deleteTask(e.currentTarget);
-        });
-
-        // when task is done, remove it from the list
-        icon.addEventListener("click", (e) => {
-            deleteTask(e.currentTarget);
-        });
     };
 
     const makeTask = function () {
@@ -133,22 +134,20 @@ const Task = () => {
 
         container.append(taskIcon, task, date, cancel);
 
-        attachEvent(date, cancel, taskIcon);
+        // add event listener to allow date setting
+        date.addEventListener("click", (e) => {
+            getDate(e, assignTask);
+        });
 
-        // // add event listener to allow date setting
-        // date.addEventListener("click", (e) => {
-        //     getDate(e, assignTask);
-        // });
+        // delete task when x button is clicked
+        cancel.addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
 
-        // // delete task when x button is clicked
-        // cancel.addEventListener("click", (e) => {
-        //     deleteTask(e.currentTarget);
-        // });
-
-        // // when task is done, remove it from the list
-        // taskIcon.addEventListener("click", (e) => {
-        //     deleteTask(e.currentTarget);
-        // });
+        // when task is done, remove it from the list
+        taskIcon.addEventListener("click", (e) => {
+            deleteTask(e.currentTarget);
+        });
 
         return container;
     };
