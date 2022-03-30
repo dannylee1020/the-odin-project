@@ -1,4 +1,6 @@
 const Pages = () => {
+    // TODO load initial page all together
+
     const addInbox = () => {
         let taskPage = document.querySelector("#task-page");
         let inboxHTML = `
@@ -25,6 +27,7 @@ const Pages = () => {
             `;
         if (taskPage.querySelector("#today-content") === null) {
             taskPage.insertAdjacentHTML("afterbegin", todayHTML);
+            taskPage.querySelector("#today-content").style.display = "none";
         }
     };
 
@@ -38,6 +41,7 @@ const Pages = () => {
             `;
         if (taskPage.querySelector("#upcoming-content") === null) {
             taskPage.insertAdjacentHTML("afterbegin", upcomingHTML);
+            taskPage.querySelector("#upcoming-content").style.display = "none";
         }
     };
 
@@ -58,9 +62,8 @@ const Pages = () => {
         addInbox();
         addToday();
         addUpcoming();
-
-        // toggle tab page
-        togglePage(tab);
+        // // toggle tab page
+        // togglePage(tab);
     };
 
     const initActiveTab = (tab) => {
@@ -77,15 +80,15 @@ const Pages = () => {
 
     const initPageLogic = () => {
         let tabs = document.querySelectorAll("[data-tab]");
-        let addProject = document.querySelector("#add-project");
-
         // attach event listener to all tabs
         tabs.forEach((tab) => {
             tab.addEventListener("click", function () {
-                loadContent(this);
+                togglePage(this);
                 initActiveTab(this);
             });
         });
+
+        loadContent();
     };
 
     return { initPageLogic };
