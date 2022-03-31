@@ -1,9 +1,6 @@
 import "../style/tasks.css";
 import { format, compareAsc } from "date-fns";
 
-// TODO copy over eventlisteners
-// TODO load all pages at the start
-
 const Task = () => {
     const initTaskLogic = function () {
         const form = `
