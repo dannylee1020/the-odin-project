@@ -1,5 +1,8 @@
 import "../style/project.css";
 
+// TODO turn each project list to page
+// TODO why background still there when delete project?
+
 const Project = () => {
     // callback when add project button is clicked
     const addForm = (e) => {
@@ -21,9 +24,8 @@ const Project = () => {
                 "on",
                 "block"
             );
-            document.querySelector("#project-input").value = " ";
         }
-
+        document.querySelector("#project-input").value = " ";
         // toggle add project button
         toggleElement(e, "off");
     };
@@ -48,6 +50,7 @@ const Project = () => {
         // create new project element
         let projectContainer = document.createElement("div");
         projectContainer.setAttribute("id", "project-container");
+        projectContainer.setAttribute("data-project", "project-tab");
         let project = document.createElement("div");
         project.setAttribute("id", "ind-project");
 
@@ -56,6 +59,7 @@ const Project = () => {
         projectIcon.style.fontSize = "20px";
 
         let projectName = document.createElement("div");
+        projectName.setAttribute("class", "project-name");
         projectName.textContent = projectInput.value;
 
         let cancel = document.createElement("i");
@@ -72,6 +76,40 @@ const Project = () => {
         cancel.addEventListener("click", (e) => {
             deleteProject(e.currentTarget);
         });
+
+        projectContainer.addEventListener("click", () => {
+            initProjectPage();
+        });
+    };
+
+    const makeProjectPage = (tab) => {
+        let taskPage = document.querySelector("#task-page");
+        let projectName = tab
+            .querySelector(".project-name")
+            .textContent.replace(/ /g, "-");
+        let projectHTML = `
+                <div id='${projectName}-content' data-content='${projectName}' data-tab='project-tab'>
+                    <div id='${projectName}-title'> Inbox </div>
+                    <div id='task-container'>
+                        <i class='fas fa-plus'></i>
+                        <div id='add-task'> Add Task</div>
+                    </div>
+                <div>
+           `;
+
+        taskPage.insertAdjacentHTML("beforeend", projectHTML);
+
+        document.querySelector(`#${projectName}-content`).style.display =
+            "none";
+    };
+
+    const initProjectPage = () => {
+        let projectTabs = document.querySelectorAll("[data-project]");
+        projectTabs.forEach((tab) => {
+            tab.addEventListener("click", (e) => {
+                makeProjectPage(e.currentTarget);
+            });
+        });
     };
 
     const submitProject = () => {
@@ -80,7 +118,7 @@ const Project = () => {
         let projectForm = document.querySelector("#project-form");
 
         submit.addEventListener("click", addProject);
-        submit.addEventListener("click", function () {
+        submit.addEventListener("click", function (e) {
             toggleElement(addProjectElement, "on", "flex");
             toggleElement(projectForm, "off");
         });
@@ -102,8 +140,8 @@ const Project = () => {
 
         addProjectElement.addEventListener("click", function () {
             addForm(this);
-            submitProject();
             cancelProject();
+            submitProject();
         });
     };
 
