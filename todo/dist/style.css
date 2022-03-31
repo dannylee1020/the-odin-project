@@ -70,8 +70,8 @@ body {
 
 #inbox-container:hover, #today-container:hover, #upcoming-container:hover, #add-project:hover, #task-container:hover {
   background-color: #CCCCCC;
-
 }
+
 
 #inbox-icon, #today-icon, #upcoming-icon, #add-icon {
   margin: 0px 15px 0px 20px;
