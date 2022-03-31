@@ -1,6 +1,4 @@
 const Pages = () => {
-    // TODO load initial page all together
-
     const addInbox = () => {
         let taskPage = document.querySelector("#task-page");
         let inboxHTML = `
@@ -62,8 +60,6 @@ const Pages = () => {
         addInbox();
         addToday();
         addUpcoming();
-        // // toggle tab page
-        // togglePage(tab);
     };
 
     const initActiveTab = (tab) => {
@@ -80,6 +76,7 @@ const Pages = () => {
 
     const initPageLogic = () => {
         let tabs = document.querySelectorAll("[data-tab]");
+
         // attach event listener to all tabs
         tabs.forEach((tab) => {
             tab.addEventListener("click", function () {
