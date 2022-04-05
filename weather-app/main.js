@@ -41,9 +41,39 @@ async function getData(api_key) {
     return weatherData;
 }
 
-document.querySelector("button").addEventListener("click", (e) => {
-    e.preventDefault();
-    let data = getData(import.meta.env.VITE_API_KEY);
+function displayData(res) {
+    let dataContainer = document.querySelector(".data-container");
 
-    console.log(data);
-});
+    let city = res.cityName;
+    let feel = `Feels Like: ${res.feelsLike}°F`;
+    let humidity = `Humidity: ${res.humidity}%`;
+    let temp = `${res.temperature}°F`;
+    let wind = `Wind: ${res.windSpeed} mph`;
+
+    let dataHTML = `
+        <div class="res-container">
+            <div class='data' id="city">${city}</div>
+            <div class='data' id="temp">${temp}</div>
+            <div class='data' id='feels-like'>${feel}</div>
+            <div class='data' id='humidity'>${humidity}</div>
+            <div class='data' id='wind'>${wind}</div>
+        </div>
+    `;
+
+    document.querySelector(".res-container") === null
+        ? dataContainer.insertAdjacentHTML("beforeend", dataHTML)
+        : (dataContainer.innerHTML = dataHTML);
+}
+
+async function makeCall() {
+    document.querySelector("button").addEventListener("click", async (e) => {
+        e.preventDefault();
+        let data = await getData(import.meta.env.VITE_API_KEY);
+
+        setTimeout(() => {
+            displayData(data);
+        }, 500);
+    });
+}
+
+makeCall();
