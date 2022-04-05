@@ -5,11 +5,21 @@
         <link rel="icon" type="image/svg+xml" href="favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vite App</title>
+        <script
+            src="https://kit.fontawesome.com/78a5cdec0f.js"
+            crossorigin="anonymous"
+        ></script>
+        <script type="module" src="./main.js" defer></script>
     </head>
     <body>
-        <script type="module" src="./main.js"></script>
+        <div class="header">
+            <div class="header-content">
+                <i class="fa-solid fa-cloud-sun" id="weather-icon"></i>
+                <h1 class="title">Check Weather</h1>
+            </div>
+        </div>
 
-        <form id="location">
+        <div class="form-container">
             <div class="field">
                 <input
                     type="text"
@@ -18,6 +28,6 @@
                 />
             </div>
             <button type="submit">Search</button>
-        </form>
+        </div>
     </body>
 </html>
