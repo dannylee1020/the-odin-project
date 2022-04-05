@@ -1,0 +1,59 @@
+body {
+    margin:0;
+    padding:0;
+    background-color: #DCE2F0;
+  }
+
+.header {
+    background-color: #50586C;
+    display: flex;
+    justify-content: center;
+    margin:0;
+    height: 100px;
+}
+
+.header-content {
+    display:flex;
+    gap: 25px;
+    align-items: center;
+}
+
+h1 {
+    color: #DCE2F0;
+    font-size: 45px;
+}
+
+#weather-icon {
+    color: #DCE2F0;
+    font-size: 50px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    gap: 15px;
+}
+
+input {
+    border: 1px solid;
+    height: 35px;
+    width: 150px;
+    border-radius: 7px;
+    text-align: center;
+
+}
+
+button {
+    border: 1px solid;
+    height: 38px;
+    border-radius: 7px;
+    width: 80px;
+    background-color: #50586C;
+    color: #DCE2F0;
+    font-weight: bold;
+    font-size: 16px;
+
+
+}
