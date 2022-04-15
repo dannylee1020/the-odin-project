@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import './App.css'
-import Header from './compoenents/Header';
+import Header from './compoenents/Layout/Header'
 import PersonalInfo from './compoenents/PersonalInfo'
+import WorkHeading from './compoenents/Layout/WorkHeading'
+import WorkHist from './compoenents/WorkExp/WorkHist'
 
 class App extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
     }
 
     render() {
         return (
-            <div>
+            <div className>
                 <Header></Header>
                 <PersonalInfo></PersonalInfo>
+                <WorkHeading></WorkHeading>
+                <WorkHist></WorkHist>
             </div>
         )
     }
