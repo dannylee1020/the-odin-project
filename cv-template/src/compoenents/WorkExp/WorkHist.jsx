@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import WorkHeading from '../Layout/WorkHeading'
 import WorkExpModal from './WorkExpModal';
 import AddExp from './AddExp';
 import DisplayWorkExp from './DisplayWorkExp';
@@ -12,6 +11,10 @@ class WorkHist extends Component {
             workHistory: [],
             display: false
         }
+
+        this.addWorkHist = this.addWorkHist.bind(this);
+        this.displayModal = this.displayModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     addWorkHist = (workHist) => {
@@ -27,13 +30,19 @@ class WorkHist extends Component {
         })
     }
 
+    closeModal = () => {
+        this.setState({
+            display:false
+        })
+    }
+
 
     render() {
         return (
-            <div>
-                <DisplayWorkExp works={this.state.workHistory}></DisplayWorkExp>
-                <WorkExpModal addExp={this.addWorkHist} display={this.state.display}></WorkExpModal>
-                <AddExp onClick={this.displayModal}></AddExp>
+            <div className='workSection ml-16'>
+                <DisplayWorkExp works={this.state.workHistory}/>
+                <WorkExpModal addWorkHist={this.addWorkHist} display={this.state.display} closeModal={this.closeModal}/>
+                <AddExp displayModal={this.displayModal}/>
             </div>
         )
     }
