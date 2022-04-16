@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './compoenents/Layout/Header'
+import Header from './compoenents/layout/Header'
 import PersonalInfo from './compoenents/PersonalInfo'
-import WorkHeading from './compoenents/Layout/WorkHeading'
-import WorkHist from './compoenents/WorkExp/WorkHist'
+import WorkHeading from './compoenents/layout/WorkHeading'
+import WorkHist from './compoenents/workexp/WorkHist'
 
 class App extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className>
+            <div>
                 <Header></Header>
                 <PersonalInfo></PersonalInfo>
                 <WorkHeading></WorkHeading>
@@ -21,4 +21,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default App;
