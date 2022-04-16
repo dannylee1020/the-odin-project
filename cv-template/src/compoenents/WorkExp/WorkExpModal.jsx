@@ -11,6 +11,9 @@ class WorkExpModal extends Component {
             location: '',
             description: '',
         }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (e) => {
@@ -29,7 +32,7 @@ class WorkExpModal extends Component {
             description: this.state.description
         }
 
-        this.props.addExp(workExp);
+        this.props.addWorkHist(workExp);
         this.setState({
             jobTitle: '',
             companyTitle: '',
@@ -41,43 +44,40 @@ class WorkExpModal extends Component {
 
 
     render() {
-        if(!this.state.display) {
-            return null
+        if(!this.props.display) {
+            return null;
         }
 
         return (
             <div>
-                <form className='flex' onSubmit={this.handleSubmit}>
-                    <div>
+                <form className='flex flex-col gap-2 border-2 p-2 w-2/3 mt-4 rounded-md' onSubmit={() => {this.handleSubmit(); this.props.closeModal()}}>
+                    <div className='flex flex-col'>
                         <label>Job Title</label>
-                        <input type='text' name='jobTitle' onChange={this.handleChange}></input>
+                        <input type='text' name='jobTitle' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
-                    <div>
+                    <div className='flex flex-col'>
                         <label>Company</label>
-                        <input type='text' name='companyTitle' onChange={this.handleChange}></input>
+                        <input type='text' name='companyTitle' onChange={this.handleChange} className= 'border-2 rounded-md h-8'></input>
                     </div>
-                    <div>
+                    <div className = 'flex flex-col'>
                         <label>Date</label>
-                        <input type='date' name='date' onChange={this.handleChange}></input>
+                        <input type='date' name='date' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
-                    <div>
+                    <div className = 'flex flex-col'>
                         <label>Location</label>
-                        <input type='text' name='location' onChange={this.handleChange}></input>
+                        <input type='text' name='location' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
-                    <div>
+                    <div className = 'flex flex-col'>
                         <label>Description</label>
-                        <textarea name='description' onChange={this.handleChange}></textarea>
+                        <textarea name='description' onChange={this.handleChange} className='border-2 rounded-md h-32'></textarea>
                     </div>
-                    <div>
-                        <input type='submit'></input>
-                        <button>Cancel</button>
+                    <div className = 'flex gap-2'>
+                        <input type='submit' value='Save' className='border-2 rounded-md text-white bg-[#7B9ACC] py-2 px-3'></input>
+                        <button className='border-2 rounded-md text-[#7B9ACC] py-2 px-2'>Cancel</button>
                     </div>
                 </form>
-
-
             </div>
         )
     }
 }
-
 export default WorkExpModal;
