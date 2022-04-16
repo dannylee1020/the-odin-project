@@ -8,7 +8,7 @@ class AddExp extends Component {
 
     render() {
         return(
-            <button onClick={this.props.displayModal}>
+            <button onClick={this.props.displayModal} className='mt-1 text-[#7B9ACC]'>
                 <span>+</span> Add Experience
             </button>
         )
