@@ -8,12 +8,11 @@ class DisplayWorkExp extends Component {
     }
 
     render() {
-
-        return (
+        return(
             this.props.works.map((work) => {
-                <WorkExp work={work}></WorkExp>
+                return <WorkExp key={work.id} work={work}/>
             })
-        )
+        );
     }
 };
 
