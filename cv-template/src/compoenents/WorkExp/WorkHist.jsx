@@ -22,6 +22,8 @@ class WorkHist extends Component {
         this.setState({
             workHistory: [...this.state.workHistory, newWorkHist]
         })
+
+
     };
 
     displayModal = () => {

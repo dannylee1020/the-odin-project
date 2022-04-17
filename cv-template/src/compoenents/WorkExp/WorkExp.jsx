@@ -14,7 +14,6 @@ class WorkExp extends Component {
             description
         } = this.props.work
 
-
         return (
             <div>
                 <h4>{jobTitle}</h4>
