@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import uniqid from "uniqid";
 
 class WorkExpModal extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class WorkExpModal extends Component {
             date: '',
             location: '',
             description: '',
+            id: uniqid()
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -29,7 +31,8 @@ class WorkExpModal extends Component {
             companyTitle: this.state.companyTitle,
             date: this.state.date,
             location: this.state.location,
-            description: this.state.description
+            description: this.state.description,
+            id: this.state.id
         }
 
         this.props.addWorkHist(workExp);
@@ -39,6 +42,7 @@ class WorkExpModal extends Component {
             date: '',
             location: '',
             description: '',
+            id: '',
         })
     };
 
@@ -50,7 +54,7 @@ class WorkExpModal extends Component {
 
         return (
             <div>
-                <form className='flex flex-col gap-2 border-2 p-2 w-2/3 mt-4 rounded-md' onSubmit={() => {this.handleSubmit(); this.props.closeModal()}}>
+                <form className='flex flex-col gap-2 border-2 p-2 w-2/3 mt-4 rounded-md' onSubmit = {(e) => {this.handleSubmit(e); this.props.closeModal()}}>
                     <div className='flex flex-col'>
                         <label>Job Title</label>
                         <input type='text' name='jobTitle' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
@@ -73,7 +77,7 @@ class WorkExpModal extends Component {
                     </div>
                     <div className = 'flex gap-2'>
                         <input type='submit' value='Save' className='border-2 rounded-md text-white bg-[#7B9ACC] py-2 px-3'></input>
-                        <button className='border-2 rounded-md text-[#7B9ACC] py-2 px-2'>Cancel</button>
+                        <button type='button' onClick = {this.props.closeModal} className='border-2 rounded-md text-[#7B9ACC] py-2 px-2'>Cancel</button>
                     </div>
                 </form>
             </div>
