@@ -10,7 +10,7 @@ class DisplayWorkExp extends Component {
     render() {
         return(
             this.props.works.map((work) => {
-                return <WorkExp key={work.id} work={work}/>
+                return <WorkExp key={work.id} work={work} removeHistory={this.props.removeHistory}/>
             })
         );
     }
