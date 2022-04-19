@@ -11,7 +11,7 @@ class WorkExpModal extends Component {
             date: '',
             location: '',
             description: '',
-            id: uniqid()
+            id: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,7 +32,7 @@ class WorkExpModal extends Component {
             date: this.state.date,
             location: this.state.location,
             description: this.state.description,
-            id: this.state.id
+            id: uniqid()
         }
 
         this.props.addWorkHist(workExp);
@@ -54,7 +54,7 @@ class WorkExpModal extends Component {
 
         return (
             <div>
-                <form className='flex flex-col gap-2 border-2 p-2 w-2/3 mt-4 rounded-md' onSubmit = {(e) => {this.handleSubmit(e); this.props.closeModal()}}>
+                <form className='flex flex-col gap-2 border-2 p-2 mt-4 rounded-md' onSubmit = {(e) => {this.handleSubmit(e); this.props.closeModal()}}>
                     <div className='flex flex-col'>
                         <label>Job Title</label>
                         <input type='text' name='jobTitle' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
@@ -64,8 +64,8 @@ class WorkExpModal extends Component {
                         <input type='text' name='companyTitle' onChange={this.handleChange} className= 'border-2 rounded-md h-8'></input>
                     </div>
                     <div className = 'flex flex-col'>
-                        <label>Date</label>
-                        <input type='date' name='date' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
+                        <label>Date <span className='text-[14px]'> (MM/DD/YYYY - MM/DD/YYYY)</span></label>
+                        <input type='text' name='date' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
                     <div className = 'flex flex-col'>
                         <label>Location</label>
