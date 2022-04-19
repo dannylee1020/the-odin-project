@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class WorkExp extends Component {
     constructor(props) {
         super(props);
@@ -11,16 +10,21 @@ class WorkExp extends Component {
             companyTitle,
             date,
             location,
-            description
+            description,
+            id
         } = this.props.work
 
+
         return (
-            <div>
-                <h4>{jobTitle}</h4>
-                <p>{companyTitle}</p>
-                <p>{date}</p>
-                <p>{location}</p>
-                <p>{description}</p>
+            <div className='hover:bg-slate-200 rounded-md py-2 mb-10 mt-5 flex justify-between'>
+                <div className='work-hist flex flex-col'>
+                    <p className='text-lg font-bold'>{jobTitle}</p>
+                    <p>{companyTitle}</p>
+                    <p>{date}</p>
+                    <p>{location}</p>
+                    <p>{description}</p>
+                </div>
+                <i className="fa-solid fa-xmark text-[20px]" onClick={this.props.removeHistory.bind(this, id)}></i>
             </div>
         )
     }
