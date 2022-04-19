@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './compoenents/layout/Header'
-import PersonalInfo from './compoenents/PersonalInfo'
-import WorkHeading from './compoenents/layout/WorkHeading'
-import WorkHist from './compoenents/workexp/WorkHist'
+import Header from './components/layout/Header'
+import PersonalInfo from './components/PersonalInfo'
+import WorkHeading from './components/layout/WorkHeading'
+import WorkHist from './components/workexp/WorkHist'
 
 class App extends Component {
     constructor(props) {
