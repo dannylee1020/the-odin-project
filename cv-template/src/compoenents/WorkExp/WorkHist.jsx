@@ -15,6 +15,7 @@ class WorkHist extends Component {
         this.addWorkHist = this.addWorkHist.bind(this);
         this.displayModal = this.displayModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.removeHistory = this.removeHistory.bind(this);
     }
 
     addWorkHist = (workHist) => {
@@ -22,8 +23,6 @@ class WorkHist extends Component {
         this.setState({
             workHistory: [...this.state.workHistory, newWorkHist]
         })
-
-
     };
 
     displayModal = () => {
@@ -38,11 +37,19 @@ class WorkHist extends Component {
         })
     }
 
+    removeHistory = (id) => {
+        const newHistory = this.state.workHistory.filter(hist => hist.id !== id)
+
+        this.setState({
+            workHistory: newHistory
+        })
+    }
+
 
     render() {
         return (
-            <div className='workSection ml-16'>
-                <DisplayWorkExp works={this.state.workHistory}/>
+            <div className='workSection ml-16 w-2/3'>
+                <DisplayWorkExp works={this.state.workHistory} removeHistory = {this.removeHistory}/>
                 <WorkExpModal addWorkHist={this.addWorkHist} display={this.state.display} closeModal={this.closeModal}/>
                 <AddExp displayModal={this.displayModal}/>
             </div>
