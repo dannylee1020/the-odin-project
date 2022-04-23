@@ -16,11 +16,10 @@ class App extends Component {
         return (
             <div>
                 <Header></Header>
-                <div className='mt-20 flex flex-row justify-evenly'>
-                    <div className='ml-3/4'></div>
+                <div className='mt-20 ml-[70%]'>
                     <ExportBttn targetEl={this.elementRef}></ExportBttn>
                 </div>
-                <div className='content' ref={this.elementRef}>
+                <div className='content ml-[25%] ' ref={this.elementRef}>
                     <PersonalInfo></PersonalInfo>
                     <WorkHeading></WorkHeading>
                     <WorkHist></WorkHist>
