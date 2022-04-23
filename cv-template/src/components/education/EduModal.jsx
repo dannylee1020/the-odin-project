@@ -57,26 +57,27 @@ class EduModal extends Component {
                         <input type='text' name='school' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
                     <div className='flex flex-col'>
-                        <label>Date</label>
+                        <label>Date <span className='text-sm'>(MM/YYYY - MM/YYYY)</span></label>
                         <input type='text' name='date' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
                     <div className='flex flex-col'>
-                        <label>Degree type</label>
-                        <input list='degree' name='degree' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
-                        <datalist id='degree'>
-                            <option value = 'High School or equivalent'></option>
-                            <option value = 'Associate'></option>
-                            <option value = "Bachelor's"></option>
-                            <option value = "Master's"></option>
-                            <option value = "Doctorate"></option>
-                        </datalist>
+                        <label for='degree'>Degree type</label>
+                        <select name='degree' id='degree' onChange={this.handleChange} className='border-2 rounded-md h-8 text-sm'>
+                            <option>None</option>
+                            <option>High school or equivalent</option>
+                            <option>Associate</option>
+                            <option>Bachelor</option>
+                            <option>Master</option>
+                            <option>Doctorate</option>
+                            <option>Other</option>
+                        </select>
                     </div>
                     <div className = 'flex flex-col'>
                         <label>Field of study</label>
                         <input type='text' name='major' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
                     <div className='flex flex-col'>
-                        <label>City/State</label>
+                        <label>City, State <span className='text-sm'>(ex. San Francisco, California)</span></label>
                         <input type='text' name='location' onChange={this.handleChange} className='border-2 rounded-md h-8'></input>
                     </div>
                     <div className='flex gap-2'>
