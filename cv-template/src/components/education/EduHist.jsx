@@ -46,7 +46,7 @@ class EduHist extends Component {
 
     render() {
         return (
-            <div className='ml-16 w-2/3'>
+            <div className='w-2/3'>
                 <EduHeading></EduHeading>
                 <DisplayEdu educations={this.state.eduHistory} removeHist={this.removeHistory}></DisplayEdu>
                 <EduModal display={this.state.display} addHist={this.addHistory} closeModal={this.closeModal}></EduModal>

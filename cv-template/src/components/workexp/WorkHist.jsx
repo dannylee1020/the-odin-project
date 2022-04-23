@@ -48,7 +48,7 @@ class WorkHist extends Component {
 
     render() {
         return (
-            <div className='workSection ml-16 w-2/3'>
+            <div className='workSection w-2/3'>
                 <DisplayWorkExp works={this.state.workHistory} removeHistory = {this.removeHistory}/>
                 <WorkExpModal addWorkHist={this.addWorkHist} display={this.state.display} closeModal={this.closeModal}/>
                 <AddExp displayModal={this.displayModal}/>
