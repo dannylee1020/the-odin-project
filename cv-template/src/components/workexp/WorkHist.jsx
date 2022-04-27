@@ -1,60 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react'
 import WorkExpModal from './WorkExpModal';
 import AddExp from './AddExp';
 import DisplayWorkExp from './DisplayWorkExp';
 
-class WorkHist extends Component {
-    constructor() {
-        super();
+const WorkHist = () => {
+    const [workHistory, setWorkHistory] = useState([]);
+    const [display, setDisplay] = useState(false)
 
-        this.state = {
-            workHistory: [],
-            display: false
-        }
-
-        this.addWorkHist = this.addWorkHist.bind(this);
-        this.displayModal = this.displayModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.removeHistory = this.removeHistory.bind(this);
+    const addWorkHist = (workHist) => {
+        setWorkHistory((prev) => ([
+            ...prev,
+            workHist
+        ]))
     }
 
-    addWorkHist = (workHist) => {
-        const newWorkHist = workHist
-        this.setState({
-            workHistory: [...this.state.workHistory, newWorkHist]
-        })
-    };
-
-    displayModal = () => {
-        this.setState({
-            display: true
-        })
+    const displayModal = () => {
+        setDisplay(true)
     }
 
-    closeModal = () => {
-        this.setState({
-            display:false
-        })
+    const closeModal= () => {
+        setDisplay(false)
     }
 
-    removeHistory = (id) => {
-        const newHistory = this.state.workHistory.filter(hist => hist.id !== id)
-
-        this.setState({
-            workHistory: newHistory
-        })
+    const removeHistory = (id) => {
+        const newHistory = workHistory.filter((hist) => hist.id !== id)
+        setWorkHistory(newHistory)
     }
 
 
-    render() {
-        return (
-            <div className='workSection w-2/3'>
-                <DisplayWorkExp works={this.state.workHistory} removeHistory = {this.removeHistory}/>
-                <WorkExpModal addWorkHist={this.addWorkHist} display={this.state.display} closeModal={this.closeModal}/>
-                <AddExp displayModal={this.displayModal}/>
-            </div>
-        )
-    }
+    return (
+        <div className='workSection w-2/3'>
+            <DisplayWorkExp works={workHistory} removeHistory = {removeHistory}/>
+            <WorkExpModal addWorkHist={addWorkHist} display={display} closeModal={closeModal}/>
+            <AddExp displayModal={displayModal}/>
+        </div>
+    )
+
 }
 
 export default WorkHist;
