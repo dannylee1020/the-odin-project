@@ -1,59 +1,45 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react';
 import EduHeading from '../layout/EduHeading';
-import AddEdu from './AddEdu';
 import EduModal from './EduModal';
 import DisplayEdu from './DisplayEdu';
 
-class EduHist extends Component {
-    constructor(){
-        super();
 
-        this.state = {
-            display: false,
-            eduHistory:[]
-        }
+const EduHist = () => {
+    const [display, setDisplay] = useState(false);
+    const [eduHistory, setEduHistory] = useState([]);
 
-        this.displayModal = this.displayModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.removeHistory = this.removeHistory.bind(this);
+    const displayModal = function() {
+        setDisplay(true)
     }
 
-    displayModal = () => {
-        this.setState({
-            display: true
-        })
+    const closeModal = function () {
+        setDisplay(false)
     }
 
-    closeModal = () => {
-        this.setState({
-            display:false
-        })
+    const addEduHist = function (eduHist) {
+        setEduHistory((prevHist) => (
+            [
+                ...prevHist,
+                eduHist
+            ]
+        ))
     }
 
-    addHistory = (eduHist) => {
-        const newEduHist = eduHist
-        this.setState({
-            eduHistory: [...this.state.eduHistory, newEduHist]
-        })
+    const removeHist = function (id) {
+        let newHist = eduHistory.filter(hist => hist.id !== id)
+        setEduHistory(newHist);
     }
 
-    removeHistory = (id) => {
-        const newHist = this.state.eduHistory.filter((edu) => edu.id !== id)
-        this.setState({
-            eduHistory: newHist
-        })
-    }
-
-    render() {
-        return (
-            <div className='w-2/3'>
-                <EduHeading></EduHeading>
-                <DisplayEdu educations={this.state.eduHistory} removeHist={this.removeHistory}></DisplayEdu>
-                <EduModal display={this.state.display} addHist={this.addHistory} closeModal={this.closeModal}></EduModal>
-                <AddEdu displayModal = {this.displayModal}></AddEdu>
-            </div>
-        )
-    }
+    return (
+        <div className='w-2/3'>
+            <EduHeading></EduHeading>
+            <DisplayEdu educations={eduHistory} removeHist={removeHist}></DisplayEdu>
+            <EduModal display={display} addHist={addEduHist} closeModal={closeModal}></EduModal>
+            <button className='mt-1 text-[#7B9ACC]' onClick={displayModal}>
+                <span>+</span> Add Education
+            </button>
+        </div>
+    )
 }
 
 export default EduHist;
