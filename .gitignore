@@ -7,3 +7,6 @@ test
 node_modules
 first-react-app
 task-app
+react-router
+.DS_Store
+.vscode
