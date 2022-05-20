@@ -2,7 +2,7 @@ import { Container, Flex, VStack, Image, Text, Heading, Button } from '@chakra-u
 import mini from '../../assets/air_mini.png';
 import pro from '../../assets/air_pro.png';
 
-const Home = () => {
+const Home = (props) => {
     return (
         <Container maxW='container.lg' p={0}>
             <Flex maxH='80%' mt={40} align='flex-end' justify='center' gap={40}>
@@ -23,7 +23,7 @@ const Home = () => {
                     <Text fontSize='xl' fontWeight='bold' py={5}>
                         $42/Month | $499.99
                     </Text>
-                    <Button colorScheme='gray' size='md' borderRadius='5px'>
+                    <Button colorScheme='gray' size='md' borderRadius='5px' onClick={props.onOpen}>
                         Add to cart
                     </Button>
                 </VStack>
@@ -47,7 +47,7 @@ const Home = () => {
                     <Text fontSize='xl' fontWeight='bold' py={5}>
                         $63/Month | $999.99
                     </Text>
-                    <Button colorScheme='gray' size='md' borderRadius='5px'>
+                    <Button colorScheme='gray' size='md' borderRadius='5px' onClick={props.onOpen}>
                         Add to cart
                     </Button>
                 </VStack>
