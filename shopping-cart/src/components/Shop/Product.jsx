@@ -1,6 +1,6 @@
 import { Container, Flex, VStack, Image, Text, Heading, Button } from '@chakra-ui/react'
-import mini from '../../assets/air_mini.png';
-import pro from '../../assets/air_pro.png';
+import mini from '../../assets/air_mini.png'
+import pro from '../../assets/air_pro.png'
 
 const Home = (props) => {
     return (
@@ -23,7 +23,7 @@ const Home = (props) => {
                     <Text fontSize='xl' fontWeight='bold' py={5}>
                         $42/Month | $499.99
                     </Text>
-                    <Button colorScheme='gray' size='md' borderRadius='5px' onClick={props.onOpen}>
+                    <Button colorScheme='gray' size='md' borderRadius='5px' id='air-mini' onClick={(e) => {props.onOpen(); props.handleProduct(e)}}>
                         Add to cart
                     </Button>
                 </VStack>
@@ -47,7 +47,7 @@ const Home = (props) => {
                     <Text fontSize='xl' fontWeight='bold' py={5}>
                         $63/Month | $999.99
                     </Text>
-                    <Button colorScheme='gray' size='md' borderRadius='5px' onClick={props.onOpen}>
+                    <Button colorScheme='gray' size='md' borderRadius='5px' id='air-pro' onClick={(e) => {props.onOpen(); props.handleProduct(e)}}>
                         Add to cart
                     </Button>
                 </VStack>
