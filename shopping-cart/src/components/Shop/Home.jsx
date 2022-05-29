@@ -2,13 +2,12 @@ import Product from "./Product";
 import Header from "./Header";
 import ShowModal from "./Modal";
 import { useDisclosure } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import assetMini from "../../assets/air_mini.png";
 import assetPro from "../../assets/air_pro.png";
 
-//! cart should be empty when first rendered
-//! fix layout of the cart
+//? use nested state for scaling? if we have n products, we cannot create state for every product.
 
 const Home = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,14 +34,30 @@ const Home = () => {
         }
     };
 
-    const handleQuantity = (e) => {
-        if (e.currentTarget.id === "subtract") {
-            setProduct((prev) => ({
+    const handleMiniQuantity = (e) => {
+        if (e.currentTarget.id === "mini-subtract") {
+            setMini((prev) => ({
                 ...prev,
                 quantity: Math.max(prev.quantity - 1, 0),
             }));
-        } else if (e.currentTarget.id === "add") {
-            setProduct((prev) => ({
+        } else if (e.currentTarget.id === "mini-add") {
+            setMini((prev) => ({
+                ...prev,
+                quantity: Math.max(prev.quantity + 1, 0),
+            }));
+        } else {
+            return;
+        }
+    };
+
+    const handleProQuantity = (e) => {
+        if (e.currentTarget.id === "pro-subtract") {
+            setPro((prev) => ({
+                ...prev,
+                quantity: Math.max(prev.quantity - 1, 0),
+            }));
+        } else if (e.currentTarget.id === "pro-add") {
+            setPro((prev) => ({
                 ...prev,
                 quantity: Math.max(prev.quantity + 1, 0),
             }));
@@ -53,14 +68,15 @@ const Home = () => {
 
     return (
         <div>
-            <Header></Header>
+            <Header onOpen={onOpen}></Header>
             <Product onOpen={onOpen} handleProduct={handleProduct}></Product>
             <ShowModal
                 isOpen={isOpen}
                 onClose={onClose}
                 pro={pro}
                 mini={mini}
-                handleQuantity={handleQuantity}
+                handleMiniQuantity={handleMiniQuantity}
+                handleProQuantity={handleProQuantity}
             ></ShowModal>
         </div>
     );
