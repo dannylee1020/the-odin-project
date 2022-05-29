@@ -27,7 +27,7 @@ const ShowModal = (props) => {
         }
 
         return (
-            <Container>
+            <Flex>
                 <Image
                     src={props.mini.src}
                     alt="placeholder"
@@ -39,24 +39,24 @@ const ShowModal = (props) => {
                     <HStack>
                         <Icon
                             as={HiMinusSm}
-                            id="subtract"
+                            id="mini-subtract"
                             onClick={(e) => {
-                                props.handleQuantity(e);
+                                props.handleMiniQuantity(e);
                             }}
                         ></Icon>
                         <Text>{props.mini.quantity}</Text>
                         <Icon
                             as={HiPlusSm}
-                            id="add"
+                            id="mini-add"
                             onClick={(e) => {
-                                props.handleQuantity(e);
+                                props.handleMiniQuantity(e);
                             }}
                         ></Icon>
                     </HStack>
                 </Flex>
                 <Spacer />
                 <Text>{props.mini.price}</Text>
-            </Container>
+            </Flex>
         );
     };
 
@@ -66,7 +66,7 @@ const ShowModal = (props) => {
         }
 
         return (
-            <Container>
+            <Flex>
                 <Image
                     src={props.pro.src}
                     alt="placeholder"
@@ -78,26 +78,33 @@ const ShowModal = (props) => {
                     <HStack>
                         <Icon
                             as={HiMinusSm}
-                            id="subtract"
+                            id="pro-subtract"
                             onClick={(e) => {
-                                props.handleQuantity(e);
+                                props.handleProQuantity(e);
                             }}
                         ></Icon>
                         <Text>{props.pro.quantity}</Text>
                         <Icon
                             as={HiPlusSm}
-                            id="add"
+                            id="pro-add"
                             onClick={(e) => {
-                                props.handleQuantity(e);
+                                props.handleProQuantity(e);
                             }}
                         ></Icon>
                     </HStack>
                 </Flex>
                 <Spacer />
                 <Text>{props.pro.price}</Text>
-            </Container>
+            </Flex>
         );
     };
+
+    const totalMini = isNaN(props.mini.quantity * props.mini.price)
+        ? 0
+        : props.mini.quantity * props.mini.price;
+    const totalPro = isNaN(props.pro.quantity * props.pro.price)
+        ? 0
+        : props.pro.quantity * props.pro.price;
 
     return (
         <Drawer
@@ -113,7 +120,7 @@ const ShowModal = (props) => {
                 <DrawerBody>
                     <VStack align="left" spacing={10}>
                         <Heading size="md">The clean air you deserve.</Heading>
-                        <Flex>
+                        <Flex direction="column" gap={20}>
                             {displayMini()}
                             {displayPro()}
                         </Flex>
@@ -121,7 +128,7 @@ const ShowModal = (props) => {
                         <Flex justify="space-between">
                             <Text fontWeight="bold">Total</Text>
                             <Text fontWeight="bold">
-                                {/* ${(price * quantity).toFixed(2)} */}
+                                ${(totalPro + totalMini).toFixed(2)}
                             </Text>
                         </Flex>
                         <Button colorScheme="teal">Checkout</Button>
