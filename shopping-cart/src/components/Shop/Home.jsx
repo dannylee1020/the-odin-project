@@ -8,13 +8,17 @@ import assetMini from "../../assets/air_mini.png";
 import assetPro from "../../assets/air_pro.png";
 
 //? use nested state for scaling? if we have n products, we cannot create state for every product.
+//! have cart empty when first rendered
 
 const Home = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [pro, setPro] = useState({ quantity: 0, displayPro: false });
     const [mini, setMini] = useState({ quantity: 0, displayMini: false });
+    const [cart, setCart] = useState(false);
 
     const handleProduct = (e) => {
+        setCart(true);
+
         if (e.currentTarget.id === "air-mini") {
             setMini((prev) => ({
                 name: "Molekule Air Mini+",
@@ -75,6 +79,7 @@ const Home = () => {
                 onClose={onClose}
                 pro={pro}
                 mini={mini}
+                cart={cart}
                 handleMiniQuantity={handleMiniQuantity}
                 handleProQuantity={handleProQuantity}
             ></ShowModal>
