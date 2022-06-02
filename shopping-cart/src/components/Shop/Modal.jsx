@@ -18,9 +18,22 @@ import {
     Button,
 } from "@chakra-ui/react";
 
+import { useNavigate } from "react-router-dom";
 import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 
 const ShowModal = (props) => {
+    const navigate = useNavigate();
+
+    const totalMini = isNaN(props.mini.quantity * props.mini.price)
+        ? 0
+        : props.mini.quantity * props.mini.price;
+
+    const totalPro = isNaN(props.pro.quantity * props.pro.price)
+        ? 0
+        : props.pro.quantity * props.pro.price;
+
+    const totalPrice = (totalMini + totalPro).toFixed(2);
+
     const displayMini = () => {
         if (!props.mini.displayMini) {
             return;
@@ -99,12 +112,13 @@ const ShowModal = (props) => {
         );
     };
 
-    const totalMini = isNaN(props.mini.quantity * props.mini.price)
-        ? 0
-        : props.mini.quantity * props.mini.price;
-    const totalPro = isNaN(props.pro.quantity * props.pro.price)
-        ? 0
-        : props.pro.quantity * props.pro.price;
+    const cartHeader = () => {
+        if (!props.cart) {
+            return <Heading size="md">Your cart is empty.</Heading>;
+        }
+
+        return <Heading size="md">The clean air you deserve.</Heading>;
+    };
 
     return (
         <Drawer
@@ -119,7 +133,7 @@ const ShowModal = (props) => {
                 <DrawerCloseButton />
                 <DrawerBody>
                     <VStack align="left" spacing={10}>
-                        <Heading size="md">The clean air you deserve.</Heading>
+                        {cartHeader()}
                         <Flex direction="column" gap={20}>
                             {displayMini()}
                             {displayPro()}
@@ -127,11 +141,20 @@ const ShowModal = (props) => {
                         <Divider />
                         <Flex justify="space-between">
                             <Text fontWeight="bold">Total</Text>
-                            <Text fontWeight="bold">
-                                ${(totalPro + totalMini).toFixed(2)}
-                            </Text>
+                            <Text fontWeight="bold">${totalPrice}</Text>
                         </Flex>
-                        <Button colorScheme="teal">Checkout</Button>
+                        <Button
+                            colorScheme="teal"
+                            onClick={() => {
+                                navigate("/checkout", {
+                                    state: {
+                                        total: totalPrice,
+                                    },
+                                });
+                            }}
+                        >
+                            Checkout
+                        </Button>
                     </VStack>
                 </DrawerBody>
             </DrawerContent>
