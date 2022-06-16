@@ -4,19 +4,22 @@ import SidebarUi from "./components/sidebar/SidebarUi";
 import Inbox from "./components/pages/Inbox";
 import Today from "./components/pages/Today";
 import Upcoming from "./components/pages/Upcoming";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 
 import { db } from "./firebase-config";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import {
+    collection,
+    addDoc,
+    Timestamp,
+    query,
+    orderBy,
+    onSnapshot,
+} from "firebase/firestore";
 
 function App() {
     let [isOpen, setIsOpen] = useState(false);
-    let [taskData, setTaskData] = useState({
-        title: "",
-        description: "",
-        date: "",
-    });
+    let [taskData, setTaskData] = useState([]);
 
     const openModal = () => {
         setIsOpen(true);
@@ -41,38 +44,27 @@ function App() {
                                 <input
                                     className="placeholder:italic border-t border-r border-l focus:outline-none pb-3 pl-1"
                                     placeholder="Task"
+                                    name="title"
                                     type="text"
-                                    onChange={(e) => {
-                                        setTaskData((prev) => ({
-                                            ...prev,
-                                            title: e.target.value,
-                                        }));
-                                    }}
+                                    required
+                                    pattern="\S(.*\S)?"
                                 ></input>
                                 <textarea
                                     className="placeholder:italic w-100% h-28 focus:outline-none placeholder:text-sm pl-1"
                                     placeholder="Description"
+                                    name="description"
+                                    required
+                                    pattern="\S(.*\S)?"
                                     type="text"
-                                    onChange={(e) => {
-                                        setTaskData((prev) => ({
-                                            ...prev,
-                                            description: e.target.value,
-                                        }));
-                                    }}
                                 ></textarea>
-                                <input
-                                    type="date"
-                                    name="Date"
-                                    onChange={(e) => {
-                                        setTaskData((prev) => ({
-                                            ...prev,
-                                            date: e.target.value,
-                                        }));
-                                    }}
-                                ></input>
+                                <input type="date" name="date" required></input>
                             </div>
                             <div className="flex gap-2 ml-2 mt-3">
-                                <input type="submit" value="Add"></input>
+                                <input
+                                    type="submit"
+                                    value="Add"
+                                    onClick={queryTasks}
+                                ></input>
                                 <button onClick={closeModal}>Cancel</button>
                             </div>
                         </form>
@@ -82,9 +74,7 @@ function App() {
         );
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const writeToDB = async () => {
         try {
             await addDoc(collection(db, "tasks"), {
                 title: taskData.title,
@@ -93,10 +83,35 @@ function App() {
                 created: Timestamp.now(),
             });
         } catch (error) {
-            console.error("Error adding data to Firestore");
+            console.log("Error writing data to Firestore");
         }
+    };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const { title, description, date } = e.target.elements;
+        const data = {
+            title: title.values,
+            description: description.values,
+            date: date.values,
+            timestamp: "",
+        };
+
+        setTaskData((prev) => [...prev, data]);
+
+        // writeToDB();
         closeModal();
+    };
+
+    const queryTasks = () => {
+        // TODO query tasks from firestore and return component to display to each page
+        // const q = query(collection(db, "tasks"), orderBy("created", "asc"));
+        // onSnapshot(q, (qSnapShot) => {
+        //     qSnapShot.docs.map((doc) => {
+        //         console.log(doc.data());
+        //     });
+        // });
     };
 
     return (
