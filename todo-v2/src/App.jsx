@@ -74,12 +74,12 @@ function App() {
         );
     };
 
-    const writeToDB = async () => {
+    const writeToDB = async (data) => {
         try {
             await addDoc(collection(db, "tasks"), {
-                title: taskData.title,
-                description: taskData.description,
-                date: taskData.date,
+                title: data.title,
+                description: data.description,
+                date: data.date,
                 created: Timestamp.now(),
             });
         } catch (error) {
@@ -87,31 +87,29 @@ function App() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const { title, description, date } = e.target.elements;
-        const data = {
-            title: title.values,
-            description: description.values,
-            date: date.values,
-            timestamp: "",
+        const data = await {
+            title: title.value,
+            description: description.value,
+            date: date.value,
+            created: "",
         };
 
         setTaskData((prev) => [...prev, data]);
-
-        // writeToDB();
+        writeToDB(data);
         closeModal();
     };
 
     const queryTasks = () => {
-        // TODO query tasks from firestore and return component to display to each page
-        // const q = query(collection(db, "tasks"), orderBy("created", "asc"));
-        // onSnapshot(q, (qSnapShot) => {
-        //     qSnapShot.docs.map((doc) => {
-        //         console.log(doc.data());
-        //     });
-        // });
+        const q = query(collection(db, "tasks"), orderBy("created", "asc"));
+        onSnapshot(q, (qSnapShot) => {
+            qSnapShot.docs.map((doc) => {
+                console.log(doc.data());
+            });
+        });
     };
 
     return (
