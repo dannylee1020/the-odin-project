@@ -1,5 +1,5 @@
 import { BsPlus } from "react-icons/bs";
-import TaskManager from "./TaskManager";
+import TaskManager from "../tasks/TaskManager";
 
 const Inbox = (props) => {
     return (
@@ -12,7 +12,6 @@ const Inbox = (props) => {
                     </span>
                     Add Task
                 </div>
-                <div>{props.makeModal()}</div>
             </div>
             <TaskManager></TaskManager>
         </div>
