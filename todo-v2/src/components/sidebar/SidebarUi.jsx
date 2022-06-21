@@ -4,7 +4,7 @@ import { GrProjects } from "react-icons/gr";
 import { BsInbox } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-const SidebarUi = () => {
+const SidebarUi = (props) => {
     const navigate = useNavigate();
 
     return (
@@ -12,6 +12,7 @@ const SidebarUi = () => {
             <div className="flex flex-col items-left mt-12 gap-4">
                 <div
                     className="flex items-center gap-2"
+                    id="inbox"
                     onClick={() => {
                         navigate("/");
                     }}
@@ -23,6 +24,7 @@ const SidebarUi = () => {
                 </div>
                 <div
                     className="flex items-center gap-2"
+                    id="today"
                     onClick={() => {
                         navigate("/today");
                     }}
@@ -34,6 +36,7 @@ const SidebarUi = () => {
                 </div>
                 <div
                     className="flex items-center gap-2"
+                    id="upcoming"
                     onClick={() => {
                         navigate("/upcoming");
                     }}
