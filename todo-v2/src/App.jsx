@@ -4,6 +4,7 @@ import SidebarUi from "./components/sidebar/SidebarUi";
 import Inbox from "./components/pages/Inbox";
 import Today from "./components/pages/Today";
 import Upcoming from "./components/pages/Upcoming";
+import Done from "./components/pages/Done";
 import Modal from "./components/pages/Modal";
 import { useState } from "react";
 
@@ -17,7 +18,12 @@ import {
     onSnapshot,
 } from "firebase/firestore";
 
+// TODO: add update and delete
+// TODO: replace project tab with Done.
 // TODO: add sign in functionality
+
+// * Try using DaisyUI for frontend
+// * Try learning Redux for state management
 
 function App() {
     let [isOpen, setIsOpen] = useState(false);
@@ -38,6 +44,7 @@ function App() {
                 description: data.description,
                 date: data.date,
                 created: Timestamp.now(),
+                status: "in-progress",
             });
         } catch (error) {
             console.log("Error writing data to Firestore");
@@ -53,6 +60,7 @@ function App() {
             description: description.value,
             date: date.value,
             created: "",
+            status: "",
         };
 
         setTaskData((prev) => [...prev, data]);
@@ -104,6 +112,7 @@ function App() {
                         }
                     ></Route>
                     <Route path="/upcoming" element={<Upcoming />}></Route>
+                    <Route path="/done" element={<Done />}></Route>
                 </Routes>
             </div>
         </BrowserRouter>
