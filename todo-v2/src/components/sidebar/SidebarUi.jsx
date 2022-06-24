@@ -46,11 +46,16 @@ const SidebarUi = (props) => {
                     </span>
                     Upcoming
                 </div>
-                <div className="flex items-center gap-2">
+                <div
+                    className="flex items-center gap-2"
+                    onClick={() => {
+                        navigate("/done");
+                    }}
+                >
                     <span>
                         <GrProjects />
                     </span>
-                    Projects
+                    Done
                 </div>
             </div>
         </div>
