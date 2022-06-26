@@ -10,7 +10,13 @@ const Modal = (props) => {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
             <Dialog.Panel className="w-full max-w-md transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl">
                 <div className="flex flex-col">
-                    <form onSubmit={props.handleSubmit}>
+                    <form
+                        onSubmit={(e) => {
+                            props.isUpdate
+                                ? props.handleUpdate(e)
+                                : props.handleSubmit(e);
+                        }}
+                    >
                         <div className="flex flex-col border border-slate-300 rounded-md">
                             <input
                                 className="placeholder:italic border-t border-r border-l focus:outline-none pb-3 pl-1"
@@ -31,11 +37,7 @@ const Modal = (props) => {
                             <input type="date" name="date" required></input>
                         </div>
                         <div className="flex gap-2 ml-2 mt-3">
-                            <input
-                                type="submit"
-                                value="Add"
-                                onClick={props.queryTasks}
-                            ></input>
+                            <input type="submit" value="Add"></input>
                             <button onClick={props.closeModal}>Cancel</button>
                         </div>
                     </form>
