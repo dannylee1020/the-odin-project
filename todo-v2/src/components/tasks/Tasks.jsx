@@ -4,7 +4,7 @@ import { BiCircle, BiPencil } from "react-icons/bi";
 import { GiTrashCan } from "react-icons/gi";
 
 const Tasks = (props) => {
-    // TODO update data status to done
+    // update status to done for finished tasks
     const handleDone = async (e) => {
         const docRef = doc(db, "tasks", e.target.id);
         try {
@@ -16,17 +16,15 @@ const Tasks = (props) => {
         }
     };
 
+    // delete tasks
     const handleDelete = async (e) => {
-        console.log(e.target.id);
-        const docRef = doc(db, "tasks", e.target.id);
+        const docRef = doc(db, "tasks", e.currentTarget.id);
         try {
             await deleteDoc(docRef);
         } catch (error) {
             alert(error);
         }
     };
-
-    // const handleUpdate = () => {};
 
     return (
         <div>
@@ -38,8 +36,14 @@ const Tasks = (props) => {
                         <BiPencil
                             size={20}
                             className="hidden group-hover:block"
+                            id={props.task.id}
+                            onClick={(e) => {
+                                props.setUpdate();
+                                props.setTaskId(e);
+                            }}
                         ></BiPencil>
                         <GiTrashCan
+                            id={props.task.id}
                             size={20}
                             className="hidden group-hover:block"
                             onClick={handleDelete}
