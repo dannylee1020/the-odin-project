@@ -4,7 +4,7 @@ import { GrProjects } from "react-icons/gr";
 import { BsInbox } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-const SidebarUi = (props) => {
+const SidebarUi = () => {
     const navigate = useNavigate();
 
     return (
