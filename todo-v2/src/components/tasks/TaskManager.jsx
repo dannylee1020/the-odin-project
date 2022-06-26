@@ -4,7 +4,7 @@ import { db } from "../../firebase-config";
 import Tasks from "./Tasks";
 import { useLocation } from "react-router-dom";
 
-const TaskManager = () => {
+const TaskManager = (props) => {
     let [tasks, setTasks] = useState([]);
     let [today, setToday] = useState([]);
     let [upcoming, setUpcoming] = useState([]);
@@ -19,6 +19,7 @@ const TaskManager = () => {
         .toISOString()
         .split("T")[0];
 
+    // listen to db change in real time and query data based on date
     useEffect(() => {
         const q = query(collection(db, "tasks"), orderBy("date", "asc"));
         onSnapshot(q, (qSnapshot) => {
@@ -74,23 +75,51 @@ const TaskManager = () => {
         });
     }, []);
 
+    // render tasks based on date
     const renderTasks = () => {
         if (location.pathname === "/today") {
             return today.map((t) => {
-                return <Tasks task={t} key={t.id}></Tasks>;
+                return (
+                    <Tasks
+                        task={t}
+                        key={t.id}
+                        setUpdate={props.setUpdate}
+                        setTaskId={props.setTaskId}
+                    ></Tasks>
+                );
             });
         } else if (location.pathname === "/upcoming") {
             return upcoming.map((t) => {
-                return <Tasks task={t} key={t.id}></Tasks>;
+                return (
+                    <Tasks
+                        task={t}
+                        key={t.id}
+                        setUpdate={props.setUpdate}
+                        setTaskId={props.setTaskId}
+                    ></Tasks>
+                );
             });
-            // TODO: style done tasks
         } else if (location.pathname === "/done") {
             return doneTasks.map((t) => {
-                return <Tasks task={t} key={t.id}></Tasks>;
+                return (
+                    <Tasks
+                        task={t}
+                        key={t.id}
+                        setUpdate={props.setUpdate}
+                        setTaskId={props.setTaskId}
+                    ></Tasks>
+                );
             });
         } else {
             return tasks.map((t) => {
-                return <Tasks task={t} key={t.id}></Tasks>;
+                return (
+                    <Tasks
+                        task={t}
+                        key={t.id}
+                        setUpdate={props.setUpdate}
+                        setTaskId={props.setTaskId}
+                    ></Tasks>
+                );
             });
         }
     };
