@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import Header from "./components/header/Header";
 import SidebarUi from "./components/sidebar/SidebarUi";
 import Inbox from "./components/pages/Inbox";
@@ -6,37 +8,32 @@ import Today from "./components/pages/Today";
 import Upcoming from "./components/pages/Upcoming";
 import Done from "./components/pages/Done";
 import Modal from "./components/pages/Modal";
-import { useState } from "react";
+import TaskManager from "./components/tasks/TaskManager";
+import AddTask from "./components/tasks/AddTask";
+import UpdateTask from "./components/tasks/UpdateTask";
 
 import { db } from "./firebase-config";
 import {
     collection,
     addDoc,
+    updateDoc,
+    doc,
     Timestamp,
-    query,
-    orderBy,
-    onSnapshot,
 } from "firebase/firestore";
 
-// TODO: add update and delete
-// TODO: replace project tab with Done.
 // TODO: add sign in functionality
 
 // * Try using DaisyUI for frontend
-// * Try learning Redux for state management
 
 function App() {
-    let [isOpen, setIsOpen] = useState(false);
-    let [taskData, setTaskData] = useState([]);
+    // need to display add and update form based on what user wants to do
+    let [isAdd, setIsAdd] = useState(false);
+    let [isUpdate, setIsUpdate] = useState(false);
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
+    // state to store task id when edit button is clicked -- need id to update in firestore
+    let [taskId, setTaskId] = useState("");
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
-
+    // writes form data to DB
     const writeToDB = async (data) => {
         try {
             await addDoc(collection(db, "tasks"), {
@@ -51,6 +48,7 @@ function App() {
         }
     };
 
+    // adds new task to DB from form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -63,18 +61,28 @@ function App() {
             status: "",
         };
 
-        setTaskData((prev) => [...prev, data]);
         writeToDB(data);
-        closeModal();
+        setIsAdd(false);
     };
 
-    const queryTasks = () => {
-        const q = query(collection(db, "tasks"), orderBy("created", "asc"));
-        onSnapshot(q, (qSnapShot) => {
-            qSnapShot.docs.map((doc) => {
-                console.log(doc.data());
+    // updates existing task data in DB
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+
+        const taskDocRef = doc(db, "tasks", taskId);
+        const { title, description, date } = e.target.elements;
+
+        try {
+            await updateDoc(taskDocRef, {
+                title: title.value,
+                description: description.value,
+                date: date.value,
             });
-        });
+        } catch (err) {
+            console.log(err);
+        }
+
+        setIsUpdate(false);
     };
 
     return (
@@ -87,13 +95,27 @@ function App() {
                         path="/"
                         element={
                             <>
-                                <Inbox isOpen={openModal} />
-                                <Modal
-                                    handleSubmit={handleSubmit}
-                                    queryTasks={queryTasks}
-                                    closeModal={closeModal}
-                                    isOpen={isOpen}
-                                ></Modal>
+                                <div className="w-screen flex flex-col">
+                                    <Inbox
+                                        setAdd={() => setIsAdd(true)}
+                                        closeAdd={() => setIsAdd(false)}
+                                    />
+                                    <AddTask
+                                        isAdd={isAdd}
+                                        handleSubmit={handleSubmit}
+                                    ></AddTask>
+                                    <UpdateTask
+                                        isUpdate={isUpdate}
+                                        handleUpdate={handleUpdate}
+                                        closeUpdate={() => setIsUpdate(false)}
+                                    ></UpdateTask>
+                                    <TaskManager
+                                        setUpdate={() => setIsUpdate(true)}
+                                        setTaskId={(e) => {
+                                            setTaskId(e.target.id);
+                                        }}
+                                    />
+                                </div>
                             </>
                         }
                     ></Route>
@@ -101,18 +123,46 @@ function App() {
                         path="/today"
                         element={
                             <>
-                                <Today isOpen={openModal} />
-                                <Modal
-                                    handleSubmit={handleSubmit}
-                                    queryTasks={queryTasks}
-                                    closeModal={closeModal}
-                                    isOpen={isOpen}
-                                ></Modal>
+                                <div className="w-screen flex flex-col">
+                                    <Today setAdd={() => setIsAdd(true)} />
+                                    <AddTask
+                                        isAdd={isAdd}
+                                        handleSubmit={handleSubmit}
+                                    ></AddTask>
+                                    <UpdateTask
+                                        isUpdate={isUpdate}
+                                        handleUpdate={handleUpdate}
+                                        setUpdate={() => setIsUpdate(false)}
+                                    ></UpdateTask>
+                                    <TaskManager
+                                        setUpdate={() => setIsUpdate(true)}
+                                    />
+                                </div>
                             </>
                         }
                     ></Route>
-                    <Route path="/upcoming" element={<Upcoming />}></Route>
-                    <Route path="/done" element={<Done />}></Route>
+                    <Route
+                        path="/upcoming"
+                        element={
+                            <>
+                                <div className="w-screen flex flex-col">
+                                    <Upcoming />
+                                    <TaskManager />
+                                </div>
+                            </>
+                        }
+                    ></Route>
+                    <Route
+                        path="/done"
+                        element={
+                            <>
+                                <div className="w-screen flex flex-col">
+                                    <Done />
+                                    <TaskManager />
+                                </div>
+                            </>
+                        }
+                    ></Route>
                 </Routes>
             </div>
         </BrowserRouter>
