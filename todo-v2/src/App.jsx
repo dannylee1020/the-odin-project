@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Header from "./components/header/Header";
 import SidebarUi from "./components/sidebar/SidebarUi";
@@ -7,7 +7,6 @@ import Inbox from "./components/pages/Inbox";
 import Today from "./components/pages/Today";
 import Upcoming from "./components/pages/Upcoming";
 import Done from "./components/pages/Done";
-import Modal from "./components/pages/Modal";
 import TaskManager from "./components/tasks/TaskManager";
 import AddTask from "./components/tasks/AddTask";
 import UpdateTask from "./components/tasks/UpdateTask";
@@ -22,8 +21,7 @@ import {
 } from "firebase/firestore";
 
 // TODO: add sign in functionality
-
-// * Try using DaisyUI for frontend
+// * design header with DaisyUI and add sign in functionality.
 
 function App() {
     // need to display add and update form based on what user wants to do
@@ -86,86 +84,90 @@ function App() {
     };
 
     return (
-        <BrowserRouter>
-            <Header></Header>
-            <div className="flex">
-                <SidebarUi></SidebarUi>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <div className="w-screen flex flex-col">
-                                    <Inbox
-                                        setAdd={() => setIsAdd(true)}
-                                        closeAdd={() => setIsAdd(false)}
-                                    />
-                                    <AddTask
-                                        isAdd={isAdd}
-                                        handleSubmit={handleSubmit}
-                                    ></AddTask>
-                                    <UpdateTask
-                                        isUpdate={isUpdate}
-                                        handleUpdate={handleUpdate}
-                                        closeUpdate={() => setIsUpdate(false)}
-                                    ></UpdateTask>
-                                    <TaskManager
-                                        setUpdate={() => setIsUpdate(true)}
-                                        setTaskId={(e) => {
-                                            setTaskId(e.target.id);
-                                        }}
-                                    />
-                                </div>
-                            </>
-                        }
-                    ></Route>
-                    <Route
-                        path="/today"
-                        element={
-                            <>
-                                <div className="w-screen flex flex-col">
-                                    <Today setAdd={() => setIsAdd(true)} />
-                                    <AddTask
-                                        isAdd={isAdd}
-                                        handleSubmit={handleSubmit}
-                                    ></AddTask>
-                                    <UpdateTask
-                                        isUpdate={isUpdate}
-                                        handleUpdate={handleUpdate}
-                                        setUpdate={() => setIsUpdate(false)}
-                                    ></UpdateTask>
-                                    <TaskManager
-                                        setUpdate={() => setIsUpdate(true)}
-                                    />
-                                </div>
-                            </>
-                        }
-                    ></Route>
-                    <Route
-                        path="/upcoming"
-                        element={
-                            <>
-                                <div className="w-screen flex flex-col">
-                                    <Upcoming />
-                                    <TaskManager />
-                                </div>
-                            </>
-                        }
-                    ></Route>
-                    <Route
-                        path="/done"
-                        element={
-                            <>
-                                <div className="w-screen flex flex-col">
-                                    <Done />
-                                    <TaskManager />
-                                </div>
-                            </>
-                        }
-                    ></Route>
-                </Routes>
-            </div>
-        </BrowserRouter>
+        <div data-theme="corporate">
+            <BrowserRouter>
+                <Header></Header>
+                <div className="flex">
+                    <SidebarUi></SidebarUi>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <>
+                                    <div className="w-screen flex flex-col">
+                                        <Inbox
+                                            setAdd={() => setIsAdd(true)}
+                                            closeAdd={() => setIsAdd(false)}
+                                        />
+                                        <AddTask
+                                            isAdd={isAdd}
+                                            handleSubmit={handleSubmit}
+                                        ></AddTask>
+                                        <UpdateTask
+                                            isUpdate={isUpdate}
+                                            handleUpdate={handleUpdate}
+                                            closeUpdate={() =>
+                                                setIsUpdate(false)
+                                            }
+                                        ></UpdateTask>
+                                        <TaskManager
+                                            setUpdate={() => setIsUpdate(true)}
+                                            setTaskId={(e) => {
+                                                setTaskId(e.target.id);
+                                            }}
+                                        />
+                                    </div>
+                                </>
+                            }
+                        ></Route>
+                        <Route
+                            path="/today"
+                            element={
+                                <>
+                                    <div className="w-screen flex flex-col">
+                                        <Today setAdd={() => setIsAdd(true)} />
+                                        <AddTask
+                                            isAdd={isAdd}
+                                            handleSubmit={handleSubmit}
+                                        ></AddTask>
+                                        <UpdateTask
+                                            isUpdate={isUpdate}
+                                            handleUpdate={handleUpdate}
+                                            setUpdate={() => setIsUpdate(false)}
+                                        ></UpdateTask>
+                                        <TaskManager
+                                            setUpdate={() => setIsUpdate(true)}
+                                        />
+                                    </div>
+                                </>
+                            }
+                        ></Route>
+                        <Route
+                            path="/upcoming"
+                            element={
+                                <>
+                                    <div className="w-screen flex flex-col">
+                                        <Upcoming />
+                                        <TaskManager />
+                                    </div>
+                                </>
+                            }
+                        ></Route>
+                        <Route
+                            path="/done"
+                            element={
+                                <>
+                                    <div className="w-screen flex flex-col">
+                                        <Done />
+                                        <TaskManager />
+                                    </div>
+                                </>
+                            }
+                        ></Route>
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        </div>
     );
 }
 
