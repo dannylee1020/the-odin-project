@@ -1,4 +1,6 @@
 const AddTask = (props) => {
+    // TODO: debug why cancel triggers empty write to database.
+
     if (!props.isAdd) {
         return;
     }
@@ -12,22 +14,32 @@ const AddTask = (props) => {
                         placeholder="Task"
                         name="title"
                         type="text"
-                        required
-                        pattern="\S(.*\S)?"
+                        // required
+                        // pattern="\S(.*\S)?"
                     ></input>
                     <textarea
                         className="placeholder:italic w-100% h-28 focus:outline-none placeholder:text-sm pl-1"
                         placeholder="Description"
                         name="description"
-                        required
-                        pattern="\S(.*\S)?"
+                        // required
+                        // pattern="\S(.*\S)?"
                         type="text"
                     ></textarea>
-                    <input type="date" name="date" required></input>
+                    <input type="date" name="date"></input>
                 </div>
-                <div className="flex gap-2 ml-2 mt-3">
-                    <input type="submit" value="Add"></input>
-                    <button onClick={props.closeAdd}>Cancel</button>
+                <div className="flex gap-2 ml-2 mt-3 mb-5">
+                    <input
+                        type="submit"
+                        value="Add"
+                        className="btn btn-sm bg-[#DB4C3F] border-0 rounded-lg"
+                    ></input>
+                    <button
+                        type="button"
+                        onClick={props.closeAdd}
+                        className="bg-[#E5E5E5] rounded-lg text-sm pl-2 pr-2"
+                    >
+                        Cancel
+                    </button>
                 </div>
             </form>
         </div>
