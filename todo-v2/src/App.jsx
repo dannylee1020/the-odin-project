@@ -94,28 +94,33 @@ function App() {
                             path="/"
                             element={
                                 <>
-                                    <div className="w-screen flex flex-col">
-                                        <Inbox
-                                            setAdd={() => setIsAdd(true)}
-                                            closeAdd={() => setIsAdd(false)}
-                                        />
-                                        <AddTask
-                                            isAdd={isAdd}
-                                            handleSubmit={handleSubmit}
-                                        ></AddTask>
-                                        <UpdateTask
-                                            isUpdate={isUpdate}
-                                            handleUpdate={handleUpdate}
-                                            closeUpdate={() =>
-                                                setIsUpdate(false)
-                                            }
-                                        ></UpdateTask>
-                                        <TaskManager
-                                            setUpdate={() => setIsUpdate(true)}
-                                            setTaskId={(e) => {
-                                                setTaskId(e.target.id);
-                                            }}
-                                        />
+                                    <div className="flex justify-center w-screen">
+                                        <div className="w-5/6">
+                                            <Inbox
+                                                setAdd={() => setIsAdd(true)}
+                                                closeAdd={() => setIsAdd(false)}
+                                            />
+                                            <AddTask
+                                                isAdd={isAdd}
+                                                closeAdd={() => setIsAdd(false)}
+                                                handleSubmit={handleSubmit}
+                                            ></AddTask>
+                                            <UpdateTask
+                                                isUpdate={isUpdate}
+                                                handleUpdate={handleUpdate}
+                                                closeUpdate={() =>
+                                                    setIsUpdate(false)
+                                                }
+                                            ></UpdateTask>
+                                            <TaskManager
+                                                setUpdate={() =>
+                                                    setIsUpdate(true)
+                                                }
+                                                setTaskId={(e) => {
+                                                    setTaskId(e.target.id);
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </>
                             }
@@ -124,20 +129,32 @@ function App() {
                             path="/today"
                             element={
                                 <>
-                                    <div className="w-screen flex flex-col">
-                                        <Today setAdd={() => setIsAdd(true)} />
-                                        <AddTask
-                                            isAdd={isAdd}
-                                            handleSubmit={handleSubmit}
-                                        ></AddTask>
-                                        <UpdateTask
-                                            isUpdate={isUpdate}
-                                            handleUpdate={handleUpdate}
-                                            setUpdate={() => setIsUpdate(false)}
-                                        ></UpdateTask>
-                                        <TaskManager
-                                            setUpdate={() => setIsUpdate(true)}
-                                        />
+                                    <div className="flex justify-center w-screen">
+                                        <div className="w-5/6">
+                                            <Today
+                                                setAdd={() => setIsAdd(true)}
+                                            />
+                                            <AddTask
+                                                isAdd={isAdd}
+                                                closeAdd={() => setIsAdd(false)}
+                                                handleSubmit={handleSubmit}
+                                            ></AddTask>
+                                            <UpdateTask
+                                                isUpdate={isUpdate}
+                                                handleUpdate={handleUpdate}
+                                                closeUpdate={() =>
+                                                    setIsUpdate(false)
+                                                }
+                                            ></UpdateTask>
+                                            <TaskManager
+                                                setUpdate={() =>
+                                                    setIsUpdate(true)
+                                                }
+                                                setTaskId={(e) => {
+                                                    setTaskId(e.target.id);
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </>
                             }
@@ -146,9 +163,25 @@ function App() {
                             path="/upcoming"
                             element={
                                 <>
-                                    <div className="w-screen flex flex-col">
-                                        <Upcoming />
-                                        <TaskManager />
+                                    <div className="flex justify-center w-screen">
+                                        <div className="w-5/6">
+                                            <Upcoming />
+                                            <UpdateTask
+                                                isUpdate={isUpdate}
+                                                handleUpdate={handleUpdate}
+                                                closeUpdate={() =>
+                                                    setIsUpdate(false)
+                                                }
+                                            ></UpdateTask>
+                                            <TaskManager
+                                                setUpdate={() => {
+                                                    setIsUpdate(true);
+                                                }}
+                                                setTaskId={(e) => {
+                                                    setTaskId(e.target.id);
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </>
                             }
@@ -157,9 +190,18 @@ function App() {
                             path="/done"
                             element={
                                 <>
-                                    <div className="w-screen flex flex-col">
-                                        <Done />
-                                        <TaskManager />
+                                    <div className="flex justify-center w-screen">
+                                        <div className="w-5/6">
+                                            <Done />
+                                            <TaskManager
+                                                setUpdate={() => {
+                                                    setIsUpdate(true);
+                                                }}
+                                                setTaskId={(e) => {
+                                                    setTaskId(e.target.id);
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </>
                             }
