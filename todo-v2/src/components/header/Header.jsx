@@ -6,8 +6,7 @@ import {
 } from "firebase/auth";
 
 import { useState } from "react";
-
-// TODO: add drop down for profile
+import { TbDoorExit } from "react-icons/tb";
 
 const Header = () => {
     const [isSignedIn, setIsSignedIn] = useState(false);
@@ -44,19 +43,24 @@ const Header = () => {
             {isSignedIn ? (
                 <div className="flex-none">
                     <div className="flex gap-5 items-center">
-                        <img
-                            src={getProfilePic()}
-                            width="40"
-                            className="rounded-full"
-                        ></img>
-                        <div className="text-md text-white">
-                            {getAuth().currentUser.displayName}
-                        </div>
-                        <div
-                            className="btn-ghost text-md text-white mr-10"
-                            onClick={signOutUser}
-                        >
-                            SIGN-OUT
+                        <div className="dropdown dropdown-end mr-10">
+                            <img
+                                src={getProfilePic()}
+                                width="40"
+                                className="rounded-full"
+                                tabindex="0"
+                            ></img>
+                            <ul
+                                tabindex="0"
+                                className="dropdown-content menu bg-[##FFFFFF] rounded-box w-32 border-2 border-gray-200 mt-3"
+                            >
+                                <li className="text-sm" onClick={signOutUser}>
+                                    <div>
+                                        <TbDoorExit size={15} />
+                                        <span className="text-sm">Log out</span>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
