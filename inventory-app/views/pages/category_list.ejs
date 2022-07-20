@@ -1,0 +1,19 @@
+<%- include('../partials/head') %>
+<body class="h-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2"><%- include('../partials/sidebar') %></div>
+            <div class="col-sm-10">
+                <h1><%= title %></h1>
+                <ul class="list-unstyled">
+                    <% category_list.forEach(function(category) { %>
+                    <li>
+                        <h4><%= category.name %></h4>
+                        <p><%= category.description %></p>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
