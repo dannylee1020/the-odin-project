@@ -22,9 +22,9 @@ router.get("/category/:id/delete", categoryController.delete_category_get);
 
 router.post("/category/:id/delete", categoryController.delete_category_post);
 
-router.get("/category/:id/update");
+router.get("/category/:id/update", categoryController.update_category_get);
 
-router.post("/category/:id/update");
+router.post("/category/:id/update", categoryController.update_category_post);
 
 // routes for creator
 router.get("/creator");
