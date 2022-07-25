@@ -12,6 +12,20 @@ router.get("/", function (req, res) {
 // routes for category
 router.get("/category", categoryController.category_list);
 
+router.get("/category/create", categoryController.create_category_get);
+
+router.post("/category/create", categoryController.create_category_post);
+
+router.get("/category/:id", categoryController.category_details);
+
+router.get("/category/:id/delete", categoryController.delete_category_get);
+
+router.post("/category/:id/delete", categoryController.delete_category_post);
+
+router.get("/category/:id/update");
+
+router.post("/category/:id/update");
+
 // routes for creator
 router.get("/creator");
 
