@@ -1,0 +1,21 @@
+<%- include('../partials/head') %>
+<body class="ms-3 mt-3">
+    <h2><%= title %> : <%= category.name %></h2>
+    <h3>Items</h3>
+    <ul>
+        <% items.forEach(function(item) { %>
+        <li><%= item.name %></li>
+        <% }) %>
+    </ul>
+
+    <% if (items.length) { %>
+    <div class="mb-4 fw-bold text-danger">
+        Delete the items above before deleting the category
+    </div>
+    <% } else { %>
+    <div class="mb-4">Do you really want to delete this category?</div>
+    <form method="post">
+        <button type="submit" class="btn btn-outline-primary">Delete</button>
+    </form>
+    <% } %>
+</body>

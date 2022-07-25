@@ -5,11 +5,15 @@
             <div class="col-sm-2"><%- include('../partials/sidebar') %></div>
             <div class="col-sm-10">
                 <h1><%= title %></h1>
-                <ul class="list-unstyled">
+                <ul>
                     <% category_list.forEach(function(category) { %>
                     <li>
-                        <h4><%= category.name %></h4>
-                        <p><%= category.description %></p>
+                        <span
+                            ><a href="<%= category.url %>"
+                                ><%= category.name %></a
+                            >
+                        </span>
+                        <!-- <p><%= category.description %></p> -->
                     </li>
                     <% }) %>
                 </ul>
