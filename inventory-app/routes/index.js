@@ -27,7 +27,11 @@ router.get("/category/:id/update", categoryController.update_category_get);
 router.post("/category/:id/update", categoryController.update_category_post);
 
 // routes for creator
-router.get("/creator");
+router.get("/creator", creatorController.creator_list);
+
+router.get("/creator/:id", creatorController.creator_detail);
+
+router.get("/creator/create");
 
 // routes for items
 router.get("/items");
