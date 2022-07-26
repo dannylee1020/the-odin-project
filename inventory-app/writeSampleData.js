@@ -63,10 +63,26 @@ async function main() {
                         creator_id: new ObjectId().toString(),
                     },
                     {
-                        name: "Node.js",
+                        name: "Spark",
                         description:
-                            "open source cross-platform JS runtime environment",
-                        released_year: "2009",
+                            "open source unified analytics engine form large-scale data processing",
+                        released_year: "2014",
+                        category_id: new ObjectId().toString(),
+                        creator_id: new ObjectId().toString(),
+                    },
+                    {
+                        name: "Angular.js",
+                        description:
+                            "JS based open-source front-end web framework for developing single-page applications",
+                        released_year: "2010",
+                        category_id: new ObjectId().toString(),
+                        creator_id: new ObjectId().toString(),
+                    },
+                    {
+                        name: "Electron",
+                        description:
+                            "Open-source software framework that is designed to create desktop applications using web technologies",
+                        released_year: "2013",
                         category_id: new ObjectId().toString(),
                         creator_id: new ObjectId().toString(),
                     },
@@ -78,17 +94,6 @@ async function main() {
         async function (callback) {
             await prisma.category.create({
                 data: {
-                    name: "Web Development",
-                    description: "Framework for web development",
-                    items: {
-                        connect: [{ name: "React.js" }, { name: "Node.js" }],
-                    },
-                },
-            });
-        },
-        async function (callback) {
-            await prisma.category.create({
-                data: {
                     name: "Data",
                     description: "open source projects used for data science",
                     items: {
@@ -96,6 +101,7 @@ async function main() {
                             { name: "Kafka" },
                             { name: "Airflow" },
                             { name: "PyTorch" },
+                            { name: "Spark" },
                         ],
                     },
                 },
@@ -120,7 +126,11 @@ async function main() {
                     name: "Frontend",
                     description: "Technologies used in the frontend",
                     items: {
-                        connect: [{ name: "React.js" }],
+                        connect: [
+                            { name: "React.js" },
+                            { name: "Angular.js" },
+                            { name: "Electron" },
+                        ],
                     },
                 },
             });
@@ -131,6 +141,9 @@ async function main() {
             await prisma.creator.create({
                 data: {
                     name: "Facebook",
+                    description:
+                        "American tech giant that owns Facebook, Instagram, Whatsapp among other products and services",
+                    founded: "Feb 2004",
                     items: {
                         connect: [
                             { name: "React.js" },
@@ -146,6 +159,9 @@ async function main() {
             await prisma.creator.create({
                 data: {
                     name: "AirBnB",
+                    description:
+                        "American tech company that operats an online marketplace for lodging, primarily homestays for vacation rentals and tourism activities",
+                    founded: "Aug 2008",
                     items: {
                         connect: [{ name: "Airflow" }],
                     },
@@ -157,8 +173,14 @@ async function main() {
             await prisma.creator.create({
                 data: {
                     name: "Google",
+                    description:
+                        "American tech giant that focuses on search engine technology, online advertising, cloud computing and many other cutting edge technologies",
+                    founded: "Sep 1998",
                     items: {
-                        connect: [{ name: "Kubernetes" }],
+                        connect: [
+                            { name: "Kubernetes" },
+                            { name: "Angular.js" },
+                        ],
                     },
                 },
             });
@@ -168,6 +190,9 @@ async function main() {
             await prisma.creator.create({
                 data: {
                     name: "LinkedIn",
+                    description:
+                        "American tech company that provides employment-oriented online service",
+                    founded: "2002",
                     items: {
                         connect: [{ name: "Kafka" }],
                     },
@@ -178,9 +203,26 @@ async function main() {
         async function (callback) {
             await prisma.creator.create({
                 data: {
-                    name: "Ryan Dahl",
+                    name: "Databricks",
+                    description:
+                        "American enterprise software company that develops a web-based platform for working with Spark",
+                    founded: "2013",
                     items: {
-                        connect: [{ name: "Node.js" }],
+                        connect: [{ name: "Spark" }],
+                    },
+                },
+            });
+        },
+
+        async function (callback) {
+            await prisma.creator.create({
+                data: {
+                    name: "GitHub",
+                    description:
+                        "Provider of internet hosting for software development and version control using Git",
+                    founded: "2008",
+                    items: {
+                        connect: [{ name: "Electron" }],
                     },
                 },
             });
