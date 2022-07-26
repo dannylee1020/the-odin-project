@@ -17,6 +17,8 @@ model Category {
     items       Item[]
 }
 
+//? do I need category_id to reference? Can I use category as a reference field?
+
 model Item {
     id            String   @id @default(auto()) @map("_id") @db.ObjectId
     name          String   @unique
@@ -30,8 +32,10 @@ model Item {
 }
 
 model Creator {
-    id    String @id @default(auto()) @map("_id") @db.ObjectId
-    name  String @unique
+    id          String @id @default(auto()) @map("_id") @db.ObjectId
+    name        String @unique
+    description String
+    founded     String
     // url   String
-    items Item[]
+    items       Item[]
 }
