@@ -3,4 +3,13 @@
     <h1 class="mb-3"><%= title %></h1>
     <div class="mb-2"><b>Founded:</b> <%= creator.founded %></div>
     <div><b>Profile:</b> <%= creator.description %></div>
+    <hr />
+    <button type="button" class="btn btn-outline-primary">
+        <a
+            href="/creator/<%= creator.id %>/delete"
+            style="text-decoration: none"
+        >
+            Delete Category
+        </a>
+    </button>
 </body>
