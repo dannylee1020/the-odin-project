@@ -29,9 +29,15 @@ router.post("/category/:id/update", categoryController.update_category_post);
 // routes for creator
 router.get("/creator", creatorController.creator_list);
 
+router.get("/creator/create", creatorController.create_creator_get);
+
+router.post("/creator/create", creatorController.create_creator_post);
+
 router.get("/creator/:id", creatorController.creator_detail);
 
-router.get("/creator/create");
+router.get("/creator/:id/delete", creatorController.delete_creator_get);
+
+router.post("creator/:id/delete");
 
 // routes for items
 router.get("/items");
