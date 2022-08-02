@@ -37,7 +37,11 @@ router.get("/creator/:id", creatorController.creator_detail);
 
 router.get("/creator/:id/delete", creatorController.delete_creator_get);
 
-router.post("creator/:id/delete");
+router.post("/creator/:id/delete", creatorController.delete_creator_post);
+
+router.get("/creator/:id/update", creatorController.update_creator_get);
+
+router.post("/creator/:id/update", creatorController.update_creator_post);
 
 // routes for items
 router.get("/items");
