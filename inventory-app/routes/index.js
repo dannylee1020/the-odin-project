@@ -44,6 +44,10 @@ router.get("/creator/:id/update", creatorController.update_creator_get);
 router.post("/creator/:id/update", creatorController.update_creator_post);
 
 // routes for items
-router.get("/items");
+router.get("/items", itemController.item_list);
+
+router.get("/items/create", itemController.create_item_get);
+
+router.get("/items/:id", itemController.item_detail);
 
 module.exports = router;
