@@ -1,0 +1,9 @@
+<%- include('../partials/head') %>
+<body class="ms-3 mt-3 w-50">
+    <h1 class="mb-3"><%= result.name %></h1>
+    <div class="mb-2"><b>Founded:</b> <%= result.released_year %></div>
+    <div class="mb-2"><b>Profile:</b> <%= result.description %></div>
+    <div class="mb-2"><b>Category:</b> <%= result.category.name %></div>
+    <div class="mb-2"><b>Creator:</b> <%= result.creator.name %></div>
+    <hr />
+</body>

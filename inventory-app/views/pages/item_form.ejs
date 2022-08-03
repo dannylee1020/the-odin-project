@@ -1,0 +1,29 @@
+<%- include('../partials/head') %>
+<body>
+    <div class="ms-3 mt-3">
+        <h1><%= title %></h1>
+        <form method="post" action="">
+            <div class="d-flex flex-column w-25">
+                <label for="name">Item name:</label>
+                <input type="text" name="name" required />
+            </div>
+            <div class="d-flex flex-column w-50">
+                <label for="description">Description:</label>
+                <textarea name="description" required></textarea>
+            </div>
+            <div class="d-flex flex-column w-50">
+                <label for="released_year">Year released:</label>
+                <input type="text" name="released_year" require />
+            </div>
+            <div class="d-flex flex-column w-50">
+                <label for="category">Category:</label>
+                <input type="text" name="category" require />
+            </div>
+            <div class="d-flex flex-column w-50">
+                <label for="creator">Creator:</label>
+                <input type="text" name="category" require />
+            </div>
+            <input type="submit" value="Create" class="mt-4" />
+        </form>
+    </div>
+</body>
