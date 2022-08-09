@@ -25,7 +25,17 @@ exports.creator_detail = async function (req, res) {
         },
     });
 
-    res.render("./pages/creator_detail", { title: creator.name, creator });
+    let items = await prisma.item.findMany({
+        where: {
+            creator_id: req.params.id,
+        },
+    });
+
+    res.render("./pages/creator_detail", {
+        title: creator.name,
+        creator,
+        items,
+    });
 };
 
 exports.create_creator_get = function (req, res) {
