@@ -2,7 +2,13 @@
 <body class="ms-3 mt-3 w-50">
     <h1 class="mb-3"><%= title %></h1>
     <div class="mb-2"><b>Founded:</b> <%= creator.founded %></div>
-    <div><b>Profile:</b> <%= creator.description %></div>
+    <div class="mb-3"><b>Profile:</b> <%= creator.description %></div>
+    <h3>Items</h3>
+    <ul>
+        <% items.forEach(function(item) { %>
+        <li><%= item.name %></li>
+        <% }) %>
+    </ul>
     <hr />
     <button type="button" class="btn btn-outline-primary">
         <a
