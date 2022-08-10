@@ -1,0 +1,35 @@
+<%- include('../partials/head') %>
+<body class="ms-3 mt-3">
+    <h2 class="mb-4"><%= title %></h2>
+    <form method="post">
+        <div class="mb-4 w-50">
+            <label for="name" class="mb-2">Item:</label>
+            <input
+                type="text"
+                placeholder="<%= item.name %>"
+                name="name"
+                class="form-control"
+            />
+        </div>
+        <div class="w-50 mb-4">
+            <label for="description" class="mb-2">Description:</label>
+            <textarea
+                type="text"
+                placeholder="<%= item.description %>"
+                name="description"
+                class="form-control"
+                rows="3"
+            ></textarea>
+        </div>
+        <div class="w-50 mb-4">
+            <label for="released_year" class="mb-2">Founded: </label>
+            <input
+                type="text"
+                placeholder="<%= item.released_year %>"
+                name="released_year"
+                class="form-control"
+            />
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Update</button>
+    </form>
+</body>

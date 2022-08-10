@@ -6,4 +6,14 @@
     <div class="mb-2"><b>Category:</b> <%= result.category.name %></div>
     <div class="mb-2"><b>Creator:</b> <%= result.creator.name %></div>
     <hr />
+    <button type="button" class="btn btn-outline-primary">
+        <a href="/items/<%= result.id %>/delete" style="text-decoration: none"
+            >Delete Item</a
+        >
+    </button>
+    <button type="button" class="btn btn-outline-primary">
+        <a href="/items/<%= result.id %>/update" style="text-decoration: none"
+            >Update Item</a
+        >
+    </button>
 </body>

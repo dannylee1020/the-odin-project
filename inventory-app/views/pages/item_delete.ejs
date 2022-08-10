@@ -1,0 +1,15 @@
+<%- include('../partials/head') %>
+<body class="ms-3 mt-3">
+    <h2 class="mb-3">Delete: <%= item.name %></h2>
+    <div class="mb-3"><b>Category</b>: <%= category.name %></div>
+    <div class="mb-5"><b>Creator</b>: <%= creator.name %></div>
+    <div class="mb-4 text-danger">
+        <b
+            >Do you really want to delete this category? This will delete
+            related category and creator as well.
+        </b>
+    </div>
+    <form method="post">
+        <button type="submit" class="btn btn-outline-primary">Delete</button>
+    </form>
+</body>
