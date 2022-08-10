@@ -1,9 +1,12 @@
 <%- include('../partials/head') %>
 <body>
     <div class="container-fluid">
-        <div class="row">
+        <div class="d-flex flex-row">
             <div class="col-sm-2"><%- include('../partials/sidebar') %></div>
-            <h1 class="col-sm-10"><%= title %></h1>
+            <div class="d-flex flex-column">
+                <h1 class="col-sm-20 mt-3">😎 <b>Awesome Open Source</b></h1>
+                <!-- <img src="/images/open_source.png" width="500" height="250" /> -->
+            </div>
         </div>
     </div>
 </body>
