@@ -48,6 +48,15 @@ router.get("/items", itemController.item_list);
 
 router.get("/items/create", itemController.create_item_get);
 
+router.post("/items/create", itemController.create_item_post);
+
 router.get("/items/:id", itemController.item_detail);
 
+router.get("/items/:id/delete", itemController.delete_items_get);
+
+router.post("/items/:id/delete", itemController.delete_items_post);
+
+router.get("/items/:id/update", itemController.update_item_get);
+
+router.post("/items/:id/update", itemController.update_item_post);
 module.exports = router;
