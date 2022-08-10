@@ -162,8 +162,6 @@ exports.update_creator_post = [
                 },
             });
 
-            console.log(req.body);
-
             res.render("./pages/creator_update", {
                 title: "Update Creator",
                 creator,
