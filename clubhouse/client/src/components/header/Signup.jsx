@@ -1,6 +1,51 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 function Signup() {
+    const [signupInfo, setSignupInfo] = useState({
+        first_name: "",
+        last_name: "",
+        username: "",
+        password: "",
+        confirm: "",
+    });
+
+    const handleInputChange = (e) => {
+        setSignupInfo((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const { first_name, last_name, username, password, confirm } =
+            signupInfo;
+
+        const info = {
+            first_name,
+            last_name,
+            username,
+            password,
+            confirm,
+        };
+
+        const url = "http://localhost:3000/signup";
+
+        if (password === confirm) {
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(info),
+            })
+                .then((res) => res.json())
+                .then((data) => console.log({ message: "success", data }));
+        } else {
+            alert("Passwords do not match");
+        }
+    };
+
     return (
         <div>
             <label
@@ -16,22 +61,34 @@ function Signup() {
             ></input>
             <label htmlFor="signup-modal" className="modal cursor-pointer">
                 <div className="modal-box">
-                    <form method="post" action="/signup">
+                    <form onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-2">
-                            <label>Name:</label>
+                            <label>First Name:</label>
                             <input
                                 type="text"
                                 className="border-2 focus:border-primary focus:outline-none h-8"
-                                name="name"
+                                name="first_name"
+                                onChange={handleInputChange}
                                 required
                             ></input>
                         </div>
                         <div className="flex flex-col gap-2 mt-5">
-                            <label>Email Address:</label>
+                            <label>Last Name:</label>
                             <input
                                 type="text"
                                 className="border-2 focus:border-primary focus:outline-none h-8"
-                                name="email"
+                                name="last_name"
+                                onChange={handleInputChange}
+                                required
+                            ></input>
+                        </div>
+                        <div className="flex flex-col gap-2 mt-5">
+                            <label>Username:</label>
+                            <input
+                                type="text"
+                                className="border-2 focus:border-primary focus:outline-none h-8"
+                                name="username"
+                                onChange={handleInputChange}
                                 required
                             ></input>
                         </div>
@@ -41,6 +98,7 @@ function Signup() {
                                 type="text"
                                 name="password"
                                 className="h-8 border-2 focus:border-primary focus:outline-none"
+                                onChange={handleInputChange}
                                 required
                             ></input>
                         </div>
@@ -50,6 +108,7 @@ function Signup() {
                                 type="text"
                                 name="confirm"
                                 className="h-8 border-2 focus:border-primary focus:outline-none"
+                                onChange={handleInputChange}
                                 required
                             ></input>
                         </div>
@@ -58,7 +117,12 @@ function Signup() {
                                 type="submit"
                                 className="btn btn-primary w-full"
                             >
-                                Sign up
+                                <label
+                                    htmlFor="signup-modal"
+                                    className="w-full"
+                                >
+                                    Sign up
+                                </label>
                             </button>
                         </div>
                     </form>
