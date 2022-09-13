@@ -1,6 +1,45 @@
-import React from "react";
+import { useState } from "react";
 
-function Login() {
+function Login(props) {
+    const [loginInfo, setLoginInfo] = useState({
+        username: "",
+        password: "",
+    });
+
+    const handleChange = (e) => {
+        setLoginInfo((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        let { username, password } = loginInfo;
+        let info = { username, password };
+        let url = "http://localhost:3000/login";
+
+        await fetch(url, {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify(info),
+        })
+            .then((res) => res.json())
+            .then((data) =>
+                console.log({ message: "request successful", data: data })
+            );
+
+        await fetch("http://localhost:3000/", {
+            method: "get",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+    };
+
     return (
         <div>
             <label
@@ -16,12 +55,14 @@ function Login() {
             ></input>
             <label htmlFor="login-modal" className="modal cursor-pointer">
                 <div className="modal-box">
-                    <form method="post" action="/login">
+                    <form onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-2">
-                            <label>Email Address:</label>
+                            <label>Username:</label>
                             <input
                                 type="text"
+                                name="username"
                                 className="border-2 focus:border-primary focus:outline-none h-8"
+                                onChange={handleChange}
                                 required
                             ></input>
                         </div>
@@ -29,16 +70,21 @@ function Login() {
                             <label>Password:</label>
                             <input
                                 type="text"
-                                required
+                                name="password"
                                 className="h-8 border-2 focus:border-primary focus:outline-none"
+                                onChange={handleChange}
+                                required
                             ></input>
                         </div>
                         <div className="modal-action">
                             <button
                                 type="submit"
                                 className="btn btn-primary w-full"
+                                onClick={props.getUserStatus}
                             >
-                                Log in
+                                <label htmlFor="login-modal" className="w-full">
+                                    Log in
+                                </label>
                             </button>
                         </div>
                     </form>
