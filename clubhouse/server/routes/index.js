@@ -78,7 +78,6 @@ function authenticateLocal(req, res, next) {
 
 // authentication route
 router.get("/", (req, res) => {
-    // res.send(req.user);
     if (req.user) {
         res.status(200).send(req.user);
     } else {
@@ -87,6 +86,16 @@ router.get("/", (req, res) => {
 });
 
 router.post("/login", authenticateLocal);
+
+router.get("/logout", (req, res, next) => {
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+    });
+
+    res.send({ message: "Log out successful" });
+});
 
 //sign up route
 router.post("/signup", formController.create_user_post);
