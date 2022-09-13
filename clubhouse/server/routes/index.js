@@ -2,6 +2,7 @@ let express = require("express");
 let passport = require("passport");
 let LocalStrategy = require("passport-local").Strategy;
 let { PrismaClient } = require("@prisma/client");
+let bcrypt = require("bcryptjs");
 
 let router = express.Router();
 let prisma = new PrismaClient();
@@ -30,13 +31,14 @@ passport.use(
             });
         }
 
-        if (existUser.auth.password !== password) {
-            return done(null, false, {
-                message: "Incorrect password",
-            });
-        }
-
-        return done(null, existUser);
+        //compare hashed password in db to user input pw
+        bcrypt.compare(password, existUser.auth.password, (err, res) => {
+            if (res) {
+                return done(null, existUser);
+            } else {
+                return done(null, false, { message: "Incorrect password" });
+            }
+        });
     })
 );
 
