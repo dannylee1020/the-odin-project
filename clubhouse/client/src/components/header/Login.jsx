@@ -20,6 +20,7 @@ function Login(props) {
         let info = { username, password };
         let url = "http://localhost:3000/login";
 
+        // include credentials to persist user credential in a session
         await fetch(url, {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -27,17 +28,18 @@ function Login(props) {
             body: JSON.stringify(info),
         })
             .then((res) => res.json())
-            .then((data) =>
-                console.log({ message: "request successful", data: data })
-            );
+            .then((data) => {
+                console.log(data);
+            });
 
+        // include credentials to persist user credential in a session
         await fetch("http://localhost:3000/", {
             method: "get",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
-        })
-            .then((res) => res.json())
-            .then((data) => console.log(data));
+        }).then((res) => {
+            res.status === 200 ? props.setUserAuth() : null;
+        });
     };
 
     return (
