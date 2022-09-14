@@ -28,7 +28,6 @@ function Signup() {
             last_name,
             username,
             password,
-            confirm,
         };
 
         const url = "http://localhost:3000/signup";
