@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function PrivatePage() {
+function PrivatePage(props) {
     const [passcode, setPasscode] = useState({
         passcode: "",
     });
@@ -15,13 +15,29 @@ function PrivatePage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const url = "http://localhost:3000/private";
-        await fetch(url, {
-            method: "get",
+        await fetch("http://localhost:3000/private", {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
             credentials: "include",
+            body: JSON.stringify(passcode),
         })
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                if (data.message == "success") {
+                    alert("Success!");
+                } else {
+                    alert("Wrong Passcode");
+                    return;
+                }
+            });
+
+        await fetch("http://localhost:3000/", {
+            method: "get",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+        })
+            .then((res) => (res.status != 401 ? props.setUserAuth() : null))
+            .then(() => (window.location.href = "/"));
     };
 
     return (
