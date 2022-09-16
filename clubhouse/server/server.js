@@ -11,6 +11,7 @@ const indexRouter = require("./routes/index");
 
 const app = express();
 
+// for persisting credentials in a session, and adding all origin to avoid origin problem
 app.use(cors({ credentials: true, origin: true }));
 app.use(logger("dev"));
 app.use(express.json());
