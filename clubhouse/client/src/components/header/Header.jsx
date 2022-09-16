@@ -3,12 +3,8 @@ import Login from "./Login";
 import Logout from "./Logout";
 import Signup from "./Signup";
 
-const Header = () => {
-    const [userStatus, setUserStatus] = useState(false);
-
-    const setUserAuth = () => {
-        userStatus === false ? setUserStatus(true) : setUserStatus(false);
-    };
+const Header = (props) => {
+    const status = localStorage.getItem("status");
 
     return (
         <div className="flex justify-between">
@@ -16,13 +12,13 @@ const Header = () => {
                 Club<span className="text-black">House</span>
             </div>
             <div></div>
-            {userStatus ? (
+            {status ? (
                 <div className="flex">
-                    <Logout setUserAuth={setUserAuth}></Logout>
+                    <Logout setUserAuth={props.setUserAuth}></Logout>
                 </div>
             ) : (
                 <div className="flex gap-3">
-                    <Login setUserAuth={setUserAuth}></Login>
+                    <Login></Login>
                     <Signup></Signup>
                 </div>
             )}
