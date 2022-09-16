@@ -30,16 +30,8 @@ function Login(props) {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-            });
-
-        // include credentials to persist user credential in a session
-        await fetch("http://localhost:3000/", {
-            method: "get",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-        }).then((res) => {
-            res.status === 200 ? props.setUserAuth() : null;
-        });
+            })
+            .then(() => (window.location.href = "/private"));
     };
 
     return (
