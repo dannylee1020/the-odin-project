@@ -13,6 +13,7 @@ exports.create_user_post = [
 
     async function (req, res) {
         const errors = validationResult(req);
+
         bcrypt.hash(req.body.password, 10, async (err, pw) => {
             if (err) {
                 console.log(err);
