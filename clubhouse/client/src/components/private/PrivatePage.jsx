@@ -25,19 +25,12 @@ function PrivatePage(props) {
             .then((data) => {
                 if (data.message == "success") {
                     alert("Success!");
+                    window.location.href = "/";
                 } else {
                     alert("Wrong Passcode");
                     return;
                 }
             });
-
-        await fetch("http://localhost:3000/", {
-            method: "get",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-        })
-            .then((res) => (res.status != 401 ? props.setUserAuth() : null))
-            .then(() => (window.location.href = "/"));
     };
 
     return (
