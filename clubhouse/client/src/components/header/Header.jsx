@@ -4,7 +4,16 @@ import Logout from "./Logout";
 import Signup from "./Signup";
 
 const Header = (props) => {
-    const status = localStorage.getItem("status");
+    const [userStatus, setUserStatus] = useState(false);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/", {
+            method: "get",
+            credentials: "include",
+        }).then((res) =>
+            res.status !== 401 ? setUserStatus(true) : setUserStatus(false)
+        );
+    }, []);
 
     return (
         <div className="flex justify-between">
@@ -12,9 +21,9 @@ const Header = (props) => {
                 Club<span className="text-black">House</span>
             </div>
             <div></div>
-            {status ? (
+            {userStatus ? (
                 <div className="flex">
-                    <Logout setUserAuth={props.setUserAuth}></Logout>
+                    <Logout onClick={() => setUserStatus(false)}></Logout>
                 </div>
             ) : (
                 <div className="flex gap-3">
