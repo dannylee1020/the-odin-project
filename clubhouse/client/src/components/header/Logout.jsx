@@ -15,7 +15,7 @@ function Logout(props) {
             <button
                 className="btn btn-primary font-bold"
                 onClick={() => {
-                    props.setUserAuth();
+                    props.onClick();
                     userLogOut();
                 }}
             >
