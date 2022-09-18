@@ -1,14 +1,13 @@
-import Header from "./components/header/Header";
+import Home from "./components/Home";
 import PrivatePage from "./components/private/PrivatePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 function App() {
     return (
         <BrowserRouter>
-            <div className="mx-5 mt-5">
+            <div className="mx-5 mt-5 h-screen">
                 <Routes>
-                    <Route path="/" element={<Header></Header>}></Route>
+                    <Route path="/" element={<Home />}></Route>
                     <Route
                         path="/private"
                         element={<PrivatePage></PrivatePage>}
