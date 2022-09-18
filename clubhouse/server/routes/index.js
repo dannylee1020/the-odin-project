@@ -2,6 +2,7 @@ let express = require("express");
 let passport = require("./auth");
 let router = express.Router();
 let formController = require("../controller/formController");
+let messageController = require("../controller/messageController");
 
 function authenticateLocal(req, res, next) {
     // pass callback function to handle error and get errors configured in LocalStrategy
@@ -55,5 +56,10 @@ router.post("/private", (req, res) => {
         ? res.status(200).send({ message: "success" })
         : res.status(401).send({ message: "Wrong Passcode" });
 });
+
+// get messages from database
+router.get("/messages", messageController.get_all_message);
+
+router.post("/messages", messageController.create_message);
 
 module.exports = router;
