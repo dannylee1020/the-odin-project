@@ -31,9 +31,9 @@ function Login(props) {
             .then((data) => {
                 console.log(data);
             })
-            .then(() => (window.location.href = "/private"));
+            .then(() => (window.location.href = "/private"))
+            .then(e.target.reset());
     };
-
     return (
         <div>
             <label
