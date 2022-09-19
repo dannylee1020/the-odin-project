@@ -14,7 +14,7 @@ exports.create_message = [
     async function (req, res) {
         const errors = validationResult(req);
 
-        if (!error.isEmpty()) {
+        if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
         } else {
             try {
@@ -24,7 +24,7 @@ exports.create_message = [
                         message: req.body.message,
                     },
                 });
-                res.send("message created successfully");
+                res.send({ message: "message created successfully" });
             } catch (e) {
                 res.send({ error: e.meta, message: e.message });
             }
