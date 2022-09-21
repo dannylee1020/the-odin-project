@@ -6,6 +6,8 @@ function MessageForm(props) {
         message: "",
     });
 
+    const [render, setRender] = useState(false);
+
     function handleChange(e) {
         setMessage({
             // no need to handle previous value because we are only storing one key value.
@@ -44,7 +46,7 @@ function MessageForm(props) {
                             className="btn btn-primary btn-sm"
                         >
                             <AiOutlineArrowUp
-                                onClick={props.getMessages}
+                                onClick={props.onClick}
                             ></AiOutlineArrowUp>
                         </button>
                     </div>
