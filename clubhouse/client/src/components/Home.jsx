@@ -5,29 +5,45 @@ import { useEffect, useState } from "react";
 
 function Home() {
     const [userStatus, setUserStatus] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [render, setRender] = useState(false);
 
     useEffect(() => {
         getUserStatus();
     }, []);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            let response = await getMessages();
+            let data = await response.data;
+
+            setMessages(data);
+        };
+
+        fetchData();
+    }, []);
+
     // check if user is logged in
     async function getUserStatus() {
-        await fetch("http://localhost:3000/", {
+        let status = await fetch("http://localhost:3000/", {
             method: "GET",
             credentials: "include",
         }).then((res) =>
             res.status !== 401 ? setUserStatus(true) : setUserStatus(false)
         );
+
+        return status;
     }
 
     // get all the messages to display in home page
     async function getMessages() {
-        let messages = await fetch("http://localhost:3000/messages", {
+        let response = await fetch("http://localhost:3000/messages", {
             method: "GET",
             credentials: "include",
         });
 
-        return messages;
+        let data = await response.json();
+        return data;
     }
 
     return (
@@ -38,12 +54,17 @@ function Home() {
                     onClick={() => setUserStatus(false)}
                     userStatus={userStatus}
                 />
-                <Message getMessages={getMessages} />
+                <Message messages={messages} />
+                <div></div>
             </div>
             <div></div>
             {userStatus ? (
                 <div>
-                    <MessageForm getMessages={getMessages} />
+                    <MessageForm
+                        onClick={() =>
+                            render ? setRender(false) : setRender(true)
+                        }
+                    />
                 </div>
             ) : null}
         </div>
@@ -51,3 +72,4 @@ function Home() {
 }
 
 export default Home;
+//
