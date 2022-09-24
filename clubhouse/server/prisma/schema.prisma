@@ -15,7 +15,7 @@ model User {
     first_name String
     last_name  String
     username   String    @unique
-    status     Boolean   @default(false)
+    admin      Boolean   @default(false)
     messages   Message[]
     auth       Auth?
 }
