@@ -62,4 +62,7 @@ router.get("/messages", messageController.get_all_message);
 
 router.post("/messages", messageController.create_message);
 
+// delete message for admin
+router.post("/delete", messageController.delete_message);
+
 module.exports = router;
