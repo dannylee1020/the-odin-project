@@ -1,3 +1,5 @@
+import { MdOutlineDeleteOutline } from "react-icons/md";
+
 function Message(props) {
     function generateKey(pre) {
         return `${pre}_${new Date().getTime()}`;
@@ -6,6 +8,23 @@ function Message(props) {
     function cleanDate(dt) {
         let d = new Date(dt);
         return d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    }
+
+    async function deleteMessage(e) {
+        e.preventDefault();
+
+        let req = { id: e.target.id };
+
+        await fetch("http://localhost:3000/delete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify(req),
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+
+        await props.onClick();
     }
 
     return (
@@ -20,7 +39,24 @@ function Message(props) {
                                 className="bg-slate-200 rounded-lg w-1/3 whitespace-normal break-normal"
                                 key={generateKey(m.id)}
                             >
-                                {props.userStatus ? (
+                                {props.userStatus && props.user.admin ? (
+                                    <div className="p-5">
+                                        <div className="flex justify-between mb-8">
+                                            <div className="text-sm italic">
+                                                {m.user.username}
+                                            </div>
+                                            <MdOutlineDeleteOutline
+                                                className="text-2xl"
+                                                id={m.id}
+                                                onClick={deleteMessage}
+                                            />
+                                        </div>
+                                        <span>{m.message}</span>
+                                        <div className="mt-5 text-right text-sm italic">
+                                            {cleanDate(m.timestamp)}
+                                        </div>
+                                    </div>
+                                ) : props.userStatus ? (
                                     <div className="p-5">
                                         <div className="mb-5 text-sm italic">
                                             {m.user.username}
