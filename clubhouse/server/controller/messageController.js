@@ -4,7 +4,16 @@ const { body, validationResult } = require("express-validator");
 const prisma = new PrismaClient();
 
 exports.get_all_message = async function (req, res) {
-    const messages = await prisma.message.findMany();
+    const messages = await prisma.message.findMany({
+        include: {
+            user: {
+                select: {
+                    username: true,
+                },
+            },
+        },
+    });
+
     res.json({ data: messages, message: "successfully fetched all messages" });
 };
 
