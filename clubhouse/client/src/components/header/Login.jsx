@@ -27,11 +27,15 @@ function Login(props) {
             credentials: "include",
             body: JSON.stringify(info),
         })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
+            .then((res) => {
+                if (res.status == 401) {
+                    alert("wrong password");
+                    return;
+                } else {
+                    res.json();
+                    window.location.href = "/private";
+                }
             })
-            .then(() => (window.location.href = "/private"))
             .then(e.target.reset());
     };
     return (
