@@ -25,14 +25,12 @@ function Home() {
 
     // check if user is logged in
     async function getUserStatus() {
-        let status = await fetch("http://localhost:3000/", {
+        await fetch("http://localhost:3000/", {
             method: "GET",
             credentials: "include",
         }).then((res) =>
             res.status !== 401 ? setUserStatus(true) : setUserStatus(false)
         );
-
-        return status;
     }
 
     // get all the messages to display in home page
@@ -56,18 +54,20 @@ function Home() {
                 />
                 {userStatus ? (
                     <div>
-                        <MessageForm
-                            onClick={() => {
-                                setRender((value) => !value);
-                            }}
-                        />
+                        <div>
+                            <MessageForm
+                                onClick={() => {
+                                    // trigger rerender of the component so that fetch in useEffect is triggered
+                                    setRender((value) => !value);
+                                }}
+                            />
+                        </div>
                     </div>
                 ) : null}
             </div>
-            <Message messages={messages} />
+            <Message messages={messages} userStatus={userStatus} />
         </div>
     );
 }
 
 export default Home;
-//
