@@ -10,6 +10,8 @@ function Signup() {
         confirm: "",
     });
 
+    const [admin, setAdminStatus] = useState(false);
+
     const handleInputChange = (e) => {
         setSignupInfo((prev) => ({
             ...prev,
@@ -28,6 +30,7 @@ function Signup() {
             last_name,
             username,
             password,
+            admin: admin,
         };
 
         const url = "http://localhost:3000/signup";
@@ -39,7 +42,8 @@ function Signup() {
                 body: JSON.stringify(info),
             })
                 .then((res) => res.json())
-                .then((data) => console.log({ message: "success", data }));
+                .then((data) => console.log({ message: "success", data }))
+                .then(e.target.reset());
         } else {
             alert("Passwords do not match");
         }
@@ -111,10 +115,19 @@ function Signup() {
                                 required
                             ></input>
                         </div>
+                        <div className="flex flex gap-2 mt-5 items-center">
+                            <label>Admin? </label>
+                            <input
+                                type="checkbox"
+                                name="admin"
+                                className="checkbox checkbox-primary checkbox-md bg-white rounded border-2 "
+                                onClick={() => setAdminStatus(true)}
+                            ></input>
+                        </div>
                         <div className="modal-action">
                             <button
                                 type="submit"
-                                className="btn btn-primary w-full"
+                                className="btn btn-primary w-full "
                             >
                                 <label
                                     htmlFor="signup-modal"
