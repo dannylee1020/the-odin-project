@@ -21,7 +21,7 @@ function Home() {
         };
 
         fetchData();
-    }, []);
+    }, [render]);
 
     // check if user is logged in
     async function getUserStatus() {
@@ -47,26 +47,24 @@ function Home() {
     }
 
     return (
-        <div className="flex flex-col justify-between h-5/6">
+        <div className="flex flex-col h-5/6">
             <div>
                 <Header
                     getUserStatus={getUserStatus}
                     onClick={() => setUserStatus(false)}
                     userStatus={userStatus}
                 />
-                <Message messages={messages} />
-                <div></div>
+                {userStatus ? (
+                    <div>
+                        <MessageForm
+                            onClick={() => {
+                                setRender((value) => !value);
+                            }}
+                        />
+                    </div>
+                ) : null}
             </div>
-            <div></div>
-            {userStatus ? (
-                <div>
-                    <MessageForm
-                        onClick={() =>
-                            render ? setRender(false) : setRender(true)
-                        }
-                    />
-                </div>
-            ) : null}
+            <Message messages={messages} />
         </div>
     );
 }
