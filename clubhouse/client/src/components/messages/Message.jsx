@@ -15,7 +15,15 @@ function Message(props) {
                                 className="bg-slate-200 rounded-lg w-1/3 whitespace-normal break-normal"
                                 key={generateKey(m.id)}
                             >
-                                <div className="p-8">{m.message}</div>
+                                <div className="p-5">
+                                    <div className="mb-5 text-sm italic">
+                                        author_name
+                                    </div>
+                                    <span>{m.message}</span>
+                                    <div className="mt-5 text-right text-sm italic">
+                                        date
+                                    </div>
+                                </div>
                             </div>
                         );
                     })
