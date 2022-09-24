@@ -45,11 +45,13 @@ function Message(props) {
                                             <div className="text-sm italic">
                                                 {m.user.username}
                                             </div>
-                                            <MdOutlineDeleteOutline
-                                                className="text-2xl opacity-0 group-hover:opacity-100"
-                                                id={m.id}
-                                                onClick={deleteMessage}
-                                            />
+                                            <button className="animate-bounce">
+                                                <MdOutlineDeleteOutline
+                                                    className="text-2xl opacity-0 group-hover:opacity-100"
+                                                    id={m.id}
+                                                    onClick={deleteMessage}
+                                                />
+                                            </button>
                                         </div>
                                         <span>{m.message}</span>
                                         <div className="mt-5 text-right text-sm italic">
