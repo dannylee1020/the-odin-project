@@ -5,11 +5,19 @@ import { useEffect, useState } from "react";
 
 function Home() {
     const [userStatus, setUserStatus] = useState(false);
+    const [user, setUser] = useState();
     const [messages, setMessages] = useState([]);
     const [render, setRender] = useState(false);
 
     useEffect(() => {
-        getUserStatus();
+        const fetchData = async () => {
+            let res = await getUserStatus();
+            let data = await res.json();
+            setUser(data);
+            res.status !== 401 ? setUserStatus(true) : setUserStatus(false);
+        };
+
+        fetchData();
     }, []);
 
     useEffect(() => {
@@ -25,12 +33,12 @@ function Home() {
 
     // check if user is logged in
     async function getUserStatus() {
-        await fetch("http://localhost:3000/", {
+        let res = await fetch("http://localhost:3000/", {
             method: "GET",
             credentials: "include",
-        }).then((res) =>
-            res.status !== 401 ? setUserStatus(true) : setUserStatus(false)
-        );
+        });
+
+        return res;
     }
 
     // get all the messages to display in home page
@@ -65,7 +73,14 @@ function Home() {
                     </div>
                 ) : null}
             </div>
-            <Message messages={messages} userStatus={userStatus} />
+            <Message
+                messages={messages}
+                userStatus={userStatus}
+                user={user}
+                onClick={() => {
+                    setRender((value) => !value);
+                }}
+            />
         </div>
     );
 }
