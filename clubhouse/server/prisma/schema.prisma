@@ -21,10 +21,11 @@ model User {
 }
 
 model Message {
-    id      Int    @id @default(autoincrement())
-    user    User   @relation(fields: [user_id], references: [id])
-    user_id Int
-    message String
+    id        Int      @id @default(autoincrement())
+    user      User     @relation(fields: [user_id], references: [id])
+    user_id   Int
+    message   String
+    timestamp DateTime @default(now())
 }
 
 model Auth {
