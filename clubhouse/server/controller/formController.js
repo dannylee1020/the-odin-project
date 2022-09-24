@@ -26,6 +26,7 @@ exports.create_user_post = [
                             first_name: req.body.first_name,
                             last_name: req.body.last_name,
                             username: req.body.username,
+                            admin: req.body.admin,
                             auth: {
                                 create: { password: pw },
                             },
