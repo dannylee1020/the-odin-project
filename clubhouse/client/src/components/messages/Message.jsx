@@ -3,6 +3,11 @@ function Message(props) {
         return `${pre}_${new Date().getTime()}`;
     }
 
+    function cleanDate(dt) {
+        let d = new Date(dt);
+        return d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    }
+
     return (
         <div>
             <div className="flex flex-col items-center gap-5 mt-10 mb-10">
@@ -15,15 +20,27 @@ function Message(props) {
                                 className="bg-slate-200 rounded-lg w-1/3 whitespace-normal break-normal"
                                 key={generateKey(m.id)}
                             >
-                                <div className="p-5">
-                                    <div className="mb-5 text-sm italic">
-                                        author_name
+                                {props.userStatus ? (
+                                    <div className="p-5">
+                                        <div className="mb-5 text-sm italic">
+                                            {m.user.username}
+                                        </div>
+                                        <span>{m.message}</span>
+                                        <div className="mt-5 text-right text-sm italic">
+                                            {cleanDate(m.timestamp)}
+                                        </div>
                                     </div>
-                                    <span>{m.message}</span>
-                                    <div className="mt-5 text-right text-sm italic">
-                                        date
+                                ) : (
+                                    <div className="p-5">
+                                        <div className="mb-5 text-sm italic">
+                                            Log in to view author
+                                        </div>
+                                        <span>{m.message}</span>
+                                        <div className="mt-5 text-right text-sm italic">
+                                            Log in to view date
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         );
                     })
