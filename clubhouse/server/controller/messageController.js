@@ -40,3 +40,13 @@ exports.create_message = [
         }
     },
 ];
+
+exports.delete_message = async (req, res) => {
+    await prisma.message.delete({
+        where: {
+            id: parseInt(req.body.id),
+        },
+    });
+
+    res.send({ message: "successfully deleted a message" });
+};
