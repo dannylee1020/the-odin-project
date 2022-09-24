@@ -40,13 +40,13 @@ function Message(props) {
                                 key={generateKey(m.id)}
                             >
                                 {props.userStatus && props.user.admin ? (
-                                    <div className="p-5">
+                                    <div className="p-5 group">
                                         <div className="flex justify-between mb-8">
                                             <div className="text-sm italic">
                                                 {m.user.username}
                                             </div>
                                             <MdOutlineDeleteOutline
-                                                className="text-2xl"
+                                                className="text-2xl opacity-0 group-hover:opacity-100"
                                                 id={m.id}
                                                 onClick={deleteMessage}
                                             />
