@@ -20,9 +20,6 @@ import {
     Timestamp,
 } from "firebase/firestore";
 
-// TODO: add sign in functionality
-// * design header with DaisyUI and add sign in functionality.
-
 function App() {
     // need to display add and update form based on what user wants to do
     let [isAdd, setIsAdd] = useState(false);
