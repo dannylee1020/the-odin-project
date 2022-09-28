@@ -8,8 +8,11 @@ let session = require("express-session");
 let passport = require("passport");
 
 const indexRouter = require("./routes/index");
+const userRouter = require("./routes/user/user_router");
+const messageRouter = require("./routes/message/message_router");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // for persisting credentials in a session, and adding all origin to avoid origin problem
 app.use(cors({ credentials: true, origin: true }));
@@ -17,7 +20,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "..", "client", "dist")));
+// app.use(express.static(path.join(__dirname, "public")));
 
 //authenticate session
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
@@ -25,6 +28,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", indexRouter);
+app.use("/api", userRouter);
+app.use("/api", messageRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -42,8 +47,8 @@ app.use(function (err, req, res, next) {
     res.json({ error: err });
 });
 
-app.listen(3000, () => {
-    console.log("server started on port 3000");
+app.listen(port, () => {
+    console.log(`server started on port ${port}`);
 });
 
 module.exports = app;
