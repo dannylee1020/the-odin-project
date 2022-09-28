@@ -18,7 +18,7 @@ function Login(props) {
 
         let { username, password } = loginInfo;
         let info = { username, password };
-        let url = "http://localhost:3000/login";
+        let url = "http://localhost:3000/api/login";
 
         // include credentials to persist user credential in a session
         await fetch(url, {

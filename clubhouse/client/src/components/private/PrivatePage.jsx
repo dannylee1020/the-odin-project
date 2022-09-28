@@ -15,7 +15,7 @@ function PrivatePage(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await fetch("http://localhost:3000/private", {
+        await fetch("http://localhost:3000/api/private", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             credentials: "include",

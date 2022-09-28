@@ -1,6 +1,6 @@
 function Logout(props) {
     const userLogOut = async () => {
-        let url = "http://localhost:3000/logout";
+        let url = "http://localhost:3000/api/logout";
 
         await fetch(url, {
             method: "get",

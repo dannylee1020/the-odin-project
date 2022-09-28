@@ -43,7 +43,7 @@ function Home() {
 
     // get all the messages to display in home page
     async function getMessages() {
-        let response = await fetch("http://localhost:3000/messages", {
+        let response = await fetch("http://localhost:3000/api/messages", {
             method: "GET",
             credentials: "include",
         });
