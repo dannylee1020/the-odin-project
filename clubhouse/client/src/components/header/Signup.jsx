@@ -33,10 +33,8 @@ function Signup() {
             admin: admin,
         };
 
-        const url = "http://localhost:3000/signup";
-
         if (password === confirm) {
-            fetch(url, {
+            fetch("/api/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(info),

@@ -33,7 +33,7 @@ function Home() {
 
     // check if user is logged in
     async function getUserStatus() {
-        let res = await fetch("http://localhost:3000/", {
+        let res = await fetch("/user", {
             method: "GET",
             credentials: "include",
         });
@@ -43,7 +43,7 @@ function Home() {
 
     // get all the messages to display in home page
     async function getMessages() {
-        let response = await fetch("http://localhost:3000/api/messages", {
+        let response = await fetch("/api/messages", {
             method: "GET",
             credentials: "include",
         });
