@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function PrivatePage(props) {
+function PrivatePage() {
     const [passcode, setPasscode] = useState({
         passcode: "",
     });
@@ -15,7 +15,7 @@ function PrivatePage(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await fetch("http://localhost:3000/api/private", {
+        await fetch("/api/private", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
