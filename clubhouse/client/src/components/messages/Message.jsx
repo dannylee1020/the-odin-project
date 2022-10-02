@@ -15,7 +15,7 @@ function Message(props) {
 
         let req = { id: e.target.id };
 
-        await fetch("http://localhost:3000/api/delete", {
+        await fetch("/api/delete", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",

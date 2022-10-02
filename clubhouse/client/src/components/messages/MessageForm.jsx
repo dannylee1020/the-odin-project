@@ -16,7 +16,7 @@ function MessageForm(props) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        await fetch("http://localhost:3000/api/messages", {
+        await fetch("/api/messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
